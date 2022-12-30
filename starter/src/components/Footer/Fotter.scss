@@ -1,0 +1,25 @@
+@import "../../styles/colors";
+@import "../../styles/text";
+
+.footer {
+  background-color: #35373A;
+  color: $color-white;
+  p{
+    font-family: $secondary-font;
+  }
+  a {
+    color: $color-white;
+    opacity: .9;
+    text-decoration: none;
+    &:hover{
+      color: $color-primary;
+    }
+  }
+  font-family: $secondary-font;
+  &__down{
+    background-color: #202124;
+  }
+  
+}
+
+
