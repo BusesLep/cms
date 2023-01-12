@@ -57,7 +57,7 @@ const useHeader = () => {
                   bottom
                 }
                 asset {
-                  id
+                  _id
                 }
               }
               image {
@@ -74,39 +74,24 @@ const useHeader = () => {
                   bottom
                 }
                 asset {
-                  id
+                  _id
                 }
                 alt
               }
               _type
               _key
             }
-            linkBlock {
+            customLinkBlock {
               links {
-                ... on SanityLink {
-                  _key
-                  _type
+                style
+                link {
                   url
                   text
                 }
-                ... on SanityCustomLink {
-                  _key
-                  _type
-                  link {
-                    url
-                    text
-                    _type
-                    _key
-                  }
-                  icon {
-                    icon
-                    _type
-                    _key
-                  }
+                icon {
+                  icon
                 }
               }
-              _type
-              _key
             }
             _type
             _key

@@ -29,5 +29,14 @@ module.exports = {
       "path": "./src/images/"
     },
     __key: "images"
-  }]
+  }, {
+    resolve: "gatsby-plugin-sanity-image",
+    options: {
+      projectId: "9hjfgggi",
+      dataset: "production",
+      customImageTypes: ["customImage"],
+      altFieldName: "alt",
+    },
+  }
+]
 };
