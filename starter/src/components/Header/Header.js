@@ -1,6 +1,5 @@
 import React from "react";
-import { CustomLink, MaterialIcon, FontAwesomeIcon} from "..";
-import { useTheme } from "../../context/themeContext";
+import { MaterialIcon } from "..";
 import { StaticImage } from "gatsby-plugin-image";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -8,9 +7,12 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 import "./Header.scss";
+import LinkBlock from "./LinkBlock";
+import useHeader from "../../hooks/useHeader";
 
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
+  const data = useHeader().sanityHeader
+/*   console.log(data); */
   return (
     <header className="header">
       <Navbar expand="lg">
@@ -48,29 +50,7 @@ const Header = () => {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          <div className="header__actions">
-          <CustomLink
-            href="google.com"
-            icon={<FontAwesomeIcon code="FaWhatsapp"></FontAwesomeIcon>}
-            style="link mobile"
-            text="Link de header"
-          />
-          
-          <CustomLink
-            href="google.com"
-            icon={<FontAwesomeIcon code="FaUserCircle"></FontAwesomeIcon>}
-            style="button mobile me-2"
-            text="Boton de header"
-          />
-            <button onClick={toggleTheme} className="header__theme-toggle">
-              <div className={`moon ${theme === "dark" ? "" : "moon-animate"}`}>
-                <FontAwesomeIcon code="FaMoon" />
-              </div>
-              <div className={`sun ${theme === "dark" ? "sun-animate" : ""}`}>
-                <MaterialIcon code="MdWbSunny" />
-              </div>
-            </button>
-          </div>
+          <LinkBlock links={data.linkBlock.links}/>
         </Container>
       </Navbar>
     </header>
