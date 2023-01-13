@@ -5,7 +5,7 @@
 .header {
   background-color: $bg-elevation-1;
   &__logo {
-    width: 200px;
+    width: 140px;
     height: 40px;
     overflow: hidden;
     .gatsby-image-wrapper {
@@ -18,6 +18,9 @@
   &__actions{
     display: flex;
     align-items: center;
+    a:nth-last-of-type(1)  {
+      margin-right: 0.5rem !important;
+  }
 
   }
   &__theme-toggle {

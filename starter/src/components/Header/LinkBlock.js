@@ -4,23 +4,34 @@ import { useTheme } from "../../context/themeContext";
 
 import "./Header.scss";
 
-const LinkBlock = ({links}) => {
+const LinkBlock = ({ links }) => {
   const { theme, toggleTheme } = useTheme();
-  console.log(links)
+
+  const linksList = links.map((link) => {
+    const url = link?.link?.url;
+    const iconCode = link?.icon?.icon;
+    const style = link?.style;
+    const title = link?.link?.text;
+
+    return (
+      <CustomLink
+        href={url}
+        icon={
+          iconCode.startsWith("Md") ? (
+            <MaterialIcon code={iconCode}></MaterialIcon>
+          ) : (
+            <FontAwesomeIcon code={iconCode}></FontAwesomeIcon>
+          )
+        }
+        style={`${style} mobile`}
+        text={title}
+      />
+    );
+  });
+
   return (
     <div className="header__actions">
-      <CustomLink
-        href="google.com"
-        icon={<FontAwesomeIcon code="FaWhatsapp"></FontAwesomeIcon>}
-        style="link mobile"
-        text="Link de header"
-      />
-      <CustomLink
-        href="google.com"
-        icon={<FontAwesomeIcon code="FaUserCircle"></FontAwesomeIcon>}
-        style="button mobile me-2"
-        text="Boton de header"
-      />
+      {linksList}
       <button onClick={toggleTheme} className="header__theme-toggle">
         <div className={`moon ${theme === "dark" ? "" : "moon-animate"}`}>
           <FontAwesomeIcon code="FaMoon" />
