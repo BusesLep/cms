@@ -82,6 +82,12 @@
     .nav-link {
       color: $bg-secondary;
       font-family: $primary-font;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      .icon{
+        padding-right: .3rem;
+      }
       &:hover {
         opacity: 0.8;
       }

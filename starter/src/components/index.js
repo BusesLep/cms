@@ -1,6 +1,7 @@
 import Header from "./Header/Header"
 import Footer from "./Footer/Footer"
 import Layout from "./Layout/Layout"
+import Icon from "./Icons/Icon"
 import FontAwesomeIcon from "./Icons/FontAwesomeIcon"
 import MaterialIcon from "./Icons/MetertialIcon"
 import CustomLink from "./CustomLink/CustomLink"
@@ -14,5 +15,6 @@ export {
     FontAwesomeIcon,
     MaterialIcon,
     CustomLink,
-    TextExample
+    TextExample,
+    Icon
 }
