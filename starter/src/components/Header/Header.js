@@ -13,12 +13,12 @@ const Header = () => {
   const data = useHeader().sanityHeader;
   const { theme } = useTheme();
 
-  return (
+  return data !== null ? (
     <header className="header">
       <Navbar expand="lg">
         <Container>
           <Navbar.Brand href="#home">
-            {theme == "dark" ? (
+            {theme === "dark" ? (
               <SanityImage
                 {...data.logo.imageDark}
                 alt={`${data.logo.image.alt}`}
@@ -32,12 +32,17 @@ const Header = () => {
               />
             )}
           </Navbar.Brand>
-          {data.menu !== null ? <Menu links={data.menu.links}/> : <></>}    
-          {data.customLinkBlock !== null ? <LinkBlock links={data?.customLinkBlock?.links} /> : <></>}          
-          
+          {data.menu !== null ? <Menu links={data.menu.links} /> : <></>}
+          {data.customLinkBlock !== null ? (
+            <LinkBlock links={data.customLinkBlock?.links} />
+          ) : (
+            <></>
+          )}
         </Container>
       </Navbar>
     </header>
+  ) : (
+    <></>
   );
 };
 

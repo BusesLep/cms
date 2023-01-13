@@ -6,7 +6,7 @@ import { MaterialIcon, Icon } from "..";
 
 const Menu = ({ links }) => {
   const itemsMenu = links.map((link) =>
-    link._type == "dropdown" ? (
+    link._type === "dropdown" ? (
       <NavDropdown
         title={
           <div className="nav-link">

@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomLink, MaterialIcon, FontAwesomeIcon } from "..";
+import { CustomLink, MaterialIcon, FontAwesomeIcon, Icon } from "..";
 import { useTheme } from "../../context/themeContext";
 
 import "./Header.scss";
@@ -16,13 +16,7 @@ const LinkBlock = ({ links }) => {
     return (
       <CustomLink
         href={url}
-        icon={
-          iconCode.startsWith("Md") ? (
-            <MaterialIcon code={iconCode}></MaterialIcon>
-          ) : (
-            <FontAwesomeIcon code={iconCode}></FontAwesomeIcon>
-          )
-        }
+        icon={<Icon code={iconCode}></Icon>}
         style={`${style} mobile`}
         text={title}
       />

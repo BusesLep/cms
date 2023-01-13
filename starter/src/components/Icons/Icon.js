@@ -6,10 +6,10 @@ import MaterialIcon from "./MetertialIcon";
 const Icon = ({ code }) => {
   return (
     <>
-      {code.slice(0, 2) === "Fa" ? (
-        <FontAwesomeIcon code={code} />
+      {code.startsWith("Md") ? (
+        <MaterialIcon code={code}></MaterialIcon>
       ) : (
-        <MaterialIcon code={code} />
+        <FontAwesomeIcon code={code}></FontAwesomeIcon>
       )}
     </>
   );

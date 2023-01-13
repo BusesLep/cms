@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Layout , MaterialIcon, FontAwesomeIcon, TextExample} from "../components"
+import { Layout , TextExample} from "../components"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.scss";
