@@ -57,7 +57,7 @@ const useHeader = () => {
                   bottom
                 }
                 asset {
-                  id
+                  _id
                 }
               }
               image {
@@ -74,7 +74,7 @@ const useHeader = () => {
                   bottom
                 }
                 asset {
-                  id
+                  _id
                 }
                 alt
               }
