@@ -18,6 +18,9 @@
   &__actions{
     display: flex;
     align-items: center;
+    a:nth-last-of-type(1)  {
+      margin-right: 0.5rem !important;
+  }
 
   }
   &__theme-toggle {
