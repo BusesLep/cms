@@ -36,6 +36,14 @@
       width: 80px;
       height: 113px;
     }
+    &__socialMedia {
+      a,
+      svg,
+      a:hover,
+      svg:hover {
+        transition: all ease-in-out 0s;
+      }
+    }
   }
   ul {
     list-style-type: none;
@@ -46,7 +54,7 @@
 
 @media (min-width: 768px) {
   .footer {
-    .contactBlock{
+    .contactBlock {
       justify-content: flex-end;
       flex-wrap: nowrap;
       flex-direction: row;

@@ -15,6 +15,7 @@ const useFooter = () => {
             icon {
               icon
             }
+            style
           }
         }
         qrCode {
