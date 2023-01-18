@@ -19,7 +19,19 @@
   &__down{
     background-color: #202124;
   }
-  
+  .row {
+    a {
+      width: auto;
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+  .qrCode {
+    width: 80px;
+    height: 110px;
+  }
 }
 
 
