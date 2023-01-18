@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider>
       <Header/>
-      <main className="container">{children}</main>
+      <main>{children}</main>
       <Footer/>
     </ThemeProvider>
   );
