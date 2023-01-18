@@ -6,6 +6,8 @@ import FontAwesomeIcon from "./Icons/FontAwesomeIcon"
 import MaterialIcon from "./Icons/MetertialIcon"
 import CustomLink from "./CustomLink/CustomLink"
 import TextExample from "./TextExample/TextExample"
+import Home from "./Home/Home"
+import Banner from "./Banner/Banner"
 
 
 export {
@@ -16,5 +18,7 @@ export {
     MaterialIcon,
     CustomLink,
     TextExample,
-    Icon
+    Icon,
+    Home,
+    Banner
 }
