@@ -8,23 +8,22 @@ import SocialMediaBlock from "./SocialMediaBlock";
 
 const Footer = () => {
   const data = useFooter().sanityFooter;
-  console.log(data);
   const { theme } = useTheme();
 
   return (
     data !== null && (
-      <footer className="footer">
+      <footer className="footer px-2">
         <div className="container py-4 d-flex flex-wrap">
           {data.linkBlock.length !== 0 &&
             data.linkBlock.map((block) => (
-              <FooterLinkBlock links={block.links} title={block.title} />
+              <FooterLinkBlock key={block._key} links={block.links} title={block.title} />
             ))}
 
           {data.socialMediaBlock !== null && (
-            <div className="col-12 col-md-4">
-              <div className="row">
+            <div className="col-12 col-md-4 ">
+              <div className="contactBlock">
                 {data.qrCode && (
-                <a href={data.qrCode.url} className="py-2">
+                <a href={data.qrCode.url} title={`${data.qrCode.image.alt}`} className="py-2">
                   <SanityImage
                     {...data.qrCode.image}
                     alt={`${data.qrCode.image.alt}`}

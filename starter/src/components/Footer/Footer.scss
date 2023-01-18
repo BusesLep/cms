@@ -2,21 +2,21 @@
 @import "../../styles/text";
 
 .footer {
-  background-color: #35373A;
+  background-color: #35373a;
   color: $color-white;
-  p{
+  p {
     font-family: $secondary-font;
   }
   a {
     color: $color-white;
-    opacity: .9;
+    opacity: 0.9;
     text-decoration: none;
-    &:hover{
+    &:hover {
       color: $color-primary;
     }
   }
   font-family: $secondary-font;
-  &__down{
+  &__down {
     background-color: #202124;
   }
   .row {
@@ -28,10 +28,37 @@
       }
     }
   }
-  .qrCode {
-    width: 80px;
-    height: 110px;
+  .contactBlock {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    .qrCode {
+      width: 80px;
+      height: 113px;
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0 0 0 5px;
+    margin: 0;
   }
 }
 
-
+@media (min-width: 768px) {
+  .footer {
+    .contactBlock{
+      justify-content: flex-end;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      gap: 20px;
+      &__socialMedia {
+        h5 {
+          text-align: right;
+        }
+        .row {
+          justify-content: end;
+        }
+      }
+    }
+  }
+}
