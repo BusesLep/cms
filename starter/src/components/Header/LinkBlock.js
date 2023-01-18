@@ -12,6 +12,7 @@ const LinkBlock = ({ links }) => {
     const iconCode = link?.icon?.icon;
     const style = link?.style;
     const title = link?.link?.text;
+    const key = link?.link?._key;
 
     return (
       <CustomLink
@@ -19,6 +20,7 @@ const LinkBlock = ({ links }) => {
         icon={<Icon code={iconCode}></Icon>}
         style={`${style} mobile`}
         text={title}
+        key={key}
       />
     );
   });

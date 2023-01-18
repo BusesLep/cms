@@ -1,39 +1,64 @@
 import React from "react";
-
-import "./Fotter.scss";
+import SanityImage from "gatsby-plugin-sanity-image";
+import "./Footer.scss";
+import useFooter from "../../hooks/useFooter";
+import { useTheme } from "../../context/themeContext";
+import FooterLinkBlock from "./FooterLinkBlock";
+import SocialMediaBlock from "./SocialMediaBlock";
 
 const Footer = () => {
+  const data = useFooter().sanityFooter;
+  const { theme } = useTheme();
+
   return (
-    <footer className="footer">
-      <div className="container py-4 d-flex flex-wrap">
-        <div className="col-12 col-md-4">
-          <h5 className="title-small">Lista de links</h5>
-          <ul role='list'>
-            <li className="body-medium mb-2" ><a href="Link">Link 1</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 2</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 3</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 4</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 5</a></li>
-          </ul>
+    data !== null && (
+      <footer className="footer px-2">
+        <div className="container py-4 d-flex flex-wrap">
+          {data.linkBlock.length !== 0 &&
+            data.linkBlock.map((block) => (
+              <FooterLinkBlock key={block._key} links={block.links} title={block.title} />
+            ))}
+
+          {data.socialMediaBlock !== null && (
+            <div className="col-12 col-md-4 ">
+              <div className="contactBlock">
+                {data.qrCode && (
+                <a href={data.qrCode.url} title={`${data.qrCode.image.alt}`} className="py-2">
+                  <SanityImage
+                    {...data.qrCode.image}
+                    alt={`${data.qrCode.image.alt}`}
+                    className="qrCode"
+                  />
+                </a>
+              )}
+              <SocialMediaBlock
+                links={data.socialMediaBlock.links}
+                title={data.socialMediaBlock.title}
+              />
+              </div>
+              
+            </div>
+          )}
         </div>
-        <div className="col-12 col-md-4">
-          <h5 className="title-small">Otros links</h5>
-          <ul role='list'>
-            <li className="body-medium mb-2" ><a href="Link">Link 1</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 2</a></li>
-            <li className="body-medium mb-2"><a href="Link">Link 3</a></li>
-          </ul>
+        <div className="footer__down">
+          <div className="container d-flex justify-content-end align-items-center py-4">
+            {theme === "dark" ? (
+              <SanityImage
+                {...data.logo.imageDark}
+                alt={`${data.logo.image.alt}`}
+                className="header__logo"
+              />
+            ) : (
+              <SanityImage
+                {...data.logo.image}
+                alt={`${data.logo.image.alt}`}
+                className="header__logo"
+              />
+            )}
+          </div>
         </div>
-        <div className="col-12 col-md-4 justify-content-end">
-          <h5 className="title-small text-end">Contacto</h5>
-        </div>
-      </div>
-      <div className="footer__down">
-        <div className="container d-flex justify-content-end align-items-center py-4">
-          <p className="mb-0">LOGO</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    )
   );
 };
 
