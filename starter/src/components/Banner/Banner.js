@@ -7,9 +7,9 @@ import "./Banner.scss";
 const Banner = ({ banner }) => {
   const slides = banner.slides.map((slide) => (
     <Carousel.Item>
-      <div className={`img ${slide.overlay ? 'overlay' : ''}`}>
+      <a href={`${slide.url !== null ? slide.url : ''}`} className={`img ${slide.overlay ? 'overlay' : ''}`}>
         <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
-      </div>
+      </a>
       <Carousel.Caption>
         {slide.title !== null ? <h3>{slide.title}</h3> : <></>}
         {slide.text !== null ? <p>{slide.text}</p> : <></>}
