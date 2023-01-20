@@ -6,6 +6,8 @@ const themes = {
     "--bg-primary": "#ffffff",
     "--bg-secondary": "#202124",
     "--bg-elevation-1": "#FEFCFC",
+    "--color-text-primary": "#5F6368",
+    "--color-border": "#F4EFF4",
     
 
 
@@ -15,6 +17,8 @@ const themes = {
     "--bg-primary": "#202124",
     "--bg-secondary": "#ffffff",
     "--bg-elevation-1": "#35373A",
+    "--color-text-primary": "#ffffff",
+    "--color-border": "#313131",
   },
 };
 
@@ -44,7 +48,7 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      <div style={{ ...themes[theme], background: "var(--bg-primary)", color: "var(--bg-secondary)"  }}>
+      <div style={{ ...themes[theme], background: "var(--bg-primary)", color: "var(--bg-secondary)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between"  }}>
         {children}
       </div>
     </ThemeContext.Provider>
