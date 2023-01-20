@@ -85,6 +85,31 @@ const useFooter = () => {
             _key
           }
         }
+        imageLinkBlock {
+          title
+          images {
+            _key
+            url
+            image {
+              hotspot {
+                y
+                x
+                width
+                height
+              }
+              crop {
+                top
+                right
+                left
+                bottom
+              }
+              asset {
+                _id
+              }
+              alt
+            }
+          }
+        }
         id
       }
     }
