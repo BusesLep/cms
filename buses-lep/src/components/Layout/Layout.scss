@@ -2,4 +2,7 @@
 
 main{
     background-color: $bg-primary;
+    flex-grow: 1;
+    
+    min-height: 650px;
 }

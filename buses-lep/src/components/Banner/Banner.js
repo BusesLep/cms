@@ -12,7 +12,7 @@ const Banner = ({ banner }) => {
       </a>
       <Carousel.Caption>
         {slide.title !== null ? <h3>{slide.title}</h3> : <></>}
-        {slide.text !== null ? <p>{slide.text}</p> : <></>}
+        {slide.text !== null ? <h3>{slide.text}</h3> : <></>}
       </Carousel.Caption>
     </Carousel.Item>
   ));
