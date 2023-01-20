@@ -1,4 +1,42 @@
+
+@import "../../styles/colors";
+@import "../../styles/text";
+@import "../../styles/global";
+
 .carousel {
+  .carousel-caption{
+    right: auto;
+    bottom: auto;
+    left: 1.5rem;
+    text-align: left;
+    color: $bg-secondary;
+  }
+  .carousel-indicators{
+    background-color: #C1C1C1;
+    min-width: 50px;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 0.2rem 0.2rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border-bottom: none;
+    border-top: none;
+    &.active {
+      opacity: 1;
+      background-color: $color-primary;
+  }
+}
+  .carousel-control-prev , .carousel-control-next{
+    display: none;
+  }
   &-inner {
     height: 350px;
     .carousel-item {
@@ -41,4 +79,17 @@
       }
     }
   }
+}
+
+@media (min-width: $md-breakpoint) { 
+  .carousel{
+    .carousel-caption{
+      left: 5rem;
+      h3{
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+
 }

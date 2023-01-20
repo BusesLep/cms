@@ -8,7 +8,7 @@ const Home = () => {
 
   return data !== null ? <div className="container">
   {data.banner !== null ? <Banner banner={data.banner}/> : <></>}
-  <TextExample></TextExample>
+  {/* <TextExample></TextExample> */}
 </div> : <div className="d-flex justify-content-center" >
   <h2>Home in Sanity has no content</h2>
 </div>;
