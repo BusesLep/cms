@@ -12,25 +12,33 @@ import useHeader from "../../hooks/useHeader";
 const Header = () => {
   const data = useHeader().sanityHeader;
   const { theme } = useTheme();
-console.log(data)
+  console.log(data);
   return data !== null ? (
     <header className="header">
       <Navbar expand="md">
         <Container fluid>
           <Navbar.Brand href="#home">
-            {theme === "dark" ? (
-              data.logo.imageDark !== null ? <SanityImage
-              {...data.logo.imageDark}
-              alt={`${data.logo.image.alt}`}
-              className="header__logo"
-            /> : <></>
-            ) : (
-              data.logo.image !== null ? <SanityImage
-                {...data.logo.image}
-                alt={`${data.logo.image.alt}`}
-                className="header__logo"
-              /> : <></>
-            )}
+            <div className="header__logo">
+              {theme === "dark" ? (
+                data.logo.imageDark !== null ? (
+                  <SanityImage
+                    {...data.logo.imageDark}
+                    alt={`${data.logo.image.alt}`}
+                    
+                  />
+                ) : (
+                  <></>
+                )
+              ) : data.logo.image !== null ? (
+                <SanityImage
+                  {...data.logo.image}
+                  alt={`${data.logo.image.alt}`}
+                  
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </Navbar.Brand>
           {data.menu !== null ? <Menu links={data.menu.links} /> : <></>}
           {data.customLinkBlock !== null ? (

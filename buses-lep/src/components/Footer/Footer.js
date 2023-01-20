@@ -57,18 +57,18 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__down">
-          <div className="container d-flex justify-content-end align-items-center py-4">
+          <div className="container d-flex justify-content-end align-items-center py-3">
           {theme === "dark" ? (
               data.logo.imageDark !== null ? <SanityImage
               {...data.logo.imageDark}
               alt={`${data.logo.image.alt}`}
-              className="header__logo"
+              className="footer__logo"
             /> : <></>
             ) : (
               data.logo.image !== null ? <SanityImage
                 {...data.logo.image}
                 alt={`${data.logo.image.alt}`}
-                className="header__logo"
+                className="footer__logo"
               /> : <></>
             )}
           </div>
