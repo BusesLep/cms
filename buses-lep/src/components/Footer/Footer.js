@@ -5,6 +5,7 @@ import useFooter from "../../hooks/useFooter";
 import { useTheme } from "../../context/themeContext";
 import FooterLinkBlock from "./FooterLinkBlock";
 import SocialMediaBlock from "./SocialMediaBlock";
+import ImageBlock from "./ImageBlock";
 
 const Footer = () => {
   const data = useFooter().sanityFooter;
@@ -38,12 +39,20 @@ const Footer = () => {
                   />
                 </a>
               )}
-              {data.socialMediaBlock && (
-                <SocialMediaBlock
-                  links={data.socialMediaBlock.links}
-                  title={data.socialMediaBlock.title}
-                />
-              )}
+              <div>
+                {data.socialMediaBlock && (
+                  <SocialMediaBlock
+                    links={data.socialMediaBlock.links}
+                    title={data.socialMediaBlock.title}
+                  />
+                )}
+                {data.imageLinkBlock && (
+                  <ImageBlock
+                    images={data.imageLinkBlock.images}
+                    title={data.imageLinkBlock.title}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
