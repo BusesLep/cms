@@ -8,6 +8,7 @@ import CustomLink from "./CustomLink/CustomLink"
 import TextExample from "./TextExample/TextExample"
 import Home from "./Home/Home"
 import Banner from "./Banner/Banner"
+import HelpCenter from "./HelpCenter/HelpCenter"
 
 
 export {
@@ -20,5 +21,6 @@ export {
     TextExample,
     Icon,
     Home,
-    Banner
+    Banner,
+    HelpCenter
 }

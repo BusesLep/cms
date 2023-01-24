@@ -15,7 +15,7 @@ const Header = () => {
   console.log(data);
   return data !== null ? (
     <header className="header">
-      <Navbar expand="md">
+      <Navbar expand="lg">
         <Container fluid>
           <Navbar.Brand href="#home">
             <div className="header__logo">
