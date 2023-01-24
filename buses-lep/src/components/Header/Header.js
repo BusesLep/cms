@@ -12,7 +12,7 @@ import useHeader from "../../hooks/useHeader";
 const Header = () => {
   const data = useHeader().sanityHeader;
   const { theme } = useTheme();
-  console.log(data);
+
   return data !== null ? (
     <header className="header">
       <Navbar expand="lg">

@@ -5,10 +5,11 @@ import Icon from "./Icons/Icon"
 import FontAwesomeIcon from "./Icons/FontAwesomeIcon"
 import MaterialIcon from "./Icons/MetertialIcon"
 import CustomLink from "./CustomLink/CustomLink"
-import TextExample from "./TextExample/TextExample"
+import TextBlock from "./TextBlock/TextBlock"
 import Home from "./Home/Home"
 import Banner from "./Banner/Banner"
 import HelpCenter from "./HelpCenter/HelpCenter"
+import CustomSection from "./CustomSection/CustomSection"
 
 
 export {
@@ -18,9 +19,10 @@ export {
     FontAwesomeIcon,
     MaterialIcon,
     CustomLink,
-    TextExample,
     Icon,
     Home,
     Banner,
-    HelpCenter
+    HelpCenter,
+    TextBlock,
+    CustomSection,
 }
