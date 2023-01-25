@@ -1,7 +1,6 @@
 import React from "react";
 import useHome from "../../hooks/useHome";
 import Banner from "../Banner/Banner";
-import { TextExample} from "../"
 
 const Home = () => {
   const data = useHome().sanityHome;
