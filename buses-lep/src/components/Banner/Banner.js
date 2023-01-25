@@ -11,8 +11,8 @@ const Banner = ({ banner }) => {
         <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
       </a>
       <Carousel.Caption>
-        {slide.title !== null ? <h3>{slide.title}</h3> : <></>}
-        {slide.text !== null ? <h3>{slide.text}</h3> : <></>}
+        {slide.title !== null ? <h3 className="py-0">{slide.title}</h3> : <></>}
+        {slide.text !== null ? <h3 className="py-0">{slide.text}</h3> : <></>}
       </Carousel.Caption>
     </Carousel.Item>
   ));
