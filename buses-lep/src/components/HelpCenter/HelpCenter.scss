@@ -1,0 +1,54 @@
+@import "../../styles/colors";
+@import "../../styles/text";
+@import "../../styles/global";
+
+.helpCenter {
+  background: $bg-gray-elevation-1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color-text-primary;
+  .accordion {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    .accordion-item {
+      margin: 0.25rem;
+      background-color: $bg-gray-elevation-2;
+      border: 1px solid $color-border;
+    }
+    .accordion-button {
+      background-color: transparent;
+      &:not(.collapsed){
+        box-shadow: none;
+        &::after{
+          background-image: var(--bs-accordion-btn-icon);
+        }
+      }
+    }
+    .accordion-header {
+      h5 {
+        margin-bottom: 0;
+        padding-left: 0.6rem;
+        color: $color-text-primary;
+      }
+    }
+    .accordion-body {
+      color: $color-text-primary;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      min-height: 65px;
+    }
+  }
+  .questionCard {
+    &__image {
+      width: 40px;
+    }
+  }
+}

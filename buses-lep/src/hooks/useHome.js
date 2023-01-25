@@ -56,6 +56,32 @@ const useHome = () => {
             _key
             _type
             title
+            questions {
+              textBlock {
+                title
+                _rawContent
+              }
+              image {
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                asset {
+                  _id
+                }
+                alt
+                _key
+              }
+              _key
+            }
           }
           ... on SanityShipping {
             _key
@@ -69,9 +95,7 @@ const useHome = () => {
             _key
             _type
             title
-            content {
-              _rawChildren
-            }
+            _rawContent
           }
           ... on SanityTextImage {
             _key

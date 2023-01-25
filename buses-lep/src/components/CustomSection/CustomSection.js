@@ -1,28 +1,39 @@
-import React from "react"
-import {TextBlock} from "../"
+import React from "react";
+import { TextBlock, HelpCenter} from "../";
 
 const CustomSection = ({ sections }) => {
-
   const sectionResult = sections.map((section) => {
-
-    return (
-      <>
-        {section?._type !== null &&
+    {
+      if (
+        section?._type !== null &&
         section?._type !== undefined &&
-        section?._type === "textBlock" ? (
+        section?._type === "textBlock"
+      ) {
+        return (
           <TextBlock
             key={section._key}
             title={section.title}
             text={section._rawContent}
           />
-        ) : null}
+        );
+      }
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "helpCenter"
+      ) {
+        return (
+          <HelpCenter
+            key={section._key}
+            title={section.title}
+            questions={section.questions}
+          />
+        );
+      }
+    }
+  });
 
-     
-      </>
-    )
-  })
+  return <>{sectionResult}</>;
+};
 
-  return <>{sectionResult}</>
-}
-
-export default CustomSection
+export default CustomSection;

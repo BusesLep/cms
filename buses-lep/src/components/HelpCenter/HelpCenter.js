@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
+import "./HelpCenter.scss";
+import QuestionCard from "./QuestionCard";
+import Accordion from "react-bootstrap/Accordion";
 
-const HelpCenter = ({questions})=> {
+const HelpCenter = ({ title, questions }) => {
+  const questionsItems = questions.map((question) => (
+    <QuestionCard key={question._key} question={question} />
+  ));
   return (
-    <div>{questions.title}
-    <p>{questions._type}</p>
-    </div>
-  )
-}
+    <section className="helpCenter">
+      <h3 className="title-medium">{title}</h3>
+      <Accordion defaultActiveKey="0">
+        {questions !== null ? questionsItems : <></>}
+      </Accordion>
+    </section>
+  );
+};
 
-export default HelpCenter
+export default HelpCenter;

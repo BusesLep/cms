@@ -6,6 +6,8 @@ const themes = {
     "--bg-primary": "#ffffff",
     "--bg-secondary": "#202124",
     "--bg-elevation-1": "#FEFCFC",
+    "--bg-gray-elevation-1": "#EEEEEE",
+    "--bg-gray-elevation-2": "#FFFFFF",
     "--color-text-primary": "#5F6368",
     "--color-border": "#F4EFF4",
     
@@ -17,6 +19,8 @@ const themes = {
     "--bg-primary": "#202124",
     "--bg-secondary": "#ffffff",
     "--bg-elevation-1": "#35373A",
+    "--bg-gray-elevation-1": "#3C3F44",
+    "--bg-gray-elevation-2": "#6B6A6A",
     "--color-text-primary": "#ffffff",
     "--color-border": "#313131",
   },
