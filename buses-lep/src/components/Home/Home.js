@@ -1,7 +1,7 @@
 import React from "react";
 import useHome from "../../hooks/useHome";
 import Banner from "../Banner/Banner";
-import { HelpCenter, CustomSection} from "../"
+import {CustomSection} from "../"
 
 const Home = () => {
   const data = useHome().sanityHome;
