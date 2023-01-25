@@ -5,7 +5,7 @@
 .helpCenter {
   background: $bg-gray-elevation-1;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,9 @@
       }
     }
     .accordion-header {
+      padding: 0;
       h5 {
+        
         margin-bottom: 0;
         padding-left: 0.6rem;
         color: $color-text-primary;

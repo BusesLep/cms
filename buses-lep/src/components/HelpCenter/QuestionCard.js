@@ -10,7 +10,7 @@ const QuestionCard = ({question}) => {
           <div className='questionCard__image'>
           {question.image !== null ? <SanityImage {...question.image} alt={`${question.image.alt}`} /> : <></> }
           </div>
-          <h5 className='title-small'>{question.textBlock.title}</h5>
+          <h5 className='title-small py-0'>{question.textBlock.title}</h5>
           
         </Accordion.Header>
         <Accordion.Body>

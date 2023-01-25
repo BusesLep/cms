@@ -9,7 +9,7 @@ const HelpCenter = ({ title, questions }) => {
   ));
   return (
     <section className="helpCenter">
-      <h3 className="title-medium">{title}</h3>
+      <h3 className="title-medium py-0">{title}</h3>
       <Accordion defaultActiveKey="0">
         {questions !== null ? questionsItems : <></>}
       </Accordion>
