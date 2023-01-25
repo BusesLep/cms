@@ -76,6 +76,7 @@ export const query = graphql`
             title
             questions {
               textBlock {
+                title
                 _rawContent
               }
               image {

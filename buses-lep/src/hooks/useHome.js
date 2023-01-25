@@ -3,37 +3,130 @@ import { useStaticQuery, graphql } from "gatsby"
 const useHome = () => {
   return useStaticQuery(graphql`
     {
-        sanityHome {
-            titlePage
-            descriptionPage
-            banner {
-              autoplay
-              slides {
-                title
-                text
-                url
-                overlay
-                image {
-                    alt
-                  asset {
-                    _id
-                  }
-                  crop {
-                    bottom
-                    left
-                    right
-                    top
-                  }
-                  hotspot {
-                    height
-                    width
-                    x
-                    y
-                  }
-                }
+      sanityHome {
+        titlePage
+        descriptionPage
+        banner {
+          slides {
+            image {
+              alt
+              asset {
+                _id
+              }
+              crop {
+                bottom
+                left
+                right
+                top
+              }
+              hotspot {
+                height
+                width
+                x
+                y
+              }
+            }
+            overlay
+            text
+            title
+            url
+          }
+        }
+        dinamicContent {
+          ... on SanityBeg {
+            _key
+            _type
+            textBlock {
+              title
+              _rawContent
+            }
+          }
+          ... on SanityForm {
+            _key
+            _type
+            formId
+            textBlock {
+              title
+              content {
+                _rawChildren
               }
             }
           }
+          ... on SanityHelpCenter {
+            _key
+            _type
+            title
+            questions {
+              textBlock {
+                title
+                _rawContent
+              }
+              image {
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                asset {
+                  _id
+                }
+                alt
+                _key
+              }
+              _key
+            }
+          }
+          ... on SanityShipping {
+            _key
+            _type
+            textBlock {
+              title
+              _rawContent
+            }
+          }
+          ... on SanityTextBlock {
+            _key
+            _type
+            title
+            _rawContent
+          }
+          ... on SanityTextImage {
+            _key
+            _type
+            image {
+              alt
+              asset {
+                _id
+              }
+              crop {
+                bottom
+                left
+                right
+                top
+              }
+              hotspot {
+                height
+                width
+                x
+                y
+              }
+            }
+            textBlock {
+              title
+              content {
+                _rawChildren
+              }
+            }
+          }
+        }
+      }
     }
   `)
 }

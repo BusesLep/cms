@@ -8,6 +8,7 @@ import CustomLink from "./CustomLink/CustomLink"
 import TextBlock from "./TextBlock/TextBlock"
 import Home from "./Home/Home"
 import Banner from "./Banner/Banner"
+import HelpCenter from "./HelpCenter/HelpCenter"
 import CustomSection from "./CustomSection/CustomSection"
 
 
@@ -21,6 +22,7 @@ export {
     Icon,
     Home,
     Banner,
+    HelpCenter,
     TextBlock,
     CustomSection,
 }
