@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SanityImage from "gatsby-plugin-sanity-image"
 import { Layout, CustomSection } from "../components"
 
 const Page = ({ data }) => {
