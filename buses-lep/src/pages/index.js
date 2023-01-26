@@ -4,9 +4,10 @@ import { Layout , Home} from "../components"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.scss";
 
-const IndexPage = () => {
+const IndexPage = ({location}) => {
+  console.log(location)
   return (
-    <Layout>
+    <Layout location={location}>
       <Home/>
     </Layout>
   )

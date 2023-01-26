@@ -1,5 +1,5 @@
 import React from "react";
-import { TextBlock, HelpCenter} from "../";
+import { TextBlock, HelpCenter, Form} from "../";
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
@@ -27,6 +27,20 @@ const CustomSection = ({ sections }) => {
             key={section._key}
             title={section.title}
             questions={section.questions}
+          />
+        );
+      }
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "form"
+      ) {
+        return (
+          <Form
+          key={section._key}
+          title={section.textBlock.title}
+          id={section.formId}
+          text={section.textBlock._rawContent}
           />
         );
       }

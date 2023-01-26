@@ -6,11 +6,11 @@ import ThemeProvider from "../../context/themeContext";
 
 import "./Layout.scss";
 
-const Layout = ({ children }) => {
+const Layout = ({ location, children }) => {
 
   return (
     <ThemeProvider>
-      <Header/>
+      <Header location={location}/>
       <main>{children}</main>
       <Footer/>
     </ThemeProvider>
