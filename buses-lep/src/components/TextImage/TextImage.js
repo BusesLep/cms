@@ -5,18 +5,23 @@ import "./TextImage.scss";
 
 const TextImage = ({ title, text, image }) => {
   return (
-    <div className="textImage">
-      {title &&<h3 className="textImage__title">
-        {title}
-      </h3>}
-      <div className="textImage__content">
-        <div className="textImage__text">
-        <PortableText value={text} />
-      </div>
-      <SanityImage {...image} alt={`${title}`} className="textImage__image" />
-      </div>
-      
-    </div>
+    <>
+      {text && (
+        <div className="textImage">
+          {title && <h3 className="textImage__title">{title}</h3>}
+          <div className="textImage__content">
+            <div className="textImage__text">
+              <PortableText value={text} />
+            </div>
+            <SanityImage
+              {...image}
+              alt={`${title}`}
+              className="textImage__image"
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

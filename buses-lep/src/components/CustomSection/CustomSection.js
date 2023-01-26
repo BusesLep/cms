@@ -12,7 +12,7 @@ const CustomSection = ({ sections }) => {
         return (
           <TextBlock
             key={section._key}
-            title={section.title}
+            title={section?.title}
             text={section._rawContent}
           />
         );
@@ -35,12 +35,11 @@ const CustomSection = ({ sections }) => {
         section?._type !== undefined &&
         section?._type === "textImage"
       ) {
-        console.log(section)
         return (
           <TextImage
             key={section._key}
-            title={section.textBlock.title}
-            text={section.textBlock._rawContent}
+            title={section.textBlock?.title}
+            text={section.textBlock?._rawContent}
             image={section.image}
           />
         );
