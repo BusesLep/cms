@@ -1,5 +1,5 @@
 import React from "react";
-import { TextBlock, HelpCenter} from "../";
+import { TextBlock, HelpCenter, TextImage} from "../";
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
@@ -12,7 +12,7 @@ const CustomSection = ({ sections }) => {
         return (
           <TextBlock
             key={section._key}
-            title={section.title}
+            title={section?.title}
             text={section._rawContent}
           />
         );
@@ -27,6 +27,20 @@ const CustomSection = ({ sections }) => {
             key={section._key}
             title={section.title}
             questions={section.questions}
+          />
+        );
+      }
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "textImage"
+      ) {
+        return (
+          <TextImage
+            key={section._key}
+            title={section.textBlock?.title}
+            text={section.textBlock?._rawContent}
+            image={section.image}
           />
         );
       }
