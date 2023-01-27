@@ -6,7 +6,6 @@ import { MaterialIcon, Icon } from "..";
 
 
 const Menu = ({ location, links }) => {
-  console.log(location)
   const itemsMenu = links.map((link) =>
     link._type === "dropdown" ? (
       <NavDropdown

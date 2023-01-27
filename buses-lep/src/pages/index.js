@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.scss";
 
 const IndexPage = ({location}) => {
-  console.log(location)
   return (
     <Layout location={location}>
       <Home/>
