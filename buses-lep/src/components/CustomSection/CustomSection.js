@@ -1,5 +1,5 @@
 import React from "react";
-import { TextBlock, HelpCenter, TextImage} from "../";
+import { TextBlock, HelpCenter, Form, TextImage} from "../";
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
@@ -33,8 +33,21 @@ const CustomSection = ({ sections }) => {
       if (
         section?._type !== null &&
         section?._type !== undefined &&
-        section?._type === "textImage"
+        section?._type === "form"
       ) {
+        return (
+          <Form
+          key={section._key}
+          title={section.textBlock.title}
+          id={section.formId}
+          text={section.textBlock._rawContent}
+          />
+        )}
+        if (
+          section?._type !== null &&
+          section?._type !== undefined &&
+          section?._type === "textImage"
+        ) {
         return (
           <TextImage
             key={section._key}

@@ -9,7 +9,7 @@ import LinkBlock from "./LinkBlock";
 import Menu from "./Menu";
 import useHeader from "../../hooks/useHeader";
 
-const Header = () => {
+const Header = ({location}) => {
   const data = useHeader().sanityHeader;
   const { theme } = useTheme();
 
@@ -40,7 +40,7 @@ const Header = () => {
               )}
             </div>
           </Navbar.Brand>
-          {data.menu !== null ? <Menu links={data.menu.links} /> : <></>}
+          {data.menu !== null ? <Menu location={location} links={data.menu.links} /> : <></>}
           {data.customLinkBlock !== null ? (
             <LinkBlock links={data.customLinkBlock?.links} />
           ) : (

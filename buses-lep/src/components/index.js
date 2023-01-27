@@ -10,6 +10,7 @@ import Home from "./Home/Home"
 import Banner from "./Banner/Banner"
 import HelpCenter from "./HelpCenter/HelpCenter"
 import CustomSection from "./CustomSection/CustomSection"
+import Form from "./Form/Form"
 import TextImage from "./TextImage/TextImage"
 
 
@@ -26,5 +27,6 @@ export {
     HelpCenter,
     TextBlock,
     CustomSection,
+    Form,
     TextImage
 }

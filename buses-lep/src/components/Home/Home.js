@@ -4,6 +4,7 @@ import Banner from "../Banner/Banner";
 import {CustomSection} from "../"
 
 const Home = () => {
+  
   const data = useHome().sanityHome;
   return data !== null ? <div className="container">
   {data.banner !== null ? <Banner banner={data.banner}/> : <></>}
