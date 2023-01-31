@@ -1,0 +1,26 @@
+@import "../../styles/global.scss";
+
+.searchContainer {
+    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .searchBars {
+    display: flex;
+  }
+  .dateInput {
+    border: 1px solid $color-border;
+    border-radius: 7px;
+    width: 290px;
+    padding: 15px;
+  }
+}
+
+.selectContainer {
+    width: 100%;
+    display: flex;
+    select {
+        border: none;
+        background-color: white;
+        padding: 15px;
+    }
+}

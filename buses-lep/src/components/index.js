@@ -11,6 +11,9 @@ import Banner from "./Banner/Banner"
 import HelpCenter from "./HelpCenter/HelpCenter"
 import CustomSection from "./CustomSection/CustomSection"
 import TextImage from "./TextImage/TextImage"
+import Form from "./Form/Form"
+import SearchBar from "./SearchBar/SearchBar"
+import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 
 
 export {
@@ -26,5 +29,8 @@ export {
     HelpCenter,
     TextBlock,
     CustomSection,
-    TextImage
+    TextImage,
+    Form,
+    SearchBar,
+    SelectAutocomplete
 }
