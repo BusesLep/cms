@@ -47,9 +47,7 @@ const useHome = () => {
             formId
             textBlock {
               title
-              content {
-                _rawChildren
-              }
+              _rawContent
             }
           }
           ... on SanityHelpCenter {

@@ -7,7 +7,7 @@ function CustomLink({href, icon, style, text}) {
   return (
     <a href={href} title={text} className={`custom-link ${style}`}>
       {icon && icon}
-      {style !== "icon" && <p className="mb-0">{text}</p>}
+      {style !== "icon" && <p className="mb-0 pb-0">{text}</p>}
       
     </a>
   );

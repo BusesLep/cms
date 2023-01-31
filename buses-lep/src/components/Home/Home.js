@@ -3,6 +3,7 @@ import useHome from "../../hooks/useHome";
 import {CustomSection, Banner, Form} from "../"
 
 const Home = () => {
+  
   const data = useHome().sanityHome;
   return data !== null ? <div className="container">
   {data.banner !== null ? <Banner banner={data.banner}/> : <></>}

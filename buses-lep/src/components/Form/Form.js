@@ -1,45 +1,21 @@
-import * as React from "react";
-import BookData from "./data.json";
+import React from "react";
+import { PortableText } from "@portabletext/react";
 import "./Form.scss";
-import { SearchBar, Icon, SelectAutocomplete } from "../";
 
-export default function Form() {
+const Form = ({ title, id, text }) => {
   return (
-    <form action="" className="py-5">
-      <div className="selectContainer">
-        <select name="" id="">
-          <option value="return">Ida y vuelta</option>
-          <option value="oneWay">Solo ida</option>
-        </select>
-        <select name="" id="">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-      <div className="searchContainer">
-        <div className="searchBars">
-          {/* <SearchBar
-            placeholder="¿Desde dónde viajas?"
-            data={BookData}
-            icon={<Icon code={"MdOutlineTripOrigin"}></Icon>}
-          />
-          <SearchBar
-            placeholder="¿A dónde viajas?"
-            data={BookData}
-            icon={<Icon code={"MdOutlineLocationOn"}></Icon>}
-            style="destination"
-          /> */}
-          <SelectAutocomplete />
-          <SelectAutocomplete />
+    <section className="form">
+      <h3 className="title-medium py-1">{title}</h3>
+      <div className="d-flex flex-wrap p-3 p-md-4">
+        <div className="col-12 col-md-6 pe-4 mb-3">
+          <PortableText value={text} />
         </div>
-
-        <input className="dateInput" type="date" name="" id="" />
-        <input className="dateInput" type="date" name="" id="" />
+        <div className="col-12 col-md-6 form__box">
+        {id !== null && id !== '' && <iframe class="embed-responsive-item" src={`https://wcentrix.net/app/form_web.html?accountID=bu3455&wcboxID=${id}`}></iframe>}
+        </div>
       </div>
-    </form>
+    </section>
   );
-}
+};
+
+export default Form;

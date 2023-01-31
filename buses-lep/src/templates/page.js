@@ -2,11 +2,14 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Layout, CustomSection } from "../components";
 
-const Page = ({ data }) => {
-  const { dinamicContent } = data?.allSanityPages?.nodes[0];
+const Page = ({location,  data }) => {
+  const {
+    dinamicContent
+  } = data?.allSanityPages?.nodes[0]
+
 
   return (
-    <Layout>
+    <Layout location={location}>
       <div className="container">
         {dinamicContent !== null  && dinamicContent.length !==0  &&(
           <CustomSection sections={dinamicContent} />

@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MaterialIcon, Icon } from "..";
 
-const Menu = ({ links }) => {
+
+const Menu = ({ location, links }) => {
   const itemsMenu = links.map((link) =>
     link._type === "dropdown" ? (
       <NavDropdown
@@ -32,7 +33,7 @@ const Menu = ({ links }) => {
         )}
       </NavDropdown>
     ) : (
-      <Nav.Link href={link.link.url}>
+      <Nav.Link href={link.link.url} className={` ${location?.pathname?.replaceAll('/' , '') === link?.link?.url?.replaceAll('/' , '') ? 'active' : ''}`}>
         {link.icon !== null && <Icon code={link.icon.icon}></Icon>}
         {link.link.text}
       </Nav.Link>
