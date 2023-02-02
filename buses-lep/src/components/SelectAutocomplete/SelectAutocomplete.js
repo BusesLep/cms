@@ -2,65 +2,21 @@ import * as React from "react";
 import { TextField, InputAdornment, Box } from "@mui/material";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Icon } from "../";
-import './SelectAutocomplete.scss'
+import "./SelectAutocomplete.scss";
 
 const filter = createFilterOptions();
 
-export default function SelectAutocomplete({ style, icon }) {
+export default function SelectAutocomplete({ style, icon, label }) {
   const [value, setValue] = React.useState(null);
 
   return (
     <Autocomplete
-    className={`selectAutocomplete ${style}`}
-      value={value}
-      onChange={(event, newValue) => {
-        if (typeof newValue === "string") {
-          setValue({
-            title: newValue,
-          });
-        } else if (newValue && newValue.inputValue) {
-          // Create a new value from the user input
-          setValue({
-            title: newValue.inputValue,
-          });
-        } else {
-          setValue(newValue);
-        }
-      }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
-
-        const { inputValue } = params;
-        // Suggest the creation of a new value
-        const isExisting = options.some(
-          (option) => inputValue === option.title
-        );
-        if (inputValue !== "" && !isExisting) {
-          filtered.push({
-            inputValue,
-            title: `Add "${inputValue}"`,
-          });
-        }
-
-        return filtered;
-      }}
+      className={`selectAutocomplete col-12 col-md-6 pb-3 pb-md-0 ${style}`}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
-      id="free-solo-with-text-demo"
+      id="destiny"
       options={top100Films}
-      getOptionLabel={(option) => {
-        // Value selected with enter, right from the input
-        if (typeof option === "string") {
-          return option;
-        }
-        // Add "xxx" option created dynamically
-        if (option.inputValue) {
-          return option.inputValue;
-        }
-        // Regular option
-        return option.title;
-      }}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
           <Icon code={"MdOutlineLocationOn"} />
@@ -77,27 +33,16 @@ export default function SelectAutocomplete({ style, icon }) {
           </Box>
         </li>
       )}
-      sx={{
-        width: 300,
-
-      }}
-
       renderInput={(params) => (
         <div
           style={{
             position: "relative",
           }}
         >
-          <InputAdornment
-            position="start"
-            className={style}
-          >
+          <InputAdornment position="start" className={style}>
             {icon}
           </InputAdornment>
-          <TextField
-            {...params}
-            label="Free solo with text demo"
-          />
+          <TextField {...params} label={label} />
         </div>
       )}
     />

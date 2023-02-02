@@ -1,28 +1,78 @@
+@import "../../styles/global.scss";
 .selectAutocomplete {
-  fieldset {
-    border-radius: 4px 0 0 4px;
-    padding-left: 15px;
-  }
-  label {
-    padding-left: 15px;
-  }
-  svg {
-    font-size: 15px;
-    position: absolute;
-    top: 20px;
-    left: 7px;
-    &.destination {
-      font-size: 25px;
+  .iconOptions{
+    .icon{
+      font-size: 1.8rem;
     }
   }
-  &.destination {
-    fieldset {
-      border-left: none;
-      border-radius: 0 4px 4px 0;
-      padding-right: 15px;
-      svg {
-        font-size: 30px;
+  .MuiInputLabel-shrink {
+    display: none;
+    legend {
+      display: none;
+    }
+  }
+  .MuiInputAdornment-positionStart {
+    &.origin{
+      .icon {
+        font-size: 1.2rem;
+        top: 15px;
+        position: absolute;
+        left: 11px;
       }
+    }
+    &.destination{
+      .icon {
+        font-size: 1.8rem;
+        top: 10px;
+        position: absolute;
+        left: 5px;
+      }
+    }
+
+  }
+  fieldset {
+    legend {
+      display: none;
+    }
+  }
+  
+}
+
+@media (min-width: $md-breakpoint) {
+  .selectAutocomplete {
+    fieldset {
+      border-radius: 4px 0 0 4px;
+      padding-left: 15px;
+    }
+    .MuiAutocomplete-popupIndicator{
+      display: none;
+    }
+    &.destination {
+      .MuiFormLabel-root{
+        padding-left: 2.5rem;
+      }
+      .MuiInputBase-input{
+        padding-left: 2.8rem;
+      }
+      fieldset {
+        border-left: none;
+        border-radius: 0 4px 4px 0;
+        padding-right: 15px;
+        svg {
+          font-size: 30px;
+        }
+      }
+    }
+    .MuiInputAdornment-positionStart {
+      &.destination{
+        .icon {
+          font-size: 1.8rem;
+          top: 10px;
+          position: absolute;
+          left: 23px;
+        }
+      }
+  
     }
   }
 }
