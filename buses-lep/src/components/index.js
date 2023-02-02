@@ -10,8 +10,10 @@ import Home from "./Home/Home"
 import Banner from "./Banner/Banner"
 import HelpCenter from "./HelpCenter/HelpCenter"
 import CustomSection from "./CustomSection/CustomSection"
-import Form from "./Form/Form"
+import SearchForm from "./SearchForm/SearchForm"
 import TextImage from "./TextImage/TextImage"
+import Form from "./Form/Form"
+import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 
 
 export {
@@ -27,6 +29,8 @@ export {
     HelpCenter,
     TextBlock,
     CustomSection,
+    TextImage,
+    SearchForm,
+    SelectAutocomplete,
     Form,
-    TextImage
 }

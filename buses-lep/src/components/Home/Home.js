@@ -6,6 +6,8 @@ import { CustomSection } from "../";
 import ComboBox from "../comboBox";
 import { serviceHandler } from "../../functions/serviceHandler";
 import { graphql, useStaticQuery } from "gatsby";
+import {CustomSection, Banner} from "../"
+import SearchForm from "../SearchForm/SearchForm"
 
 const Home = () => {
   const data = useHome().sanityHome;
@@ -32,8 +34,9 @@ const Home = () => {
     <div className="container">
       
       {data.banner !== null ? <Banner banner={data.banner} /> : <></>}
-      <ComboBox list={cities}></ComboBox>
-      <ComboBox list={origins}></ComboBox>
+      {/* <ComboBox list={cities}></ComboBox>
+      <ComboBox list={origins}></ComboBox> */}
+      <SearchForm></SearchForm>
       {data.dinamicContent !== null ? (
         <CustomSection sections={data.dinamicContent} />
       ) : (
