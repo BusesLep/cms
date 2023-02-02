@@ -38,7 +38,7 @@
   
 }
 
-@media (min-width: $md-breakpoint) {
+@media (min-width: $lg-breakpoint) {
   .selectAutocomplete {
     fieldset {
       border-radius: 4px 0 0 4px;
@@ -47,12 +47,18 @@
     .MuiAutocomplete-popupIndicator{
       display: none;
     }
+    input{
+      padding-left: 1.5rem!important;
+    }
+    .MuiAutocomplete-clearIndicator{
+      margin-right: 20px;
+    }
     &.destination {
       .MuiFormLabel-root{
-        padding-left: 2.5rem;
-      }
-      .MuiInputBase-input{
         padding-left: 2.8rem;
+      }
+      input{
+        padding-left: 3rem!important;
       }
       fieldset {
         border-left: none;

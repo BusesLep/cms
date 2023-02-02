@@ -54,7 +54,7 @@
       }
     }
     .MuiInputBase-input{
-      padding-left: 2rem;
+      padding-left: 2rem!important;
     }
     .MuiFormLabel-root{
       padding-left: 1.5rem;
@@ -102,7 +102,7 @@
     }
   }
 }
-@media (min-width: $md-breakpoint) {
+@media (min-width: $lg-breakpoint) {
   .searchForm {
     padding: 0.5rem 2rem 1rem 2rem;
     .searchContainer {

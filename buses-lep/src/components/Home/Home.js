@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useHome from "../../hooks/useHome";
-import useOrigin from "../../hooks/useOrigin";
-import Banner from "../Banner/Banner";
-import { CustomSection } from "../";
-import ComboBox from "../comboBox";
-import { serviceHandler } from "../../functions/serviceHandler";
-import { graphql, useStaticQuery } from "gatsby";
+
 import {CustomSection, Banner} from "../"
 import SearchForm from "../SearchForm/SearchForm"
 
 const Home = () => {
   const data = useHome().sanityHome;
-  const origins = useOrigin().allOrigin.nodes;
-  console.log('data: ' + origins)
   // Client-side Runtime Data Fetching
   const [cities, setCities] = useState([]);
 
