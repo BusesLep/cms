@@ -1,15 +1,17 @@
 import * as React from "react";
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, Box } from "@mui/material";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Icon } from "../";
+import './SelectAutocomplete.scss'
 
 const filter = createFilterOptions();
 
-export default function SelectAutocomplete({ style }) {
+export default function SelectAutocomplete({ style, icon }) {
   const [value, setValue] = React.useState(null);
 
   return (
     <Autocomplete
+    className={`selectAutocomplete ${style}`}
       value={value}
       onChange={(event, newValue) => {
         if (typeof newValue === "string") {
@@ -59,15 +61,27 @@ export default function SelectAutocomplete({ style }) {
         // Regular option
         return option.title;
       }}
-      renderOption={(props, option) => <li {...props}>{option.title}</li>}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
+          <Icon code={"MdOutlineLocationOn"} />
+          <Box
+            sx={{
+              flexGrow: 1,
+              "& span": {
+                color: "#586069",
+              },
+            }}
+          >
+            {option.title}
+            <br />
+          </Box>
+        </li>
+      )}
       sx={{
         width: 300,
-        "& fieldset": {
-          borderRight: "none",
-          borderRadius: "4px 0 0 4px",
-          paddingLeft: "15px",
-        },
+
       }}
+
       renderInput={(params) => (
         <div
           style={{
@@ -76,12 +90,9 @@ export default function SelectAutocomplete({ style }) {
         >
           <InputAdornment
             position="start"
-            sx={{
-              position: "absolute",
-              top: "26px",
-            }}
+            className={style}
           >
-            <Icon code={"MdOutlineTripOrigin"}></Icon>
+            {icon}
           </InputAdornment>
           <TextField
             {...params}

@@ -1,0 +1,28 @@
+.selectAutocomplete {
+  fieldset {
+    border-radius: 4px 0 0 4px;
+    padding-left: 15px;
+  }
+  label {
+    padding-left: 15px;
+  }
+  svg {
+    font-size: 15px;
+    position: absolute;
+    top: 20px;
+    left: 7px;
+    &.destination {
+      font-size: 25px;
+    }
+  }
+  &.destination {
+    fieldset {
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+      padding-right: 15px;
+      svg {
+        font-size: 30px;
+      }
+    }
+  }
+}

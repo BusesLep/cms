@@ -1,0 +1,56 @@
+@import "../../styles/global.scss";
+
+.searchContainer {
+    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .searchBars {
+    display: flex;
+  }
+  .dateInput {
+    border: 1px solid $color-border;
+    border-radius: 7px;
+    width: 290px;
+    padding: 15px;
+  }
+}
+
+.selectContainer {
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    color: $color-text-primary;
+    select {
+        border: none;
+        background-color: white;
+        padding: 15px 5px;
+        margin-right: 20px;
+        color: $color-text-primary;
+        &:focus {
+          outline: none;
+        }
+    }
+    .selectMode, .selectPeopleQuantity {
+      display: flex;
+      svg {
+        font-size: 22px;
+      }
+    }
+}
+
+.buttonContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: min-content;
+    padding: 10px 35px;
+    border-radius: 30px;
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    &:hover {
+      background-color: $color-info;
+    }
+  }
+}
