@@ -35,8 +35,8 @@ export default function SearchForm() {
         console.log(error);
       }
     }else {
-      setSelectedOrigin('')
-      setDestination('');
+      setSelectedOrigin(null)
+      setDestination(null);
     }
   };
 
@@ -111,7 +111,6 @@ export default function SearchForm() {
             label={"Origen"}
             options={origins}
             handler={fetchDestination}
-            initialValue={selectedOrigin}
           />
           <div className="changeDestiny">
             <p className="d-block d-lg-none">Intercambiar Origen/Destino</p>
@@ -130,7 +129,6 @@ export default function SearchForm() {
                 : [{ hasta: "Debe seleccionar origen" }]
             }
             handler={setSelectedDestination}
-            initialValue={selectedDestination}
           />
         </div>
         <LocalizationProvider dateAdapter={AdapterMoment}>

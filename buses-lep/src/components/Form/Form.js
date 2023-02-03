@@ -5,7 +5,7 @@ import "./Form.scss";
 const Form = ({ title, id, text }) => {
   return (
     <section className="form">
-      <h3 className="title-medium py-1">{title}</h3>
+      <h3 className="py-1">{title}</h3>
       <div className="d-flex flex-wrap p-3 p-md-4">
         <div className="col-12 col-md-6 pe-4 mb-3">
           <PortableText value={text} />

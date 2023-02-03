@@ -1,5 +1,14 @@
 @import "../../styles/global.scss";
-.selectAutocomplete {
+
+
+.selectAutocomplete{
+
+  .MuiInputBase-input{
+    color: $color-text-primary;
+  }
+  .MuiFormLabel-root{
+    color: $color-text-primary;
+  }
   .iconOptions{
     .icon{
       font-size: 1.8rem;
@@ -12,25 +21,32 @@
     }
   }
   .MuiInputAdornment-positionStart {
+    
     &.origin{
       .icon {
+        color: $color-border;
         font-size: 1.2rem;
-        top: 15px;
+        top: 17px;
         position: absolute;
         left: 11px;
+        
       }
     }
     &.destination{
+      color: $color-border;
       .icon {
-        font-size: 1.8rem;
-        top: 10px;
         position: absolute;
+        font-size: 1.8rem;
+        top: 13px;
+        
         left: 5px;
       }
     }
 
   }
   fieldset {
+    border-color: $color-border;
+    
     legend {
       display: none;
     }
@@ -57,11 +73,10 @@
       .MuiFormLabel-root{
         padding-left: 2.8rem;
       }
-      input{
+      .MuiInputBase-input{
         padding-left: 3rem!important;
       }
       fieldset {
-        border-left: none;
         border-radius: 0 4px 4px 0;
         padding-right: 15px;
         svg {
@@ -72,9 +87,6 @@
     .MuiInputAdornment-positionStart {
       &.destination{
         .icon {
-          font-size: 1.8rem;
-          top: 10px;
-          position: absolute;
           left: 23px;
         }
       }

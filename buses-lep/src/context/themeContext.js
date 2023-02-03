@@ -10,7 +10,7 @@ const themes = {
     "--bg-gray-elevation-1": "#EEEEEE",
     "--bg-gray-elevation-2": "#FFFFFF",
     "--color-text-primary": "#5F6368",
-    "--color-border": "#F4EFF4",
+    "--color-border": "#C9C5CA",
     
 
 
@@ -24,7 +24,7 @@ const themes = {
     "--bg-gray-elevation-1": "#3C3F44",
     "--bg-gray-elevation-2": "#6B6A6A",
     "--color-text-primary": "#ffffff",
-    "--color-border": "#313131",
+    "--color-border": "#6B6A6A",
   },
 };
 

@@ -7,20 +7,25 @@ import "./Banner.scss";
 const Banner = ({ banner }) => {
   const slides = banner.slides.map((slide) => (
     <Carousel.Item>
-      <a href={`${slide.url !== null ? slide.url : ''}`} className={`img ${slide.overlay ? 'overlay' : ''}`}>
-        <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
-      </a>
+      {slide.url !== null ? (
+        <a
+          href={`${slide.url !== null ? slide.url : ""}`}
+          className={`img ${slide.overlay ? "overlay" : ""}`}
+        >
+          <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
+        </a>
+      ) : (
+        <div className={`img ${slide.overlay ? "overlay" : ""}`}>
+          <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
+        </div>
+      )}
       <Carousel.Caption>
         {slide.title !== null ? <h3 className="py-0">{slide.title}</h3> : <></>}
         {slide.text !== null ? <h3 className="py-0">{slide.text}</h3> : <></>}
       </Carousel.Caption>
     </Carousel.Item>
   ));
-  return (
-    <Carousel interval={banner.autoplay ? 4000 : null}>
-      {slides}
-    </Carousel>
-  );
+  return <Carousel interval={banner.autoplay ? 4000 : null}>{slides}</Carousel>;
 };
 
 export default Banner;
