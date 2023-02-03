@@ -1,17 +1,18 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Layout, CustomSection } from "../components";
+import { Layout, CustomSection, Banner } from "../components";
 
 const Page = ({location,  data }) => {
   const {
-    dinamicContent
+    dinamicContent , banner
   } = data?.allSanityPages?.nodes[0]
 
 
   return (
     <Layout location={location}>
       <div className="container">
-        {dinamicContent !== null  && dinamicContent.length !==0  &&(
+      {banner !== null && banner !== undefined ? <Banner banner={banner} /> : <></>}
+        {dinamicContent !== null  && dinamicContent.length !== undefined  &&(
           <CustomSection sections={dinamicContent} />
         )}
       </div>
@@ -30,6 +31,32 @@ export const query = graphql`
           current
         }
         id
+        banner {
+          slides {
+            image {
+              alt
+              asset {
+                _id
+              }
+              crop {
+                bottom
+                left
+                right
+                top
+              }
+              hotspot {
+                height
+                width
+                x
+                y
+              }
+            }
+            overlay
+            text
+            title
+            url
+          }
+        }
         dinamicContent {
           ... on SanityTextImage {
             _key
