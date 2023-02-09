@@ -13,6 +13,15 @@ import useHeader from "../../hooks/useHeader";
 const Header = ({location}) => {
   const data = useHeader().sanityHeader;
   const { theme, toggleTheme} = useTheme();
+  const regularCondition = data.logo.image.image !== null ? (
+    <SanityImage
+      {...data.logo.image.image}
+      alt={`${data.logo.image.alt}`}
+      
+    />
+  ) : (
+    <></>
+  )
 
   return data !== null ? (
     <header className="header">
@@ -30,15 +39,7 @@ const Header = ({location}) => {
                 ) : (
                   <></>
                 )
-              ) : data.logo.image.image !== null ? (
-                <SanityImage
-                  {...data.logo.image.image}
-                  alt={`${data.logo.image.alt}`}
-                  
-                />
-              ) : (
-                <></>
-              )}
+              ) : regularCondition}
             </div>
           </Navbar.Brand>
           {data.menu !== null ? <Menu location={location} links={data.menu.links} /> : <></>}
