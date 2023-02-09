@@ -73,5 +73,44 @@ exports.sourceNodes = async ({ actions }) => {
     createNode(originNode);
   });
 
+    // fetch raw data from the Origin api
+    const fetchTicketOffices = () => fetch(`http://localhost:8080/puntos-de-venta`);
+    // await for results
+    const resTicketOffices = await fetchTicketOffices();
+    const dataTicketOffices = await resTicketOffices.json();
+    // map into these results and create nodes
+    dataTicketOffices.map((offices, i) => {
+      // Create your node object
+      const officesNode = {
+        // Required fields
+        id: `${i}`,
+        parent: `__SOURCE__`,
+        internal: {
+          type: `Offices`, // name of the graphQL query --> allOrigin {}
+          // contentDigest will be added just after
+          // but it is required
+        },
+        children: [],
+        // Other fields that you want to query with graphQl
+        Localidad: offices.Localidad,
+        Boleteria_Ubicacion: offices.Boleteria_Ubicacion,
+        latitud: offices.latitud,
+        longitud: offices.longitud,
+        Boleteria_Telefono: offices.Boleteria_Telefono,
+        linkfoto: offices.linkfoto,
+      }
+  
+      // Get content digest of node. (Required field)
+      const contentDigest = crypto
+        .createHash(`md5`)
+        .update(JSON.stringify(officesNode))
+        .digest(`hex`);
+      // add it to officesNode
+      officesNode.internal.contentDigest = contentDigest;
+  
+      // Create node with the gatsby createNode() API
+      createNode(officesNode);
+    });
+
   return;
 }

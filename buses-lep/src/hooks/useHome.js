@@ -41,6 +41,14 @@ const useHome = () => {
               _rawContent
             }
           }
+          ... on SanityTicketOffices {
+            _key
+            _type
+            textBlock {
+              _rawContent
+              title
+            }
+          }
           ... on SanityForm {
             _key
             _type

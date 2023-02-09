@@ -1,5 +1,6 @@
 import React from "react";
-import { TextBlock, HelpCenter, Form, TextImage} from "../";
+import { TextBlock, HelpCenter, Form, TextImage, TicketOffices} from "../";
+
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
@@ -57,6 +58,19 @@ const CustomSection = ({ sections }) => {
           />
         );
       }
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "ticketOffices"
+      ) {
+      return (
+        <TicketOffices
+          key={section._key}
+          title={section.textBlock?.title}
+          text={section.textBlock?._rawContent}
+        />
+      );
+    }
     }
   });
 
