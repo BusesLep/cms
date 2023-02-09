@@ -5,18 +5,18 @@ import SanityImage from "gatsby-plugin-sanity-image";
 import "./Banner.scss";
 
 const Banner = ({ banner }) => {
-  const slides = banner.slides.map((slide) => (
+  const slides = banner?.slides.map((slide) => (
     <Carousel.Item>
       {slide.url !== null ? (
         <a
           href={`${slide.url !== null ? slide.url : ""}`}
           className={`img ${slide.overlay ? "overlay" : ""}`}
         >
-          <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
+          <SanityImage {...slide.image.image} alt={`${slide.image.alt}`} />
         </a>
       ) : (
         <div className={`img ${slide.overlay ? "overlay" : ""}`}>
-          <SanityImage {...slide.image} alt={`${slide.image.alt}`} />
+          <SanityImage {...slide.image.image} alt={`${slide.image.alt}`} />
         </div>
       )}
       <Carousel.Caption>
@@ -25,7 +25,7 @@ const Banner = ({ banner }) => {
       </Carousel.Caption>
     </Carousel.Item>
   ));
-  return <Carousel interval={banner.autoplay ? 4000 : null}>{slides}</Carousel>;
+  return <Carousel interval={banner?.autoplay ? 4000 : null}>{slides}</Carousel>;
 };
 
 export default Banner;

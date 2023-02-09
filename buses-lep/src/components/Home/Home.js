@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useHome from "../../hooks/useHome";
 
-import {CustomSection, Banner} from "../"
+import {CustomSection, Banner, Seo} from "../"
 import SearchForm from "../SearchForm/SearchForm"
 
 const Home = () => {
@@ -23,7 +23,10 @@ const Home = () => {
   }, []);
 
   
-  return data !== null ? (
+  return <>
+       <Seo title='Home' description='' keywords='' />
+       {
+     data !== null ? (
     <div className="container">
       
       {data.banner !== null ? <Banner banner={data.banner} /> : <></>}
@@ -39,8 +42,10 @@ const Home = () => {
   ) : (
     <div className="d-flex justify-content-center">
       <h2>Home in Sanity has no content</h2>
-    </div>
-  );
+    </div> 
+   
+  ) } ;
+  </>
 };
 
 export default Home;
