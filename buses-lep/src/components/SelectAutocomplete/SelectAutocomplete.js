@@ -11,10 +11,14 @@ export default function SelectAutocomplete({
   label,
   options,
   handler,
+  // reset
 }) {
   const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
   const { theme } = useTheme();
+
+  console.log(`val ${style}:`, value);
+  console.log(`inpVal ${style}:`, inputValue);
 
   const rootLight = {
     
@@ -45,16 +49,23 @@ export default function SelectAutocomplete({
     return <Popper {...props} sx={{ width: 300 }} />;
   };
 
+
+  // if(reset){
+  //   setValue(null);
+  //   setInputValue("")
+  // };
+
   return (
     <Autocomplete
       value={value}
       onChange={(event, newValue) => {
+        console.log("newVal:", newValue)
         setValue(newValue);
         if (style === "origin") {
           handler(newValue?.ID_Localidad || null);
         } else if (style === "destination" && newValue !== null) {
           handler(newValue.id_localidad_destino);
-        }
+        } 
       }}
       inputValue={inputValue}
       onInputChange={(event, newInputValue) => {
