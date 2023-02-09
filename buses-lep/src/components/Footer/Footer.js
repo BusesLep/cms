@@ -33,7 +33,7 @@ const Footer = () => {
                   className="py-2"
                 >
                   <SanityImage
-                    {...data.qrCode.image}
+                    {...data.qrCode.image.image}
                     alt={`${data.qrCode.image.alt}`}
                     className="qrCode"
                   />
@@ -65,8 +65,8 @@ const Footer = () => {
               className="footer__logo"
             /> : <></>
             ) : (
-              data.logo.image !== null ? <SanityImage
-                {...data.logo.image}
+              data.logo.image.image !== null ? <SanityImage
+                {...data.logo.image.image}
                 alt={`${data.logo.image.alt}`}
                 className="footer__logo"
               /> : <></>
