@@ -1,14 +1,18 @@
 import * as React from "react"
-import { Layout } from "../components"
+import { Layout, Seo } from "../components"
+
 
 const NotFoundPage = ({location}) => {
   return (
+    <>
+     <Seo title='404: Not found' description='' keywords='' />
     <Layout location={location}>
       <div className="d-flex flex-column align-items-center justify-content-center p-5">
       <h1 className="displey-medium">Página no encontrada</h1>
       <p className="title-medium">Lo sentimos, intenta con otra dirección</p>
       </div>
     </Layout>
+    </>
   )
 }
 
