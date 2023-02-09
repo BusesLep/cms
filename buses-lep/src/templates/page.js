@@ -11,7 +11,7 @@ const Page = ({location,  data }) => {
   return (
     <Layout location={location}>
       <div className="container">
-      {banner !== null && banner !== undefined ? <Banner banner={banner} /> : <></>}
+      {(banner !== null && banner !== undefined  && banner.banner?.slides?.length !== 0) ? <Banner banner={banner} /> : <></>}
         {dinamicContent !== null  && dinamicContent.length !== undefined  &&(
           <CustomSection sections={dinamicContent} />
         )}
@@ -35,20 +35,24 @@ export const query = graphql`
           slides {
             image {
               alt
-              asset {
-                _id
-              }
-              crop {
-                bottom
-                left
-                right
-                top
-              }
-              hotspot {
-                height
-                width
-                x
-                y
+              _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
               }
             }
             overlay
@@ -66,23 +70,26 @@ export const query = graphql`
               _rawContent
             }
             image {
-              hotspot {
-                y
-                x
-                width
-                height
-              }
-              crop {
-                top
-                right
-                left
-                bottom
-              }
-              asset {
-                _id
-              }
               alt
               _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+              }
             }
           }
           ... on SanityTextBlock {
@@ -109,23 +116,26 @@ export const query = graphql`
                 _rawContent
               }
               image {
-                hotspot {
-                  y
-                  x
-                  width
-                  height
-                }
-                crop {
-                  top
-                  right
-                  left
-                  bottom
-                }
-                asset {
-                  _id
-                }
                 alt
                 _key
+                image {
+                  _key
+                  asset {
+                    _id
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                }
               }
               _key
             }
@@ -157,22 +167,26 @@ export const query = graphql`
             overlay
             _key
             image {
-              hotspot {
-                y
-                x
-                width
-                height
-              }
-              crop {
-                top
-                right
-                left
-                bottom
-              }
-              asset {
-                _id
-              }
               alt
+              _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+              } 
             }
           }
           autoplay

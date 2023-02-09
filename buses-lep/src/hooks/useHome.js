@@ -10,20 +10,24 @@ const useHome = () => {
           slides {
             image {
               alt
-              asset {
-                _id
-              }
-              crop {
-                bottom
-                left
-                right
-                top
-              }
-              hotspot {
-                height
-                width
-                x
-                y
+              _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
               }
             }
             overlay
@@ -60,23 +64,26 @@ const useHome = () => {
                 _rawContent
               }
               image {
-                hotspot {
-                  y
-                  x
-                  width
-                  height
-                }
-                crop {
-                  top
-                  right
-                  left
-                  bottom
-                }
-                asset {
-                  _id
-                }
                 alt
                 _key
+                image {
+                  _key
+                  asset {
+                    _id
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                }   
               }
               _key
             }
@@ -100,20 +107,24 @@ const useHome = () => {
             _type
             image {
               alt
-              asset {
-                _id
-              }
-              crop {
-                bottom
-                left
-                right
-                top
-              }
-              hotspot {
-                height
-                width
-                x
-                y
+              _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
               }
             }
             textBlock {

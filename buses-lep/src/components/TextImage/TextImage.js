@@ -13,11 +13,11 @@ const TextImage = ({ title, text, image }) => {
             <div className="textImage__text">
               <PortableText value={text} />
             </div>
-            <SanityImage
+            {image && <SanityImage
               {...image}
               alt={`${title}`}
               className="textImage__image"
-            />
+            /> }
           </div>
         </div>
       )}

@@ -8,7 +8,7 @@ const QuestionCard = ({question}) => {
       <Accordion.Item eventKey={question._key}>
         <Accordion.Header>
           <div className='questionCard__image'>
-          {question.image !== null ? <SanityImage {...question.image} alt={`${question.image.alt}`} /> : <></> }
+          {question.image.image !== null ? <SanityImage {...question.image.image} alt={`${question.image.alt}`} /> : <></> }
           </div>
           <h5 className='title-small py-0'>{question.textBlock.title}</h5>
           

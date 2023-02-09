@@ -10,7 +10,7 @@ const ImageBlock = ({ images, title }) => {
       key={img._key}
     >
       <SanityImage
-        {...img.image}
+        {...img.image.image}
         alt={`${img.alt}`}
       />
     </a>

@@ -61,22 +61,26 @@ const useHeader = () => {
                 }
               }
               image {
-                hotspot {
-                  y
-                  x
-                  width
-                  height
-                }
-                crop {
-                  top
-                  right
-                  left
-                  bottom
-                }
-                asset {
-                  _id
-                }
                 alt
+                _key
+                image {
+                  _key
+                  asset {
+                    _id
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                }
               }
               _type
               _key

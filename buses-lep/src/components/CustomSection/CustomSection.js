@@ -53,7 +53,7 @@ const CustomSection = ({ sections }) => {
             key={section._key}
             title={section.textBlock?.title}
             text={section.textBlock?._rawContent}
-            image={section.image}
+            image={section.image.image}
           />
         );
       }
