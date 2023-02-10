@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
-
+import IconButton from "@mui/material/IconButton";
 import { Icon, SelectAutocomplete } from "../";
+import Button from "@mui/material/Button";
 import Map from "./Map";
 import "./TicketOffices.scss";
 
 const OfficeMap = ({ zoom, offices }) => {
-  const [isActive, setIsActive] = useState(false);
   const [activeSite, setActiveSite] = useState(null);
   const [isOpenSite, setIsOpenSite] = useState(null);
-  // const [mylOCATION, setIsOpenSite] = useState(null);
+  const [myLocation, setMyLocation] = useState(null);
 
   const selectSite = (site) => {
-    console.log(site)
-    if(site !== ''){
+    console.log(site);
+    if (site !== "") {
       setActiveSite(site);
-    }else{
+    } else {
       setActiveSite(null);
     }
-    
-    
-
+    setMyLocation(null);
   };
   const openSite = (site) => {
     setIsOpenSite(true);
@@ -27,39 +25,45 @@ const OfficeMap = ({ zoom, offices }) => {
   const closeSite = () => {
     setIsOpenSite(false);
   };
-  const toLocate = async ()=> {
-
+  const toLocate = async () => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser');
+      alert("Geolocation is not supported by your browser");
     } else {
       navigator.geolocation.getCurrentPosition(success, error);
     }
-  }
+  };
 
   function success(position) {
-    const latitude  = position.coords.latitude;
+    const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    alert('lat: ' + latitude + ' lng: ' + longitude)
+    setMyLocation([parseFloat(latitude), parseFloat(longitude)]);
+    setActiveSite(null);
   }
 
   function error() {
-    alert('Unable to retrieve your location');
+    alert("Unable to retrieve your location");
   }
 
   return (
     <div className="mapContent">
-      <div className="container mapContent__search">
+      <div className="mapContent__search">
         <div className="box-search">
           {!isOpenSite && (
             <div>
-              <SelectAutocomplete
-                icon={<Icon code={"MdOutlineTripOrigin"}></Icon>}
-                style="offices"
-                label={"Buscar punto de venta..."}
-                options={offices}
-                handler={selectSite}
-              />
-              <button onClick={() => toLocate()}>Localizar</button>
+              <div className="d-flex">
+                <SelectAutocomplete
+                  icon={<Icon code={"FaSearch"}></Icon>}
+                  style="offices"
+                  label={"Buscar punto de venta..."}
+                  options={offices}
+                  handler={selectSite}
+                />
+                <Button
+                  variant="contained"
+                  startIcon={<Icon code={"MdMyLocation"}></Icon>}
+                  onClick={toLocate}
+                ></Button>
+              </div>
 
               {activeSite !== null && (
                 <div className="box-search__list">
@@ -67,9 +71,17 @@ const OfficeMap = ({ zoom, offices }) => {
                     className="cardSite"
                     onClick={() => openSite(activeSite)}
                   >
+                    <div className="cardSite__icon">
+                      <Icon code={"MdLocationOn"} />
+                    </div>
                     <div className="cardSite__text">
-                      <h5>{activeSite.Localidad}</h5>
-                      <p>{activeSite.Boleteria_Ubicacion}</p>
+                      <h3 className="title-medium">{activeSite.Localidad}</h3>
+                      <p className="body-medium">
+                        {activeSite.Boleteria_Ubicacion}
+                      </p>
+                      <p className="body-medium">
+                        {activeSite.Boleteria_Telefono}
+                      </p>
                     </div>
                   </button>
                 </div>
@@ -78,28 +90,59 @@ const OfficeMap = ({ zoom, offices }) => {
           )}
           {isOpenSite && (
             <div className="box-search__activeItem">
-              <button className="activeItem_button" onClick={() => closeSite()}>
-                <Icon code={"FaArrowLeft"} />
-              </button>
-              <h5>{activeSite.Boleteria_Ubicacion}</h5>
-              <p>
-                <b>Contacto</b>
-              </p>
-              <p>{activeSite.Localidad}</p>
-              <p>
-                <b>Horario de Atención</b>
-              </p>
-              <p>{activeSite.Boleteria_Telefono}</p>
+              <div className="d-flex align-items-center">
+                <IconButton
+                  color="primary"
+                  aria-label="volver"
+                  onClick={() => closeSite()}
+                >
+                  <Icon code={"FaArrowLeft"} />
+                </IconButton>
+                <h3 className="title-medium ps-4">{activeSite.Localidad}</h3>
+              </div>
+              <div className="d-flex">
+                {/* {activeSite.linkfoto !== "" ? (
+                  <div className="officePhoto">
+                    <img src={activeSite.linkfoto} alt="" />
+                  </div>
+                ) : (
+                  <></>
+                )} */}
+                <div className="ps-3">
+                  <p className="body-medium mb-0 pb-0">
+                    <b>Dirección</b>
+                  </p>
+                  <p className="body-medium">
+                    {activeSite.Boleteria_Ubicacion}
+                  </p>
+                  {activeSite.Boleteria_Telefono !== "" &&
+                  activeSite.Boleteria_Telefono !== null ? (
+                    <>
+                      <p className="body-medium">
+                        <b>Teléfono</b>
+                      </p>
+                      <p className="body-medium">
+                        {activeSite.Boleteria_Telefono}
+                      </p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
             </div>
           )}
         </div>
       </div>
-      <Map
-        site={activeSite}
-        offices={offices}
-        open={isOpenSite}
-        handler={selectSite}
-      ></Map>
+      <div className="mapContent__map">
+        <Map
+          site={activeSite}
+          offices={offices}
+          open={isOpenSite}
+          handler={selectSite}
+          location={myLocation}
+        ></Map>
+      </div>
     </div>
   );
 };

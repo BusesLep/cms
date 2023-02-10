@@ -75,20 +75,22 @@ export default function SelectAutocomplete({
       options={options}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
-          <Icon code={"MdOutlineLocationOn"} />
+          <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/>
           <Box
             sx={{
-              flexGrow: 1,
+              lineHeight: '16px',
+              padding: '.5rem 1rem',
               "& span": {
                 color: "#586069",
                 backgroundColor: "#35373A",
               },
             }}
           >
-            {style === "destination" ? option.hasta : option.Localidad}
-            <br />
+            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>{style === "destination" ? option.hasta : option.Localidad}</p>
             {option.Boleteria_Ubicacion != null ? (
-              <small>{option.Boleteria_Ubicacion}</small>
+              <small style={{ fontSize: "12px", marginBottom: "0",  lineHeight: '2px', }}>
+                {option.Boleteria_Ubicacion}
+              </small>
             ) : (
               <></>
             )}

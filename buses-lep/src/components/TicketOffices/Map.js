@@ -3,23 +3,15 @@ import GoogleMapReact from "google-map-react";
 import { Icon } from "../";
 import "./TicketOffices.scss";
 
-const Map = ({ site, offices, open , handler}) => {
+const Map = ({ site, offices, open , handler, location}) => {
   const [cordinates, setCordinates] = useState([-31.3, -64.5]);
 
   useEffect(() => {
     if (site !== null) {
       setCordinates([parseFloat(site.latitud), parseFloat(site.longitud)]);
     }
-    console.log("lat: " + cordinates[0]);
-    console.log("lng: " + cordinates[1]);
   }, [site]);
-  let defaultProps = {
-    center: {
-      lat: -31.3,
-      lng: -64.5,
-    },
-    zoom: 10,
-  };
+
   const markers = offices.map((mark) => (
     <button
       className="markSites"
@@ -35,8 +27,7 @@ const Map = ({ site, offices, open , handler}) => {
     <GoogleMapReact
       yesIWantToUseGoogleMapApiInternals={true}
       bootstrapURLKeys={{ key: "AIzaSyCPjToC-kSDrc0UD7J__LlIY9WWUq9yLNA" }}
-      // defaultCenter={defaultProps.center}
-      center={cordinates}
+      center={location !== null ? location : cordinates}
       zoom={site !== null ? (open ? 15 : 11) : 10}
     >
       {markers}

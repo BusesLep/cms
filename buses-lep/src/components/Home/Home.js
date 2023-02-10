@@ -1,51 +1,38 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import useHome from "../../hooks/useHome";
 
-import {CustomSection, Banner, Seo} from "../"
-import SearchForm from "../SearchForm/SearchForm"
+import { CustomSection, Banner, Seo } from "../";
+import SearchForm from "../SearchForm/SearchForm";
 
 const Home = () => {
   const data = useHome().sanityHome;
-  // Client-side Runtime Data Fetching
-  const [cities, setCities] = useState([]);
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/localidades/desde");
-        const data = await response.json();
-        setCities(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchPost();
-  }, []);
-
-  
-  return <>
-       <Seo title='Home' description='' keywords='' />
-       {
-     data !== null ? (
-    <div className="container">
-      
-      {data.banner !== null ? <Banner banner={data.banner} /> : <></>}
-      {/* <ComboBox list={cities}></ComboBox>
-      <ComboBox list={origins}></ComboBox> */}
-      <SearchForm></SearchForm>
-      {data.dinamicContent !== null ? (
-        <CustomSection sections={data.dinamicContent} />
+  return ( 
+    <>
+      <Seo title="Home" description="" keywords="" />
+      {data !== null ? (
+        <div className="container">
+          
+          {data.banner !== null && data.banner.length !== 0 ? (
+            <Banner banner={data.banner} />
+          ) : (
+            <></>
+          )}
+          <SearchForm></SearchForm>
+          {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
+            <CustomSection sections={data.dinamicContent} />
+          ) : (
+            <></>
+          )}
+        </div>
       ) : (
-        <></>
-      )}
-    </div>
-  ) : (
-    <div className="d-flex justify-content-center">
-      <h2>Home in Sanity has no content</h2>
-    </div> 
-   
-  ) } ;
-  </>
+        <div className="d-flex justify-content-center">
+          <h2>Home in Sanity has no content</h2>
+        </div>
+      )}{" "}
+      ;
+    </>
+  );
 };
 
 export default Home;
