@@ -28,14 +28,11 @@ const OfficeMap = ({ offices }) => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
     } else {
-      navigator.permissions.query({ name: "geolocation" }).then((result) => {
-        if (result.state === "granted") {
-          navigator.geolocation.getCurrentPosition(success, error);
-        } else if (result.state === "prompt") {
-          alert('Debe proporsionar permisos de geolocalizacion en su navegador')
-          navigator.geolocation.getCurrentPosition(success, error);
-        }
-      });
+      if (window.confirm("La pagina requiere acceder a su ubicación para conocer el punto de venta mas cercano")) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+          
+        
     }
   };
 
