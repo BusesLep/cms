@@ -5,6 +5,7 @@ import "./TicketOffices.scss";
 
 const Map = ({ site, offices, open , handler, location}) => {
   const [cordinates, setCordinates] = useState([-31.3, -64.5]);
+  const siteOpen = open ? 15 : 11 
 
   useEffect(() => {
     if (site !== null) {
@@ -26,9 +27,9 @@ const Map = ({ site, offices, open , handler, location}) => {
   return (
     <GoogleMapReact
       yesIWantToUseGoogleMapApiInternals={true}
-      bootstrapURLKeys={{ key: "AIzaSyCPjToC-kSDrc0UD7J__LlIY9WWUq9yLNA" }}
+      bootstrapURLKeys={{ key: process.env.GMAP_KEY }}
       center={location !== null ? location : cordinates}
-      zoom={site !== null ? (open ? 15 : 11) : 10}
+      zoom={site !== null ? siteOpen : 10}
     >
       {markers}
       {site !== null ? (
