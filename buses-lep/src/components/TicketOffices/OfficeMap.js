@@ -29,8 +29,9 @@ const OfficeMap = ({ offices }) => {
       alert("Geolocation is not supported by your browser");
     } else {
       navigator.permissions.query({name:"geolocation"}).then(function(result) {
+        navigator.geolocation.getCurrentPosition(success, error);
       });  // Sensitive: geolocation is a powerful feature with high privacy concerns
-      navigator.geolocation.getCurrentPosition(success, error); // Sensitive: geolocation is a powerful feature with high privacy concerns
+      
     }
   };
 
