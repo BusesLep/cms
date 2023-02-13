@@ -106,6 +106,14 @@ export const query = graphql`
               title
             }
           }
+          ... on SanityTicketOffices {
+            _key
+            _type
+            textBlock {
+              _rawContent
+              title
+            }
+          }
           ... on SanityHelpCenter {
             _key
             _type
