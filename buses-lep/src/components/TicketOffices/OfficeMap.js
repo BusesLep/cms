@@ -3,12 +3,21 @@ import IconButton from "@mui/material/IconButton";
 import { Icon, SelectAutocomplete } from "../";
 import Button from "@mui/material/Button";
 import Map from "./Map";
+import { useGeolocated } from "react-geolocated";
 import "./TicketOffices.scss";
 
 const OfficeMap = ({ offices }) => {
   const [activeSite, setActiveSite] = useState(null);
   const [isOpenSite, setIsOpenSite] = useState(null);
   const [myLocation, setMyLocation] = useState(null);
+
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+  useGeolocated({
+      positionOptions: {
+          enableHighAccuracy: false,
+      },
+      userDecisionTimeout: 5000,
+  });
 
   const selectSite = (site) => {
     if (site !== "") {
@@ -25,26 +34,24 @@ const OfficeMap = ({ offices }) => {
     setIsOpenSite(false);
   };
   const toLocate = async () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-    } else {
-      if (window.confirm("La pagina requiere acceder a su ubicación para conocer el punto de venta mas cercano")) {
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-          
-        
-    }
+
+    !isGeolocationAvailable ? (
+      alert('Su navegador no soporta geolocalización')
+    ) : !isGeolocationEnabled ? (
+      alert('geolocalización desactivada')
+  ) : coords ? (success(coords)) : error()
   };
 
   function success(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    console.log(position)
+    const latitude = position.latitude;
+    const longitude = position.longitude;
     setMyLocation([parseFloat(latitude), parseFloat(longitude)]);
     setActiveSite(null);
   }
 
   function error() {
-    alert("Unable to retrieve your location");
+    alert("No es posible obtener geolocalización");
   }
 
   return (
