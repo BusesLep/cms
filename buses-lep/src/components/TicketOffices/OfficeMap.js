@@ -12,12 +12,12 @@ const OfficeMap = ({ offices }) => {
   const [myLocation, setMyLocation] = useState(null);
 
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-  useGeolocated({
+    useGeolocated({
       positionOptions: {
-          enableHighAccuracy: false,
+        enableHighAccuracy: false,
       },
       userDecisionTimeout: 5000,
-  });
+    });
 
   const selectSite = (site) => {
     if (site !== "") {
@@ -34,16 +34,17 @@ const OfficeMap = ({ offices }) => {
     setIsOpenSite(false);
   };
   const toLocate = async () => {
-
-    !isGeolocationAvailable ? (
-      alert('Su navegador no soporta geolocalización')
-    ) : !isGeolocationEnabled ? (
-      alert('geolocalización desactivada')
-  ) : coords ? (success(coords)) : error()
+    if (!isGeolocationAvailable) {
+      alert("Su navegador no soporta geolocalización");
+    } else if (!isGeolocationEnabled) {
+      alert("geolocalización desactivada");
+    } else {
+      coords ? success(coords) : error();
+    }
   };
 
   function success(position) {
-    console.log(position)
+    console.log(position);
     const latitude = position.latitude;
     const longitude = position.longitude;
     setMyLocation([parseFloat(latitude), parseFloat(longitude)]);
