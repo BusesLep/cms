@@ -7,13 +7,12 @@ import OfficeMap from "./OfficeMap";
 const TicketOffices = ({ title, text }) => {
   const offices = useOffices().allOffices.nodes;
 
-  console.log(offices);
   return (
     <section className="ticketOffices">
       <h3 className="py-1">{title}</h3>
       <div className="d-flex flex-wrap p-3 p-md-4">
         <div className="mb-4"><PortableText value={text} /></div>
-        <OfficeMap zoom={10} offices={offices}></OfficeMap>
+        <OfficeMap offices={offices}></OfficeMap>
       </div>
     </section>
   );

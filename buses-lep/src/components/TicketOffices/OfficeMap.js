@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Icon, SelectAutocomplete } from "../";
 import Button from "@mui/material/Button";
 import Map from "./Map";
 import "./TicketOffices.scss";
 
-const OfficeMap = ({ zoom, offices }) => {
+const OfficeMap = ({ offices }) => {
   const [activeSite, setActiveSite] = useState(null);
   const [isOpenSite, setIsOpenSite] = useState(null);
   const [myLocation, setMyLocation] = useState(null);
 
   const selectSite = (site) => {
-    console.log(site);
     if (site !== "") {
       setActiveSite(site);
     } else {
@@ -53,7 +52,7 @@ const OfficeMap = ({ zoom, offices }) => {
               <div className="d-flex">
                 <SelectAutocomplete
                   icon={<Icon code={"FaSearch"}></Icon>}
-                  style="offices"
+                  style='offices'
                   label={"Buscar punto de venta..."}
                   options={offices}
                   handler={selectSite}
@@ -101,13 +100,6 @@ const OfficeMap = ({ zoom, offices }) => {
                 <h3 className="title-medium ps-4">{activeSite.Localidad}</h3>
               </div>
               <div className="d-flex">
-                {/* {activeSite.linkfoto !== "" ? (
-                  <div className="officePhoto">
-                    <img src={activeSite.linkfoto} alt="" />
-                  </div>
-                ) : (
-                  <></>
-                )} */}
                 <div className="ps-3">
                   <p className="body-medium mb-0 pb-0">
                     <b>Dirección</b>
