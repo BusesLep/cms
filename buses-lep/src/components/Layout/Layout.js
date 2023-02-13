@@ -1,7 +1,8 @@
 
 import React from "react";
 import PropTypes from 'prop-types'
-import { Header, Footer} from "..";
+import { Header, Footer } from "..";
+import WhatsappLink from "../WhatsappLink/WhatsappLink";
 import ThemeProvider from "../../context/themeContext";
 
 import "./Layout.scss";
@@ -9,10 +10,12 @@ import "./Layout.scss";
 const Layout = ({ location, children }) => {
 
   return (
-    <ThemeProvider>
+    <ThemeProvider>      
       <Header location={location}/>
       <main>{children}</main>
+      <WhatsappLink />
       <Footer/>
+      
     </ThemeProvider>
   );
 };
