@@ -28,10 +28,14 @@ const OfficeMap = ({ offices }) => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
     } else {
-      navigator.permissions.query({name:"geolocation"}).then(function(result) {
-        navigator.geolocation.getCurrentPosition(success, error);
-      });  // Sensitive: geolocation is a powerful feature with high privacy concerns
-      
+      navigator.permissions.query({ name: "geolocation" }).then((result) => {
+        if (result.state === "granted") {
+          navigator.geolocation.getCurrentPosition(success, error);
+        } else if (result.state === "prompt") {
+          alert('Debe proporsionar permisos de geolocalizacion en su navegador')
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+      });
     }
   };
 
@@ -55,7 +59,7 @@ const OfficeMap = ({ offices }) => {
               <div className="d-flex">
                 <SelectAutocomplete
                   icon={<Icon code={"FaSearch"}></Icon>}
-                  style='offices'
+                  style="offices"
                   label={"Buscar punto de venta..."}
                   options={offices}
                   handler={selectSite}
