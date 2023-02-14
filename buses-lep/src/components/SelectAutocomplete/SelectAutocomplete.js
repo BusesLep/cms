@@ -1,9 +1,8 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { TextField, InputAdornment, Box, Popper, Paper } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
 import "./SelectAutocomplete.scss";
-import { useEffect } from "react";
 import {Icon} from "..";
 
 export default function SelectAutocomplete({
