@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import "./SearchForm.scss";
 import { Icon, SelectAutocomplete } from "../";
-import {
-  Button,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import { Button } from "@mui/material";
 import useOrigin from "../../hooks/useOrigin";
-import { useTheme } from "../../context/themeContext";
 import DatePicker from "./DatePicker";
 import SelectPersons from "./SelectPersons";
+import SelectMode from "./SelectMode";
 
 export default function SearchForm() {
   const origins = useOrigin().allOrigin.nodes;
@@ -20,7 +15,6 @@ export default function SearchForm() {
   const [destinations, setDestinations] = useState(null);
   const [initialOriginValue, setInitialOriginValue] = useState(null);
   const [initialDestinationValue, setInitialDestinationValue] = useState(null);
-  const { theme } = useTheme();
   const [quantity, setQuantity] = useState({
     age1: 0,
     age2: 0,
@@ -113,7 +107,6 @@ export default function SearchForm() {
   };
 
   const changeDestination = async () => {
-
     const tempDataOrigin = {
       ID_Localidad: initialDestinationValue.id_localidad_destino,
       Localidad: initialDestinationValue.hasta,
@@ -136,45 +129,10 @@ export default function SearchForm() {
   return (
     <form onSubmit={sendData} className="searchForm">
       <div className="selectContainer">
-        <div className="selectMode">
-          {isDateTimeEnabled === "true" ? (
-            <Icon code={"MdCompareArrows"}></Icon>
-          ) : (
-            <Icon code={"MdArrowRightAlt"}></Icon>
-          )}
-          <Select
-            name="selectMode"
-            id=""
-            IconComponent={ExpandMoreOutlinedIcon}
-            value={isDateTimeEnabled}
-            onChange={handleOptionChange}
-            sx={{
-              color: theme === "dark" && "#ffffff",
-              boxShadow: "none",
-              ".MuiOutlinedInput-notchedOutline": { border: "0 !important" },
-              ".MuiOutlinedInput-input": {
-                paddingBottom: "14px",
-                paddingLeft: "5px",
-              },
-              ".MuiSvgIcon-root ": {
-                fill: "#1A73E8",
-              },
-            }}
-            inputProps={{
-              MenuProps: {
-                MenuListProps: {
-                  sx: {
-                    backgroundColor: theme === "dark" && "#35373A",
-                    color: theme === "dark" && "#ffffff",
-                  },
-                },
-              },
-            }}
-          >
-            <MenuItem value={"true"}>Ida y vuelta</MenuItem>
-            <MenuItem value={"false"}>Solo ida</MenuItem>
-          </Select>
-        </div>
+        <SelectMode
+          isDateTimeEnabled={isDateTimeEnabled}
+          handleOptionChange={handleOptionChange}
+        />
         <SelectPersons
           quantity={quantity}
           open={open}
@@ -192,15 +150,10 @@ export default function SearchForm() {
             icon={
               <Icon
                 code={"MdOutlineTripOrigin"}
-                style={{
-                  fontSize: "18px",
-                  padding: "2rem",
-                  backgroundColor: "red",
-                }}
               ></Icon>
             }
-            style="origin"
-            label={"Origen"}
+            styleOption="origin"
+            label={"¿Desde dónde viajas?"}
             options={origins}
             handler={fetchDestinations}
             initialValue={initialOriginValue}
@@ -215,14 +168,10 @@ export default function SearchForm() {
             icon={
               <Icon
                 code={"MdOutlineLocationOn"}
-                style={{
-                  fontSize: "18px",
-                  padding: "2rem",
-                  backgroundColor: "red",
-                }}
+               
               ></Icon>
             }
-            style="destination"
+            styleOption="destination"
             label={"¿A dónde viajas?"}
             options={
               destinations !== null && destinations !== undefined

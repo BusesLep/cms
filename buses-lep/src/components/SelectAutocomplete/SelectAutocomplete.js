@@ -4,14 +4,15 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
 import "./SelectAutocomplete.scss";
 import { useEffect } from "react";
+import {Icon} from "..";
 
 export default function SelectAutocomplete({
-  style,
+  styleOption,
   icon,
   label,
   options,
   handler,
-  initialValue
+  initialValue,
 }) {
   const [value, setValue] = React.useState(initialValue);
   const [inputValue, setInputValue] = React.useState("");
@@ -19,8 +20,7 @@ export default function SelectAutocomplete({
 
   useEffect(() => {
     setValue(initialValue);
-  }, [initialValue])
-  
+  }, [initialValue]);
 
   const rootLight = {
     fontSize: 18,
@@ -51,24 +51,25 @@ export default function SelectAutocomplete({
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
-        if (style === "origin") {
+        if (styleOption === "origin") {
           handler(newValue || null);
-        } else if (style === "destination") {
+        } else if (styleOption === "destination") {
           handler(newValue || null);
-        } else if (style === "offices") {
+        } else if (styleOption === "offices") {
           handler(newValue);
-  }}}
+        }
+      }}
       inputValue={inputValue}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      className={`selectAutocomplete col-12 col-lg-6 pb-3 pb-lg-0 ${style}`}
+      className={`selectAutocomplete col-12 col-lg-6 pb-3 pb-lg-0 ${styleOption}`}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
       id="destiny"
       getOptionLabel={
-        style === "destination"
+        styleOption === "destination"
           ? (option) => option.hasta ?? option
           : (option) => option.Localidad ?? option
       }
@@ -76,23 +77,34 @@ export default function SelectAutocomplete({
       PaperComponent={CustomPaper}
       ListboxProps={{ sx: theme === "dark" ? rootDark : rootLight }}
       options={options}
-      renderOption={(props, option, { selected }) => (
+      renderOption={(props, option) => (
         <li {...props}>
-           {icon}
-          {/* <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/> */}
+          {styleOption === "offices" ? (
+            <Icon code={"MdOutlineLocationOn"} />
+          ) : (
+            icon
+          )}
           <Box
             sx={{
-              lineHeight: '16px',
-              padding: '.5rem 1rem',
+              lineHeight: "20px",
+              padding: ".5rem 1rem",
               "& span": {
                 color: "#586069",
                 backgroundColor: "#35373A",
               },
             }}
           >
-            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>{style === "destination" ? option.hasta : option.Localidad}</p>
+            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>
+              {styleOption === "destination" ? option.hasta : option.Localidad}
+            </p>
             {option.Boleteria_Ubicacion != null ? (
-              <small style={{ fontSize: "12px", marginBottom: "0",  lineHeight: '2px', }}>
+              <small
+                style={{
+                  fontSize: "12px",
+                  marginBottom: "0",
+                  lineHeight: "2px",
+                }}
+              >
                 {option.Boleteria_Ubicacion}
               </small>
             ) : (
@@ -108,7 +120,7 @@ export default function SelectAutocomplete({
             color: "#586069",
           }}
         >
-          <InputAdornment position="start" className={style}>
+          <InputAdornment position="start" className={styleOption}>
             {icon}
           </InputAdornment>
           <TextField {...params} label={label} />
