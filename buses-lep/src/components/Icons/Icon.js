@@ -1,6 +1,5 @@
 import React from "react";
 import FontAwesomeIcon from "./FontAwesomeIcon";
-import PropTypes from "prop-types";
 import MaterialIcon from "./MetertialIcon";
 
 const Icon = ({ code, url, altText }) => {
