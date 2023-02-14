@@ -1,8 +1,7 @@
-import React, { useStyles } from "react";
+import React from "react";
 import { TextField, InputAdornment, Box, Popper, Paper } from "@mui/material";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
-import { Icon } from "../";
 import "./SelectAutocomplete.scss";
 import { useEffect } from "react";
 
@@ -13,14 +12,10 @@ export default function SelectAutocomplete({
   options,
   handler,
   initialValue
-  // reset
 }) {
   const [value, setValue] = React.useState(initialValue);
   const [inputValue, setInputValue] = React.useState("");
   const { theme } = useTheme();
-
-  console.log(`val ${style}:`, value);
-  console.log(`inpVal ${style}:`, inputValue);
 
   useEffect(() => {
     setValue(initialValue);
@@ -31,7 +26,6 @@ export default function SelectAutocomplete({
     fontSize: 18,
     backgroundColor: "#FFF",
     "& li": {
-      //list item specific styling
       display: "flex",
       color: "#35373A",
     },
@@ -40,7 +34,6 @@ export default function SelectAutocomplete({
     fontSize: 18,
     backgroundColor: "#35373A",
     "& li": {
-      //list item specific styling
       display: "flex",
       color: "#FFF",
     },
@@ -85,8 +78,8 @@ export default function SelectAutocomplete({
       options={options}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
-           {/* {icon} */}
-          <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/>
+           {icon}
+          {/* <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/> */}
           <Box
             sx={{
               lineHeight: '16px',
