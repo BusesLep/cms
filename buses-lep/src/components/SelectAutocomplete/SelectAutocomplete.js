@@ -1,26 +1,30 @@
-import React, { useStyles } from "react";
+import React,{ useEffect } from "react";
 import { TextField, InputAdornment, Box, Popper, Paper } from "@mui/material";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
-import { Icon } from "../";
 import "./SelectAutocomplete.scss";
+import {Icon} from "..";
 
 export default function SelectAutocomplete({
-  style,
+  styleOption,
   icon,
   label,
   options,
   handler,
+  initialValue,
 }) {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(initialValue);
   const [inputValue, setInputValue] = React.useState("");
   const { theme } = useTheme();
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   const rootLight = {
     fontSize: 18,
     backgroundColor: "#FFF",
     "& li": {
-      //list item specific styling
       display: "flex",
       color: "#35373A",
     },
@@ -29,7 +33,6 @@ export default function SelectAutocomplete({
     fontSize: 18,
     backgroundColor: "#35373A",
     "& li": {
-      //list item specific styling
       display: "flex",
       color: "#FFF",
     },
@@ -47,11 +50,11 @@ export default function SelectAutocomplete({
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
-        if (style === "origin") {
-          handler(newValue?.ID_Localidad || null);
-        } else if (style === "destination" && newValue !== null) {
-          handler(newValue.id_localidad_destino);
-        } else if (style === "offices") {
+        if (styleOption === "origin") {
+          handler(newValue || null);
+        } else if (styleOption === "destination") {
+          handler(newValue || null);
+        } else if (styleOption === "offices") {
           handler(newValue);
         }
       }}
@@ -59,13 +62,13 @@ export default function SelectAutocomplete({
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      className={`selectAutocomplete col-12 col-lg-6 pb-3 pb-lg-0 ${style}`}
+      className={`selectAutocomplete col-12 col-lg-6 pb-3 pb-lg-0 ${styleOption}`}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
       id="destiny"
       getOptionLabel={
-        style === "destination"
+        styleOption === "destination"
           ? (option) => option.hasta ?? option
           : (option) => option.Localidad ?? option
       }
@@ -73,22 +76,34 @@ export default function SelectAutocomplete({
       PaperComponent={CustomPaper}
       ListboxProps={{ sx: theme === "dark" ? rootDark : rootLight }}
       options={options}
-      renderOption={(props, option, { selected }) => (
+      renderOption={(props, option) => (
         <li {...props}>
-          <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/>
+          {styleOption === "offices" ? (
+            <Icon code={"MdOutlineLocationOn"} />
+          ) : (
+            icon
+          )}
           <Box
             sx={{
-              lineHeight: '16px',
-              padding: '.5rem 1rem',
+              lineHeight: "20px",
+              padding: ".5rem 1rem",
               "& span": {
                 color: "#586069",
                 backgroundColor: "#35373A",
               },
             }}
           >
-            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>{style === "destination" ? option.hasta : option.Localidad}</p>
+            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>
+              {styleOption === "destination" ? option.hasta : option.Localidad}
+            </p>
             {option.Boleteria_Ubicacion != null ? (
-              <small style={{ fontSize: "12px", marginBottom: "0",  lineHeight: '2px', }}>
+              <small
+                style={{
+                  fontSize: "12px",
+                  marginBottom: "0",
+                  lineHeight: "2px",
+                }}
+              >
                 {option.Boleteria_Ubicacion}
               </small>
             ) : (
@@ -104,7 +119,7 @@ export default function SelectAutocomplete({
             color: "#586069",
           }}
         >
-          <InputAdornment position="start" className={style}>
+          <InputAdornment position="start" className={styleOption}>
             {icon}
           </InputAdornment>
           <TextField {...params} label={label} />

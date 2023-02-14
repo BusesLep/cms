@@ -3,12 +3,12 @@ import SanityImage from "gatsby-plugin-sanity-image";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { useTheme } from "../../context/themeContext";
-import MaterialIcon from "../Icons/MetertialIcon";
-import FontAwesomeIcon from "../Icons/FontAwesomeIcon";
 import "./Header.scss";
 import LinkBlock from "./LinkBlock";
 import Menu from "./Menu";
 import useHeader from "../../hooks/useHeader";
+import {Icon} from "..";
+
 
 const Header = ({location}) => {
   const data = useHeader().sanityHeader;
@@ -50,10 +50,10 @@ const Header = ({location}) => {
           )}
             <button onClick={toggleTheme} className="header__theme-toggle">
         <div className={`moon ${theme === "dark" ? "" : "moon-animate"}`}>
-          <FontAwesomeIcon code="FaMoon" />
+          <Icon code={"FaMoon"}></Icon>
         </div>
         <div className={`sun ${theme === "dark" ? "sun-animate" : ""}`}>
-          <MaterialIcon code="MdWbSunny" />
+          <Icon code={"MdWbSunny"}></Icon>
         </div>
       </button>
         </Container>

@@ -64,7 +64,7 @@ const OfficeMap = ({ offices }) => {
               <div className="d-flex">
                 <SelectAutocomplete
                   icon={<Icon code={"FaSearch"}></Icon>}
-                  style="offices"
+                  styleOption="offices"
                   label={"Buscar punto de venta..."}
                   options={offices}
                   handler={selectSite}

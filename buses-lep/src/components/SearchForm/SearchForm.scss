@@ -7,10 +7,10 @@
   padding: 0.5rem 0.8rem 1rem 0.8rem;
   background-color: $bg-white-elevation-1;
   .searchContainer {
-    .MuiFormLabel-root{
+    .MuiFormLabel-root {
       color: $color-text-primary;
     }
-    .MuiIconButton-root{
+    .MuiIconButton-root {
       color: $color-border;
     }
     width: 100%;
@@ -19,11 +19,10 @@
     .searchBars {
       position: relative;
       .changeDestiny {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 1rem;
+        position: absolute;
+        right: 25px;
+        top: 40px;
+        z-index: 50;
         p {
           padding-right: 0.7rem;
           color: $color-primary;
@@ -43,28 +42,29 @@
         }
       }
     }
+
     .dateInput {
       border: 1px solid $color-border;
       border-radius: 7px;
       width: 290px;
       padding: 15px;
     }
-    .MuiInputLabel-shrink{
+    .MuiInputLabel-shrink {
       display: none;
     }
     fieldset {
       border-color: $color-border;
-      legend{
+      legend {
         display: none;
       }
     }
-    .MuiInputBase-input{
-      padding-left: 2rem!important;
+    .MuiInputBase-input {
+      padding-left: 2rem !important;
     }
-    .MuiFormLabel-root{
+    .MuiFormLabel-root {
       padding-left: 1.5rem;
     }
-    .MuiInputBase-input{
+    .MuiInputBase-input {
       color: $color-text-primary;
     }
   }
@@ -72,28 +72,15 @@
   .selectContainer {
     width: 100%;
     display: flex;
+    gap:10px;
     margin-bottom: 10px;
-    color: $color-text-primary;
-    select {
-      border: none;
-      background-color: transparent;
-      padding: 15px 5px;
-      margin-right: 20px;
-      color: $color-text-primary;
-      option {
-        background: $bg-white-elevation-1;
-        color: $color-text-primary;
-      }
-      &:focus {
-        outline: none;
-      }
-    }
     .selectMode,
     .selectPeopleQuantity {
       display: flex;
       svg {
         font-size: 22px;
       }
+
     }
   }
 
@@ -113,7 +100,6 @@
       }
     }
   }
-
 }
 
 @media (min-width: $lg-breakpoint) {
@@ -128,12 +114,10 @@
         align-items: center;
         position: relative;
         .changeDestiny {
+          width: max-content;
           position: absolute;
           transform: translate(-50%, 0px);
           left: 50%;
-          display: block;
-          justify-content: flex-start;
-          width: auto;
           top: 10px;
           z-index: 50;
           .MuiButtonBase-root {
