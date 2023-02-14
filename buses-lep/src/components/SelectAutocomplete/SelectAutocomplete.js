@@ -1,9 +1,10 @@
 import React, { useStyles } from "react";
-import { TextField, InputAdornment, Box , Popper, Paper} from "@mui/material";
+import { TextField, InputAdornment, Box, Popper, Paper } from "@mui/material";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
 import { Icon } from "../";
 import "./SelectAutocomplete.scss";
+import { useEffect } from "react";
 
 export default function SelectAutocomplete({
   style,
@@ -11,37 +12,40 @@ export default function SelectAutocomplete({
   label,
   options,
   handler,
+  initialValue
   // reset
 }) {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(initialValue);
   const [inputValue, setInputValue] = React.useState("");
   const { theme } = useTheme();
 
   console.log(`val ${style}:`, value);
   console.log(`inpVal ${style}:`, inputValue);
 
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue])
+  
+
   const rootLight = {
-    
     fontSize: 18,
     backgroundColor: "#FFF",
     "& li": {
       //list item specific styling
-      display: 'flex',
+      display: "flex",
       color: "#35373A",
-    }
+    },
   };
   const rootDark = {
-    
     fontSize: 18,
     backgroundColor: "#35373A",
     "& li": {
       //list item specific styling
-      display: 'flex',
+      display: "flex",
       color: "#FFF",
-    }
+    },
   };
 
-  
   const CustomPaper = (props) => {
     return <Paper {...props} sx={{ width: 300 }} />;
   };
@@ -49,23 +53,16 @@ export default function SelectAutocomplete({
     return <Popper {...props} sx={{ width: 300 }} />;
   };
 
-
-  // if(reset){
-  //   setValue(null);
-  //   setInputValue("")
-  // };
-
   return (
     <Autocomplete
       value={value}
       onChange={(event, newValue) => {
-        console.log("newVal:", newValue)
         setValue(newValue);
         if (style === "origin") {
-          handler(newValue?.ID_Localidad || null);
-        } else if (style === "destination" && newValue !== null) {
-          handler(newValue.id_localidad_destino);
-        } 
+          handler(newValue || null);
+        } else if (style === "destination") {
+          handler(newValue || null);
+        }
       }}
       inputValue={inputValue}
       onInputChange={(event, newInputValue) => {
@@ -83,19 +80,17 @@ export default function SelectAutocomplete({
       }
       PopperComponent={CustomPopper}
       PaperComponent={CustomPaper}
-      ListboxProps={{ sx: theme === 'dark' ? rootDark : rootLight }}
+      ListboxProps={{ sx: theme === "dark" ? rootDark : rootLight }}
       options={options}
       renderOption={(props, option, { selected }) => (
-        <li {...props} 
-        >
-          <Icon code={"MdOutlineLocationOn"} 
-                  />
+        <li {...props}>
+           {icon}
           <Box
             sx={{
               flexGrow: 1,
               "& span": {
                 color: "#586069",
-                backgroundColor: "#35373A"
+                backgroundColor: "#35373A",
               },
             }}
           >
@@ -108,7 +103,7 @@ export default function SelectAutocomplete({
         <div
           style={{
             position: "relative",
-            color: "#586069"
+            color: "#586069",
           }}
         >
           <InputAdornment position="start" className={style}>

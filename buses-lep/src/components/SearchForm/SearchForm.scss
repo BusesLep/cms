@@ -72,31 +72,14 @@
   .selectContainer {
     width: 100%;
     display: flex;
+    gap:10px;
     margin-bottom: 10px;
-    color: $color-text-primary;
-    select {
-      border: none;
-      background-color: transparent;
-      padding: 15px 5px;
-      margin-right: 20px;
-      color: $color-text-primary;
-      option {
-        background: $bg-white-elevation-1;
-        color: $color-text-primary;
-      }
-      &:focus {
-        outline: none;
-      }
-    }
     .selectMode,
     .selectPeopleQuantity {
       display: flex;
       svg {
         font-size: 22px;
       }
-      // .MuiButtonBase-root {
-      //   padding: 6px;
-      // }
 
     }
   }

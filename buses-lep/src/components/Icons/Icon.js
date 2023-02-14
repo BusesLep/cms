@@ -20,7 +20,5 @@ const Icon = ({ code, url, altText }) => {
 
   return icon;
 };
-FontAwesomeIcon.propTypes = {
-  code: PropTypes.string.isRequired,
-};
+
 export default Icon;

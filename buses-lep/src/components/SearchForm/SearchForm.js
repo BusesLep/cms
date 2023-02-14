@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./SearchForm.scss";
 import { Icon, SelectAutocomplete } from "../";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import moment from "moment";
-import MomentUtils from "@date-io/moment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import {
@@ -18,24 +17,22 @@ import {
   Typography,
   Fade,
 } from "@mui/material";
-
+import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
+import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+// import { makeStyles } from "@material-ui/core/styles";
 import "moment/locale/es";
 import useOrigin from "../../hooks/useOrigin";
 import { useTheme } from "../../context/themeContext";
-import { convertLength } from "@mui/material/styles/cssUtils";
 
 export default function SearchForm() {
   const origins = useOrigin().allOrigin.nodes;
   const [goDateValue, setGoDateValue] = useState(null);
   const [returnDateValue, setReturnDateValue] = useState(null);
-  const [isDateTimeEnabled, setIsDateTimeEnabled] = useState(true);
+  const [isDateTimeEnabled, setIsDateTimeEnabled] = useState("true");
   const [destinations, setDestinations] = useState(null);
-  const [passengers, setPassengers] = useState(1);
-  const [selectedDestination, setSelectedDestination] = useState("");
-  const [selectedOrigin, setSelectedOrigin] = useState("");
-  const [reset, setReset] = useState(false);
+  const [initialOriginValue, setInitialOriginValue] = useState(null);
+  const [initialDestinationValue, setInitialDestinationValue] = useState(null);
   const { theme } = useTheme();
-
   const [quantity, setQuantity] = useState({
     age1: 0,
     age2: 0,
@@ -43,20 +40,18 @@ export default function SearchForm() {
     age4: 0,
     total: 0,
   });
-  console.log(quantity);
-  const [total, setTotal] = useState(0);
 
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const ageGroups = [
     { title: "Adultos", key: "age1" },
-    { title: "Niños de 0 a 4 años", key: "age2" },
+    { title: "Niños de 5 a 12 años", key: "age2" },
     { title: "Niños de 0 a 4 años", subtitle: "Sin asiento", key: "age3" },
-    { title: "Niños de 5 a 12 años", subtitle: "Sin asiento", key: "age4" },
+    { title: "Niños de 0 a 4 años", subtitle: "Sin asiento", key: "age4" },
   ];
 
-    const sumTotalAndClose = () => {
+  const sumTotalAndClose = () => {
     setOpen(false);
     setQuantity((prev) => ({
       ...prev,
@@ -64,13 +59,30 @@ export default function SearchForm() {
     }));
   };
 
+  const cleanPersons = () => {
+    setOpen(false);
+    setQuantity((prev) => prev);
+  };
+
   const ageGroupsArea = ageGroups.map((group) => {
     return (
-      <Grid container sx={{ padding: "15px" }} key={group.key}>
-        <Grid item xs={7} sx={{ display: "flex", alignItems: "center" }}>
-          <Typography paragraph={false} sx={{ p: 0 }}>
-            {group.title}
-          </Typography>
+      <Grid
+        container
+        sx={{ padding: "10px", display: "flex", alignItems: "center" }}
+        key={group.key}
+      >
+        <Grid
+          item
+          xs={7}
+          sx={{ display: "flex", alignSelf: "center", padding: "5px" }}
+          direction="column"
+        >
+          <Typography sx={{ p: 0 }}>{group.title}</Typography>
+          {group.subtitle && (
+            <Typography sx={{ p: 0, fontSize: "12px" }}>
+              {group.subtitle}
+            </Typography>
+          )}
         </Grid>
         <Grid item xs={2}>
           <Button
@@ -113,69 +125,59 @@ export default function SearchForm() {
     );
   });
 
-  // const handlePersonsClick = (event) => {
-  //   setOpen((prev) => !prev);
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handlePersonsClose = () => {
-  //   setOpen(false);
-  //   setQuantity((prev) => ({
-  //     ...prev,
-  //     total: prev.group1 + prev.group2 + prev.group3,
-  //   }));
-  // };
-
-  // const addQuantity = (group) => {
-  //   setQuantity((prev) => ({
-  //     ...prev,
-  //     [group]: prev[group] + 1,
-  //   }));
-  // };
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => !prev);
   };
 
-  // console.log(selectedOrigin, "selectedOrigin");
-  // console.log(selectedDestination, "selectedDestination");
-
-  const fetchDestinations = async (id) => {
-    console.log(id, "id");
-    if (id !== null) {
+  const fetchDestinations = async (value) => {
+    setInitialOriginValue(value);
+    if (value !== null) {
       try {
         const response = await fetch(
-          "http://localhost:8080/localidades/hasta?IDlocalidadOrigen=" + id
+          "http://localhost:8080/localidades/hasta?IDlocalidadOrigen=" +
+            value.ID_Localidad
         );
         const data = await response.json();
         setDestinations(data);
-        setSelectedOrigin(id);
-        setReset(false);
+        if (
+          destinations !== null &&
+          initialDestinationValue !== null &&
+          !data.some((e) => {
+            return e.id_localidad_origen === value.ID_Localidad;
+          })
+        ) {
+          alert("No existe este destino");
+        }
+        setInitialDestinationValue(null);
       } catch (error) {
         console.log(error);
       }
     } else {
-      setSelectedOrigin(null);
       setDestinations(null);
-      // setReset(true);
+      setInitialDestinationValue(null);
+    }
+  };
+
+  const handleDestination = (value) => {
+    if (value === null) {
+      setInitialDestinationValue(null);
+    } else {
+      setInitialDestinationValue(value);
     }
   };
 
   const sendData = (event) => {
     event.preventDefault();
-    console.log("destination: " + destinations);
     console.log(
       "http://localhost/?desde=" +
-        selectedOrigin +
+        initialOriginValue.ID_Localidad +
         "&?hasta=" +
-        selectedDestination +
+        initialDestinationValue.id_localidad_destino +
         "&?ida=" +
         String(returnDateValue) +
         "&?regreso=" +
-        String(returnDateValue) +
-        "&?cant=" +
-        passengers
+        String(returnDateValue)
     );
   };
 
@@ -188,16 +190,41 @@ export default function SearchForm() {
   };
 
   const handleOptionChange = (event) => {
-    setIsDateTimeEnabled(event.target.value === "true");
-  };
-  const handlePassengers = (event) => {
-    setPassengers(event.target.value);
+    setIsDateTimeEnabled(event.target.value);
   };
 
-  const changeDestination = (event) => {
-    // setSelectedOrigin(selectedDestination);
-    // setSelectedDestination(selectedOrigin);
-    fetchDestinations(selectedDestination);
+  const changeDestination = async () => {
+    console.log(initialDestinationValue, "init destination valie");
+
+    const tempDataOrigin = {
+      ID_Localidad: initialDestinationValue.id_localidad_destino,
+      Localidad: initialDestinationValue.hasta,
+    };
+
+    const tempDataDestination = {
+      Lat: 0,
+      Long: 0,
+      desde: initialDestinationValue.hasta,
+      hasta: initialDestinationValue.desde,
+      id_localidad_destino: initialDestinationValue.id_localidad_origen,
+      id_localidad_origen: initialDestinationValue.id_localidad_destino,
+    };
+
+    setInitialOriginValue(tempDataOrigin);
+
+    console.log(initialOriginValue, "init Origin valie");
+    console.log(initialDestinationValue, "dest Origin valie");
+    await fetchDestinations(tempDataOrigin);
+    setInitialDestinationValue(tempDataDestination);
+    // if (
+    //   destinations.some(
+    //     (e) =>
+    //       e.id_localidad_destino === tempDataDestination.id_localidad_destino
+    //   )
+    // ) {
+    //   alert("Existe este destino");
+    // }
+    //
   };
 
   moment.locale("es");
@@ -223,63 +250,105 @@ export default function SearchForm() {
     <form onSubmit={sendData} className="searchForm">
       <div className="selectContainer">
         <div className="selectMode">
-          <Icon code={"MdCompareArrows"}></Icon>
+          {isDateTimeEnabled === "true" ? (
+            <Icon code={"MdCompareArrows"}></Icon>
+          ) : (
+            <Icon code={"MdArrowRightAlt"}></Icon>
+          )}
           <Select
             name="selectMode"
             id=""
-            className=""
+            IconComponent={ExpandMoreOutlinedIcon}
             value={isDateTimeEnabled}
             onChange={handleOptionChange}
             sx={{
+              color: theme === "dark" && "#ffffff",
               boxShadow: "none",
               ".MuiOutlinedInput-notchedOutline": { border: "0 !important" },
               ".MuiOutlinedInput-input": {
                 paddingBottom: "14px",
-                paddingLeft: "10px",
+                paddingLeft: "5px",
               },
-              ".css-1xryphn-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                { borderWidth: 0 },
+              ".MuiSvgIcon-root ": {
+                fill: "#1A73E8",
+              },
+            }}
+            inputProps={{
+              MenuProps: {
+                MenuListProps: {
+                  sx: {
+                    backgroundColor: theme === "dark" && "#35373A",
+                    color: theme === "dark" && "#ffffff",
+                  },
+                },
+              },
             }}
           >
-            <MenuItem value={true}>Ida y vuelta</MenuItem>
-            <MenuItem value={false}>Solo ida</MenuItem>
+            <MenuItem value={"true"}>Ida y vuelta</MenuItem>
+            <MenuItem value={"false"}>Solo ida</MenuItem>
           </Select>
         </div>
         <div className="selectPeopleQuantity">
           <Icon code={"MdPerson"}></Icon>
-
-          <Button onClick={handleClick}>0</Button>
+          <Button
+            disableRipple={true}
+            disableElevation={true}
+            endIcon={
+              open ? <ExpandLessOutlinedIcon /> : <ExpandMoreOutlinedIcon />
+            }
+            onClick={handleClick}
+            sx={{
+              minWidth: "30px",
+              backgroundColor: theme === "dark" && "#35373A",
+              color: theme === "dark" ? "#ffffff" : "#5F6368",
+              paddingLeft: "0px",
+              ".MuiSvgIcon-root": {
+                color: "#1A73E8",
+              },
+              ".MuiButton-endIcon": {
+                position: "absolute",
+                right: "-5px",
+              },
+            }}
+          >
+            {quantity.total}
+          </Button>
           <Popper
             open={open}
             anchorEl={anchorEl}
             transition
             placement="bottom-start"
+            keepMounted={true}
             sx={{
               zIndex: 1000,
-              width: 330,
+              width: 315,
             }}
           >
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>
-                <Paper>
+                <Paper
+                  sx={{
+                    backgroundColor: theme === "dark" && "#35373A",
+                    color: theme === "dark" && "#ffffff",
+                  }}
+                >
                   {ageGroupsArea}
-                  <Stack spacing={1} direction="row" sx={{justifyContent: "end", padding:"10px"}}>
-                    <Button variant="text">Aceptar</Button>
-                    <Button variant="text">Cancelar</Button>
+                  <Stack
+                    spacing={1}
+                    direction="row"
+                    sx={{ justifyContent: "end", padding: "0 10px 10px 10px" }}
+                  >
+                    <Button variant="text" onClick={cleanPersons}>
+                      Cancelar
+                    </Button>
+                    <Button variant="text" onClick={sumTotalAndClose}>
+                      Aceptar
+                    </Button>
                   </Stack>
                 </Paper>
               </Fade>
             )}
           </Popper>
-
-          {/* <select name="" id="" value={passengers} onChange={handlePassengers}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select> */}
         </div>
       </div>
 
@@ -291,9 +360,9 @@ export default function SearchForm() {
             label={"Origen"}
             options={origins}
             handler={fetchDestinations}
+            initialValue={initialOriginValue}
           />
           <div className="changeDestiny">
-            {/* <p className="d-block d-lg-none">Intercambiar Origen/Destino</p> */}
             <Button variant="contained" onClick={changeDestination}>
               <Icon code={"MdSyncAlt"}></Icon>
             </Button>
@@ -308,8 +377,8 @@ export default function SearchForm() {
                 ? destinations
                 : [{ hasta: "Debe seleccionar origen" }]
             }
-            handler={setSelectedDestination}
-            // reset={reset}
+            handler={handleDestination}
+            initialValue={initialDestinationValue}
           />
         </div>
         <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -331,7 +400,7 @@ export default function SearchForm() {
             value={returnDateValue}
             onChange={handleReturnDateChange}
             renderInput={(params) => <TextField {...params} />}
-            disabled={!isDateTimeEnabled}
+            disabled={isDateTimeEnabled === "false"}
             minDate={new Date()}
             className="col-12 col-lg-3 mb-3 mb-lg-0 ps-lg-3"
             PopperProps={{
@@ -346,88 +415,3 @@ export default function SearchForm() {
     </form>
   );
 }
-
-// import React, { useState, useEffect } from "react";
-// import Autocomplete from "@mui/material/Autocomplete";
-// import { TextField } from "@mui/material";
-// import useOrigin from "../../hooks/useOrigin";
-
-// function SearchForm() {
-//   const origins = useOrigin().allOrigin.nodes;
-//   const [firstAutocompleteValue, setFirstAutocompleteValue] = useState(null);
-//   const [secondAutocompleteValue, setSecondAutocompleteValue] = useState("");
-//   const [inputValue, setInputValue] = useState("");
-//   const [destinations, setDestinations] = useState([]);
-
-//   useEffect(() => {
-// console.log(firstAutocompleteValue, "id")
-
-//     if (!firstAutocompleteValue) {
-//       setDestinations([]);
-//       return;
-//     }
-
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch(
-//           "http://localhost:8080/localidades/hasta?IDlocalidadOrigen=" + firstAutocompleteValue
-//         );
-//         const data = await response.json();
-//         setDestinations(data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     fetchData();
-//   }, [firstAutocompleteValue]);
-
-//   return (
-//     <form>
-//       <Autocomplete
-//         options={origins}
-//         getOptionLabel={(option) => {
-//           return option.Localidad
-//         }}
-//         value={firstAutocompleteValue}
-//         onChange={(event, newValue) => {
-//           console.log(newValue);
-//           setFirstAutocompleteValue(newValue?.ID_Localidad || null);
-//         }}
-//         renderInput={(params) => (
-//           <TextField {...params} label="Choose an option" variant="outlined" />
-//         )}
-//         inputValue={inputValue}
-//         onInputChange={(event, newInputValue) => {
-//           setInputValue(newInputValue);
-//         }}
-//       />
-
-//       <Autocomplete
-//         options={
-//           destinations !== null && destinations !== undefined
-//             ? destinations
-//             : [{ hasta: "Debe seleccionar origen" }]
-//         }
-//         getOptionLabel={(option) => option.hasta}
-//         // value={secondAutocompleteValue}
-//         // onChange={(event, newValue) => {
-//         //   setSecondAutocompleteValue(newValue);
-//         // }}
-//         inputValue={inputValue}
-//         onInputChange={(event, newInputValue) => {
-//           setInputValue(newInputValue);
-//         }}
-//         renderInput={(params) => (
-//           <TextField
-//             {...params}
-//             label="Choose an option"
-//             variant="outlined"
-//             disabled={destinations.length === 0}
-//           />
-//         )}
-//       />
-//     </form>
-//   );
-// }
-
-// export default SearchForm;
