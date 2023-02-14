@@ -14,7 +14,8 @@ import SearchForm from "./SearchForm/SearchForm"
 import TextImage from "./TextImage/TextImage"
 import Form from "./Form/Form"
 import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
-import { Seo } from "./seo"
+import TicketOffices from "./TicketOffices/TicketOffices"
+import {Seo} from "./seo"
 
 
 export {
@@ -34,5 +35,6 @@ export {
     SearchForm,
     SelectAutocomplete,
     Form,
+    TicketOffices,
     Seo
 }

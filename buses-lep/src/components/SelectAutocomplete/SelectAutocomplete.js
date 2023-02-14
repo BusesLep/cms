@@ -62,8 +62,9 @@ export default function SelectAutocomplete({
           handler(newValue || null);
         } else if (style === "destination") {
           handler(newValue || null);
-        }
-      }}
+        } else if (style === "offices") {
+          handler(newValue);
+  }}}
       inputValue={inputValue}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
@@ -74,9 +75,9 @@ export default function SelectAutocomplete({
       handleHomeEndKeys
       id="destiny"
       getOptionLabel={
-        style === "origin"
-          ? (option) => option.Localidad ?? option
-          : (option) => option.hasta ?? option
+        style === "destination"
+          ? (option) => option.hasta ?? option
+          : (option) => option.Localidad ?? option
       }
       PopperComponent={CustomPopper}
       PaperComponent={CustomPaper}
@@ -84,18 +85,26 @@ export default function SelectAutocomplete({
       options={options}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
-           {icon}
+           {/* {icon} */}
+          <Icon code={"MdOutlineLocationOn"} style={{ fontSize: "18px",  padding: "2rem" , backgroundColor: 'red' }}/>
           <Box
             sx={{
-              flexGrow: 1,
+              lineHeight: '16px',
+              padding: '.5rem 1rem',
               "& span": {
                 color: "#586069",
                 backgroundColor: "#35373A",
               },
             }}
           >
-            {style === "origin" ? option.Localidad : option.hasta}
-            <br />
+            <p style={{ fontSize: "18px", margin: "0", padding: "0" }}>{style === "destination" ? option.hasta : option.Localidad}</p>
+            {option.Boleteria_Ubicacion != null ? (
+              <small style={{ fontSize: "12px", marginBottom: "0",  lineHeight: '2px', }}>
+                {option.Boleteria_Ubicacion}
+              </small>
+            ) : (
+              <></>
+            )}
           </Box>
         </li>
       )}

@@ -2,6 +2,14 @@
 
 
 .selectAutocomplete{
+  .MuiAutocomplete-popper{
+    li{
+      background-color: aqua;
+    }
+    .icon{
+      font-size: 5rem;
+    }
+  }
 
   .MuiInputBase-input{
     color: $color-text-primary;
