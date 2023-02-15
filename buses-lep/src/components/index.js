@@ -16,6 +16,8 @@ import Form from "./Form/Form"
 import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 import TicketOffices from "./TicketOffices/TicketOffices"
 import {Seo} from "./seo"
+import Categories from "./Categories/Categories"
+
 
 
 export {
@@ -36,5 +38,6 @@ export {
     SelectAutocomplete,
     Form,
     TicketOffices,
-    Seo
+    Seo,
+    Categories
 }

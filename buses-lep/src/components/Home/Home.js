@@ -30,7 +30,6 @@ const Home = () => {
           <h2>Home in Sanity has no content</h2>
         </div>
       )}{" "}
-      ;
     </>
   );
 };
