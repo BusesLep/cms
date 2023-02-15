@@ -4,12 +4,11 @@ import { Layout, CustomSection, Banner } from "../components";
 
 const Page = ({location,  data }) => {
   const {
-    dinamicContent , banner
+    dinamicContent , banner, descriptionPage, titlePage
   } = data?.allSanityPages?.nodes[0]
 
-
   return (
-    <Layout location={location}>
+    <Layout location={location} title={titlePage} description={descriptionPage}>
       <div className="container">
       {(banner !== null && banner !== undefined  && banner.banner?.slides?.length !== 0) ? <Banner banner={banner} /> : <></>}
         {dinamicContent !== null  && dinamicContent.length !== undefined  &&(

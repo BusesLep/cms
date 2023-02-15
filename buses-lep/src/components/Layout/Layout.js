@@ -6,11 +6,12 @@ import WhatsappLink from "../WhatsappLink/WhatsappLink";
 import ThemeProvider from "../../context/themeContext";
 
 import "./Layout.scss";
+import Seo from "../seo";
 
-const Layout = ({ location, children }) => {
-
+const Layout = ({ location, children, title, description }) => {
   return (
-    <ThemeProvider>      
+    <ThemeProvider>  
+      <Seo pageTitle={title} pageDescription={description}/>    
       <Header location={location}/>
       <main>{children}</main>
       <WhatsappLink />
