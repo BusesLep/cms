@@ -48,8 +48,8 @@ exports.sourceNodes = async ({ actions }) => {
     // Create your node object
     const originNode = {
       // Required fields
-      id: `${i}`,
-      parent: `__SOURCE__`,
+      id: `origin-${i}`,
+      parent: `__ORIGIN__`,
       internal: {
         type: `Origin`, // name of the graphQL query --> allOrigin {}
         // contentDigest will be added just after
@@ -62,12 +62,12 @@ exports.sourceNodes = async ({ actions }) => {
     }
 
     // Get content digest of node. (Required field)
-    const contentDigest = crypto
+    const contentDigestOrigin = crypto
       .createHash(`md5`)
       .update(JSON.stringify(originNode))
       .digest(`hex`);
     // add it to originNode
-    originNode.internal.contentDigest = contentDigest;
+    originNode.internal.contentDigest = contentDigestOrigin;
 
     // Create node with the gatsby createNode() API
     createNode(originNode);
@@ -83,8 +83,8 @@ exports.sourceNodes = async ({ actions }) => {
       // Create your node object
       const officesNode = {
         // Required fields
-        id: `${i}`,
-        parent: `__SOURCE__`,
+        id: `offices-${i}`,
+        parent: `__OFFICES__`,
         internal: {
           type: `Offices`, // name of the graphQL query --> allOrigin {}
           // contentDigest will be added just after
@@ -101,15 +101,16 @@ exports.sourceNodes = async ({ actions }) => {
       }
   
       // Get content digest of node. (Required field)
-      const contentDigest = crypto
+      const contentDigestOffices = crypto
         .createHash(`md5`)
         .update(JSON.stringify(officesNode))
         .digest(`hex`);
       // add it to officesNode
-      officesNode.internal.contentDigest = contentDigest;
+      officesNode.internal.contentDigest = contentDigestOffices;
   
       // Create node with the gatsby createNode() API
       createNode(officesNode);
+      
     });
 
   return;
