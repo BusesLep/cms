@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import useHome from "../../hooks/useHome";
 
 import { CustomSection, Banner, Seo, LastTravels } from "../";
@@ -6,6 +6,7 @@ import SearchForm from "../SearchForm/SearchForm";
 
 const Home = () => {
   const data = useHome().sanityHome;
+  const [send, setSend] = useState(null);
 
   return ( 
     <>
@@ -18,8 +19,8 @@ const Home = () => {
           ) : (
             <></>
           )}
-          <SearchForm></SearchForm>
-          <LastTravels></LastTravels>
+          <SearchForm handler={setSend}></SearchForm>
+          <LastTravels data={send}></LastTravels>
           {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
             <CustomSection sections={data.dinamicContent} />
           ) : (

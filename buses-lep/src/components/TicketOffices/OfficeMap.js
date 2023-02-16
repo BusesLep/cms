@@ -44,7 +44,6 @@ const OfficeMap = ({ offices }) => {
   };
 
   function success(position) {
-    console.log(position);
     const latitude = position.latitude;
     const longitude = position.longitude;
     setMyLocation([parseFloat(latitude), parseFloat(longitude)]);
