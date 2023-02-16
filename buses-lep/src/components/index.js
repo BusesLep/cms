@@ -15,6 +15,7 @@ import TextImage from "./TextImage/TextImage"
 import Form from "./Form/Form"
 import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 import TicketOffices from "./TicketOffices/TicketOffices"
+import LastTravels from "./LastTravels/LastTravels"
 import Seo from "./seo"
 
 
@@ -36,5 +37,6 @@ export {
     SelectAutocomplete,
     Form,
     TicketOffices,
-    Seo
+    Seo,
+    LastTravels
 }

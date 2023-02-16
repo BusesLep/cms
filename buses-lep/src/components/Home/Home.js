@@ -1,11 +1,10 @@
-import React from "react";
-
-
-import { CustomSection, Banner, Seo } from "../";
+import React, {useState} from "react";
+import { CustomSection, Banner, LastTravels } from "../";
 import SearchForm from "../SearchForm/SearchForm";
 
 const Home = (info) => {
   const data = info.data
+  const [send, setSend] = useState(null);
 
   return ( 
     <>
@@ -17,19 +16,20 @@ const Home = (info) => {
           ) : (
             <></>
           )}
-          <SearchForm></SearchForm>
+          <SearchForm handler={setSend}></SearchForm>
+          <LastTravels data={send}></LastTravels>
           {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
             <CustomSection sections={data.dinamicContent} />
           ) : (
             <></>
           )}
+          
         </div>
       ) : (
         <div className="d-flex justify-content-center">
           <h2>Home in Sanity has no content</h2>
         </div>
-      )}{" "}
-      ;
+      )}
     </>
   );
 };
