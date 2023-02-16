@@ -1,15 +1,14 @@
 import React from "react";
-import useHome from "../../hooks/useHome";
+
 
 import { CustomSection, Banner, Seo } from "../";
 import SearchForm from "../SearchForm/SearchForm";
 
-const Home = () => {
-  const data = useHome().sanityHome;
+const Home = (info) => {
+  const data = info.data
 
   return ( 
     <>
-      <Seo title="Home" description="" keywords="" />
       {data !== null ? (
         <div className="container">
           
