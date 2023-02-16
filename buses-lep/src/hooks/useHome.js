@@ -96,14 +96,6 @@ const useHome = () => {
               _key
             }
           }
-          ... on SanityShipping {
-            _key
-            _type
-            textBlock {
-              title
-              _rawContent
-            }
-          }
           ... on SanityTextBlock {
             _key
             _type
