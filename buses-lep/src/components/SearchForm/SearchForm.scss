@@ -98,6 +98,12 @@
       &:hover {
         background-color: $color-info;
       }
+      &[disabled]{
+        opacity: .7;
+        &:hover {
+          background-color: $color-primary;
+        }
+      }
     }
   }
 }

@@ -24,7 +24,7 @@ export default function SearchForm({handler}) {
   });
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState(1);
 
   const sumTotalAndClose = () => {
     setOpen(false);
@@ -88,13 +88,13 @@ export default function SearchForm({handler}) {
     let destination1 = JSON.parse(localStorage.getItem("destination_1"))
     let origin2 = JSON.parse(localStorage.getItem("origin_2"))
     let destination2 = JSON.parse(localStorage.getItem("destination_2"))
-    if(origin1 === null && destination1 === null || order === 1){
+    if((origin1 === null && destination1 === null )|| order === 1){
       localStorage.setItem("origin_1", JSON.stringify({ 'name': initialOriginValue.Localidad, 'id':initialOriginValue.ID_Localidad }));
       localStorage.setItem("destination_1", JSON.stringify({ 'name': initialDestinationValue.hasta, 'id':initialDestinationValue.id_localidad_destino }) );
       setOrder(2)
       origin1 = JSON.parse(localStorage.getItem("origin_1"))
       destination1 = JSON.parse(localStorage.getItem("destination_1"))
-    }else if (origin2 === null && destination2 === null || order === 2){
+    }else if ((origin2 === null && destination2 === null) || order === 2){
       localStorage.setItem("origin_2", JSON.stringify({ 'name': initialOriginValue.Localidad, 'id':initialOriginValue.ID_Localidad }));
       localStorage.setItem("destination_2", JSON.stringify({ 'name': initialDestinationValue.hasta, 'id':initialDestinationValue.id_localidad_destino }) );
       setOrder(1)
