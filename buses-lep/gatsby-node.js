@@ -32,6 +32,32 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { slug: node.slug.current },
     })
   })
+
+  // CREACION DE PAGINAS DE CATEGORY 
+  const { data: categoryQueryData } = await graphql(`
+    query Categories {
+      allSanityCategories {
+        nodes {
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `)
+
+  if (categoryQueryData.errors) {
+    reporter.panicOnBuild("Error creando paginas de categorias")
+  }
+
+  categoryQueryData.allSanityCategories.nodes.forEach(node => {
+    const category = path.resolve("./src/templates/questionCategory.js")
+    createPage({
+      path: "/categories/" + node.slug.current,
+      component: category,
+      context: { slug: node.slug.current },
+    })
+  })
 }
 
 

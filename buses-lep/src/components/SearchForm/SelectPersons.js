@@ -29,7 +29,7 @@ setQuantity
         { title: "Adultos", key: "age1" },
         { title: "Niños de 5 a 12 años", key: "age2" },
         { title: "Niños de 0 a 4 años", subtitle: "Sin asiento", key: "age3" },
-        { title: "Niños de 0 a 4 años", subtitle: "Sin asiento", key: "age4" },
+        { title: "Niños de 0 a 4 años", subtitle: "Con asiento", key: "age4" },
       ];
 
       const ageGroupsArea = ageGroups.map((group) => {
