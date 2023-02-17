@@ -3,23 +3,27 @@ import { graphql } from "gatsby";
 import {
   CategoryAccordeon,
   Layout,
-  // Banner
+  Banner
 } from "../components";
 import useQuestions from "../hooks/useQuestions";
+import useHome from "../hooks/useHome";
 
 
 
 const QuestionCategory = ({ location, data }) => {
+
   const categoryData = data?.allSanityCategories?.nodes[0];
-
   const questionsData = useQuestions().allSanityQuestion.nodes;
-
-  
+  const dataHome = useHome().sanityHome;
 
   return (
     <Layout location={location}>
       <div className="container">
-        {/* {(banner !== null && banner !== undefined  && banner.banner?.slides?.length !== 0) ? <Banner banner={banner} /> : <></>} */}
+      {dataHome.banner !== null && dataHome.banner.length !== 0 ? (
+          <Banner banner={dataHome.banner} />
+        ) : (
+          <></>
+        )}
         <CategoryAccordeon questionsData={questionsData} categoryData={categoryData} />
       </div>
     </Layout>

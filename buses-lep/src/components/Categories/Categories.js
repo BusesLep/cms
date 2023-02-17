@@ -6,10 +6,11 @@ import Icon from "../Icons/Icon";
 import useQuestions from "../../hooks/useQuestions";
 import HelpCenter from "../HelpCenter/HelpCenter";
 import TextField from "@mui/material/TextField";
-import { StaticImage } from "gatsby-plugin-image"
-// import NoSearch from "../../images/no-search.png"
+import { StaticImage } from "gatsby-plugin-image";
+import { useTheme } from "../../context/themeContext";
 
 export default function Categories() {
+  const { theme } = useTheme();
   const categories = useCategories().allSanityCategories.nodes;
   const questions = useQuestions().allSanityQuestion.nodes;
 
@@ -28,8 +29,8 @@ export default function Categories() {
   const search = (textSearch) => {
     let questionsList = questions.filter(
       (question) =>
-        question.question.toLowerCase().includes(textSearch.toLowerCase()) 
-        // ||question.answer[0].children[0].text.toLowerCase().includes(textSearch.toLowerCase())
+        question.question.toLowerCase().includes(textSearch.toLowerCase())
+      // ||question.answer[0].children[0].text.toLowerCase().includes(textSearch.toLowerCase())
     );
     setFilteredQuestions(questionsList);
   };
@@ -63,12 +64,25 @@ export default function Categories() {
       <div className="inputContainer">
         <TextField
           label={
-            searchQuery === "" ? "Escribe una palabra clave para buscar..." : " "
+            searchQuery === ""
+              ? "Escribe una palabra clave para buscar..."
+              : " "
           }
           variant="standard"
           value={searchQuery}
           onChange={handleInputChange}
           InputLabelProps={{ shrink: false }}
+          sx={{
+            "input" : {
+                color: theme === "dark" && "#ffffff",
+            } ,
+            ".css-v4u5dn-MuiInputBase-root-MuiInput-root:before" : {
+                borderBottom: theme === "dark" && "1px solid #ffffff",
+            } ,
+            "label" : {
+                color: theme === "dark" && "#ffffff",
+            } 
+          }}
         />
       </div>
       {searchQuery.length >= 3 && filteredQuestions.length === 0 && (

@@ -23,7 +23,7 @@ const Home = (info) => {
           <SearchForm handler={setSend}></SearchForm>
           <LastTravels data={send}></LastTravels>
           {questions !== null && questions.length !== 0 ? (
-            <HelpCenter questions={questions} title={"Title"} type="categories"/>
+            <HelpCenter questions={questions} title={"Centro de ayuda"} type="categories"/>
           ) : (
             <></>
           )}

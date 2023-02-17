@@ -21,6 +21,7 @@
     }
   }
   .accordion-item {
+    background-color: $bg-gray-elevation-2;
     border: none;
     &:first-child {
       border-top: 1px solid $bg-gray-elevation-1;
@@ -35,6 +36,9 @@
       button {
         padding: 15px 10px;
         background-color: transparent;
+        svg {
+          color: $bg-secondary;
+        }
         &:not(.collapsed) {
           box-shadow: none;
           color: $color-text-primary;
@@ -58,10 +62,10 @@
 }
 
 @media (min-width: $md-breakpoint) {
-    .categoryAccordeon {
-        padding: 1.5rem;
-        &__content {
-          padding: 20px;
-        }}
+  .categoryAccordeon {
+    padding: 1.5rem;
+    &__content {
+      padding: 20px;
+    }
   }
-
+}
