@@ -17,6 +17,8 @@ import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 import TicketOffices from "./TicketOffices/TicketOffices"
 import {Seo} from "./seo"
 import Categories from "./Categories/Categories"
+import CategoryAccordeon from "./CategoryAccordeon.js/CategoryAccordeon"
+
 
 
 
@@ -39,5 +41,6 @@ export {
     Form,
     TicketOffices,
     Seo,
-    Categories
+    Categories,
+    CategoryAccordeon
 }

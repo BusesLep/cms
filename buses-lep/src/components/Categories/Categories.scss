@@ -1,0 +1,38 @@
+@import "../../styles/global";
+
+.inputContainer {
+  margin-bottom: 30px;
+}
+.empty {
+  background-color: $bg-gray-elevation-2;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+.categoriesContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  .categoryCard {
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-gray-elevation-2);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 1rem;
+    color: var(--bs-accordion-btn-color);
+    &__content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    &__image {
+      max-width: 40px;
+    }
+  }
+}

@@ -1,11 +1,15 @@
 import React from "react";
 import useHome from "../../hooks/useHome";
 
-import { CustomSection, Banner, Seo } from "../";
+import { CustomSection, Banner, Seo, HelpCenter } from "../";
 import SearchForm from "../SearchForm/SearchForm";
+import useQuestions from "../../hooks/useQuestions";
 
 const Home = () => {
   const data = useHome().sanityHome;
+  const questions = useQuestions().allSanityQuestion.nodes.filter(
+    question => question.inHomePage 
+  )
 
   return ( 
     <>
@@ -19,6 +23,11 @@ const Home = () => {
             <></>
           )}
           <SearchForm></SearchForm>
+          {questions !== null && questions.length !== 0 ? (
+            <HelpCenter questions={questions} title={"Title"} type="categories"/>
+          ) : (
+            <></>
+          )}
           {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
             <CustomSection sections={data.dinamicContent} />
           ) : (
