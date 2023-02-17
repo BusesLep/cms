@@ -1,19 +1,17 @@
-import React from "react";
-import useHome from "../../hooks/useHome";
-
-import { CustomSection, Banner, Seo, HelpCenter } from "../";
-import SearchForm from "../SearchForm/SearchForm";
+import React, {useState} from "react";
+import { CustomSection, Banner, HelpCenter, LastTravels,SearchForm } from "../";
 import useQuestions from "../../hooks/useQuestions";
 
-const Home = () => {
-  const data = useHome().sanityHome;
+  
+const Home = (info) => {
+  const data = info.data
+  const [send, setSend] = useState(null);
   const questions = useQuestions().allSanityQuestion.nodes.filter(
     question => question.inHomePage 
   )
 
   return ( 
     <>
-      <Seo title="Home" description="" keywords="" />
       {data !== null ? (
         <div className="container">
           
@@ -22,7 +20,8 @@ const Home = () => {
           ) : (
             <></>
           )}
-          <SearchForm></SearchForm>
+          <SearchForm handler={setSend}></SearchForm>
+          <LastTravels data={send}></LastTravels>
           {questions !== null && questions.length !== 0 ? (
             <HelpCenter questions={questions} title={"Title"} type="categories"/>
           ) : (
@@ -33,12 +32,13 @@ const Home = () => {
           ) : (
             <></>
           )}
+          
         </div>
       ) : (
         <div className="d-flex justify-content-center">
           <h2>Home in Sanity has no content</h2>
         </div>
-      )}{" "}
+      )}
     </>
   );
 };

@@ -2,8 +2,6 @@ import Header from "./Header/Header"
 import Footer from "./Footer/Footer"
 import Layout from "./Layout/Layout"
 import Icon from "./Icons/Icon"
-// import FontAwesomeIcon from "./Icons/FontAwesomeIcon"
-// import MaterialIcon from "./Icons/MetertialIcon"
 import CustomLink from "./CustomLink/CustomLink"
 import TextBlock from "./TextBlock/TextBlock"
 import Home from "./Home/Home"
@@ -15,19 +13,16 @@ import TextImage from "./TextImage/TextImage"
 import Form from "./Form/Form"
 import SelectAutocomplete from "./SelectAutocomplete/SelectAutocomplete"
 import TicketOffices from "./TicketOffices/TicketOffices"
-import {Seo} from "./seo"
 import Categories from "./Categories/Categories"
 import CategoryAccordeon from "./CategoryAccordeon.js/CategoryAccordeon"
-
-
+import LastTravels from "./LastTravels/LastTravels"
+import Seo from "./seo"
 
 
 export {
     Header,
     Footer,
     Layout,
-    // FontAwesomeIcon,
-    // MaterialIcon,
     CustomLink,
     Icon,
     Home,
@@ -42,5 +37,6 @@ export {
     TicketOffices,
     Seo,
     Categories,
-    CategoryAccordeon
+    CategoryAccordeon,
+    LastTravels
 }
