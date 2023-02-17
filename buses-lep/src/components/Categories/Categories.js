@@ -27,11 +27,16 @@ export default function Categories() {
   };
 
   const search = (textSearch) => {
-    let questionsList = questions.filter(
-      (question) =>
-        question.question.toLowerCase().includes(textSearch.toLowerCase())
-      // ||question.answer[0].children[0].text.toLowerCase().includes(textSearch.toLowerCase())
-    );
+    let questionsList = questions.filter((question) => {
+      let questionContent = question._rawAnswer
+        .map((answer) => answer.children[0].text)
+        .join(" ");
+
+      return (
+        question.question.toLowerCase().includes(textSearch.toLowerCase()) ||
+        questionContent.toLowerCase().includes(textSearch.toLowerCase())
+      );
+    });
     setFilteredQuestions(questionsList);
   };
 
@@ -73,15 +78,15 @@ export default function Categories() {
           onChange={handleInputChange}
           InputLabelProps={{ shrink: false }}
           sx={{
-            "input" : {
-                color: theme === "dark" && "#ffffff",
-            } ,
-            ".css-v4u5dn-MuiInputBase-root-MuiInput-root:before" : {
-                borderBottom: theme === "dark" && "1px solid #ffffff",
-            } ,
-            "label" : {
-                color: theme === "dark" && "#ffffff",
-            } 
+            input: {
+              color: theme === "dark" && "#ffffff",
+            },
+            ".css-v4u5dn-MuiInputBase-root-MuiInput-root:before": {
+              borderBottom: theme === "dark" && "1px solid #ffffff",
+            },
+            label: {
+              color: theme === "dark" && "#ffffff",
+            },
           }}
         />
       </div>
