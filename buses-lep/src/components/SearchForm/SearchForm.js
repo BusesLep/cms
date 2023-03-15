@@ -72,11 +72,6 @@ export default function SearchForm({ handler }) {
   };
 
   const handleDestination = (value) => {
-    // if (value === null) {
-    //   setInitialDestinationValue(null);
-    // } else {
-    //   setInitialDestinationValue(value);
-    // }
     setInitialDestinationValue(value);
   };
 
@@ -146,13 +141,6 @@ export default function SearchForm({ handler }) {
   };
 
   const validateSubmit = () => {
-    // const value = initialOriginValue !== null
-    //   && initialDestinationValue !== null
-    //   && goDateValue !== null
-
-    // return !value
-    console.log(open)
-
     return initialOriginValue === null
       || initialDestinationValue === null
       || goDateValue === null
