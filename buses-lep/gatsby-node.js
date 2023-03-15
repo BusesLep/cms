@@ -65,7 +65,7 @@ exports.sourceNodes = async ({ actions }) => {
   const { createNode } = actions;
 
   // fetch raw data from the Origin api
-  const fetchOrigin = () => fetch(`http://localhost:8080/localidades/desde`);
+  const fetchOrigin = () => fetch(`${process.env.GATSBY_URL_BFF}/localidades/desde`);
   // await for results
   const res = await fetchOrigin();
   const data = await res.json();
@@ -100,7 +100,7 @@ exports.sourceNodes = async ({ actions }) => {
   });
 
     // fetch raw data from the Origin api
-    const fetchTicketOffices = () => fetch(`http://localhost:8080/puntos-de-venta`);
+    const fetchTicketOffices = () => fetch(`${process.env.GATSBY_URL_BFF}/puntos-de-venta`);
     // await for results
     const resTicketOffices = await fetchTicketOffices();
     const dataTicketOffices = await resTicketOffices.json();

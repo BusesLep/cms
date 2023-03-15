@@ -1,31 +1,11 @@
-import React, { useEffect , useState} from "react";
+import React from "react";
 import Icon from "../Icons/Icon";
 import Divider from "@mui/material/Divider";
 import "./LastTravels.scss";
 
 const LastTravels = (data) => {
-  const [origin1, setOrigin1] = useState(null);
-  const [origin2, setOrigin2] = useState(null);
-  const [destination1, setDestination1] = useState(null);
-  const [destination2, setDestination2] = useState(null);
-
-  useEffect(() => {
-    if(data.data !== null){
-      setOrigin1(data.data?.origin1?.name)
-      setDestination1(data?.data?.destination1?.name)
-      setOrigin2(data.data?.origin2?.name)
-      setDestination2(data?.data?.destination2?.name)
-    }else {
-      setData()
-    }
-  }, [data]);
+  const lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
   
-  const setData = ()=> {
-    setOrigin1(JSON.parse(localStorage.getItem("origin_1"))?.name);
-    setDestination1(JSON.parse(localStorage.getItem("destination_1"))?.name);
-    setOrigin2(JSON.parse(localStorage.getItem("origin_2"))?.name);
-    setDestination2(JSON.parse(localStorage.getItem("destination_2"))?.name);
-  }
   return (
     <section className="lastTravels d-flex flex-wrap">
       <div className="lastTravels__header col-12 col-md-6">
@@ -41,14 +21,14 @@ const LastTravels = (data) => {
       </div>
       <div className="col-12 col-md-6">
         <ul className="lastTravels__list">
-          {origin1 !== null && origin1 !== undefined ? (
+          {lastSearchs != null && lastSearchs[0] !== null && lastSearchs[0] !== undefined ? (
             
               <li role={"button"} className="d-flex align-items-center p-3">
                 <div className="iconContainer">
                   <Icon code={"FaBusAlt"}></Icon>
                 </div>
                 <h6 className="flex-grow-1 py-0 ps-3 mb-0">
-                  {origin1} - {destination1}
+                  {lastSearchs[0]?.nameO} - {lastSearchs[0]?.nameD}
                 </h6>
                 <div className="iconContainerEnd">
                   <Icon code={"MdOutlineKeyboardArrowRight"}></Icon>
@@ -59,7 +39,7 @@ const LastTravels = (data) => {
           ) : (
             <></>
           )}
-          {origin2 !== null && origin2 !== undefined ? (
+          {lastSearchs != null && lastSearchs[1] !== null && lastSearchs[1] !== undefined ? (
             <>
             <Divider />
             <li role={"button"} className="d-flex align-items-center p-3">
@@ -67,7 +47,7 @@ const LastTravels = (data) => {
                 <Icon code={"FaBusAlt"}></Icon>
               </div>
               <h6 className="flex-grow-1 py-0 ps-3 mb-0">
-                {origin2} - {destination2}
+                {lastSearchs[1]?.nameO} - {lastSearchs[1]?.nameD}
               </h6>
               <div className="iconContainerEnd">
                 <Icon code={"MdOutlineKeyboardArrowRight"}></Icon>

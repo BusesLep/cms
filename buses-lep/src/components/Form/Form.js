@@ -11,7 +11,7 @@ const Form = ({ title, id, text }) => {
           <PortableText value={text} />
         </div>
         <div className="col-12 col-md-6 form__box">
-        {id !== null && id !== '' && <iframe class="embed-responsive-item" src={`https://wcentrix.net/app/form_web.html?accountID=bu3455&wcboxID=${id}`}></iframe>}
+        {id !== null && id !== '' && <iframe title={title} class="embed-responsive-item" src={`https://wcentrix.net/app/form_web.html?accountID=bu3455&wcboxID=${id}`}></iframe>}
         </div>
       </div>
     </section>
