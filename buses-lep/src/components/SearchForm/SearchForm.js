@@ -76,7 +76,7 @@ export default function SearchForm({ handler }) {
   };
 
   const sendData = (event) => {
-    var temp_array = [];
+    let temp_array = [];
     event.preventDefault();
     if(typeof window !== "undefined" ){
       temp_array = localStorage.getItem("lastTravels") ? JSON.parse(localStorage.getItem("lastTravels")) : []
