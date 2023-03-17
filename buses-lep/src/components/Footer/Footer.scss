@@ -1,8 +1,9 @@
 @import "../../styles/global.scss";
 
 .footer {
-  background-color: $bg-elevation-1;
+  background-color: $bg-elevation-2;
   color: $color-white;
+  border-top: 1px solid #F4EFF4;
   p {
     font-family: $secondary-font;
     color: $color-text-primary;
@@ -92,6 +93,7 @@
 
 @media (min-width: $lg-breakpoint) {
   .footer {
+    padding: 0 100px;
     .contactBlock {
       .qrCode {
         max-width: 80px;
