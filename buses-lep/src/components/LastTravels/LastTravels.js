@@ -3,8 +3,12 @@ import Icon from "../Icons/Icon";
 import Divider from "@mui/material/Divider";
 import "./LastTravels.scss";
 
+const lastSearchs = null;
 const LastTravels = (data) => {
-  const lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
+  if (typeof window !== "undefined" ){
+    const lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
+  }
+  
   
   return (
     <section className="lastTravels d-flex flex-wrap">

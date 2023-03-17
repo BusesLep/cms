@@ -28,7 +28,7 @@ const Header = ({location}) => {
       <Navbar expand="lg">
         <Container fluid>
           <Navbar.Brand href="/">
-            <div className="header__logo">
+            <div className="header__logo ps-3">
               {theme === "dark" ? (
                 data.logo.imageDark !== null ? (
                   <SanityImage

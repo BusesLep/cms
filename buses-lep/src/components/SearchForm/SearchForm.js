@@ -76,16 +76,22 @@ export default function SearchForm({ handler }) {
   };
 
   const sendData = (event) => {
+    var temp_array = [];
     event.preventDefault();
-
-    const temp_array = localStorage.getItem("lastTravels") ? JSON.parse(localStorage.getItem("lastTravels")) : []
+    if(typeof window !== "undefined" ){
+      temp_array = localStorage.getItem("lastTravels") ? JSON.parse(localStorage.getItem("lastTravels")) : []
+    }
+    
 
     if (temp_array.length === 2) {
       temp_array.pop()
     }
 
     temp_array.unshift({ 'nameO': initialOriginValue.Localidad, 'idO': initialOriginValue.ID_Localidad, 'nameD': initialDestinationValue.hasta, 'idD': initialDestinationValue.id_localidad_destino })
-    localStorage.setItem("lastTravels", JSON.stringify(temp_array))
+    if(typeof window !== "undefined" ){
+      localStorage.setItem("lastTravels", JSON.stringify(temp_array))
+    }
+    
 
     const locality = `locality=${initialOriginValue.ID_Localidad}`
     const destination = `&destination=${initialDestinationValue.id_localidad_destino}`
