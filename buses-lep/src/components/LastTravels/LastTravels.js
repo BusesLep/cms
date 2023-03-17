@@ -3,10 +3,12 @@ import Icon from "../Icons/Icon";
 import Divider from "@mui/material/Divider";
 import "./LastTravels.scss";
 
-const lastSearchs = null;
+let lastSearchs = null;
+
 const LastTravels = (data) => {
+  
   if (typeof window !== "undefined" ){
-    const lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
+    lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
   }
   
   
