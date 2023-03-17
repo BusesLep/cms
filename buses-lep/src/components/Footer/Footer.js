@@ -19,7 +19,8 @@ const Footer = () => {
 
   return (
     data !== null && (
-      <footer className="footer px-2 mt-4">
+      <footer >
+        <div className="footer mt-4">
         <div className="container py-4 d-flex flex-wrap">
           {data.linkBlock.length !== 0 &&
             data.linkBlock.map((block) => (
@@ -61,6 +62,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
         </div>
         <div className="footer__down">
           <div className="container d-flex justify-content-end align-items-center py-3">

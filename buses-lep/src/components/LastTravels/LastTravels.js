@@ -21,7 +21,7 @@ const LastTravels = (data) => {
         </div>
         <p className="body-medium">
           Para una mejor experiencia de viaje {' '}
-          <a href="http://">inicia sesión</a> con tu cuenta , podrás comprar más
+          <a href={process.env.GATSBY_URL_ECOMMERCE + '/login'} >inicia sesión</a> con tu cuenta , podrás comprar más
           rápido y acceder al historial de destinos y compras realizadas.
         </p>
       </div>
