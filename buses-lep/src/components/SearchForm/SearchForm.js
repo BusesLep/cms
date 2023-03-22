@@ -126,10 +126,6 @@ export default function SearchForm({ handler }) {
     setReturnDateValue(newValue);
   };
 
-  // const handleOptionChange = (event) => {
-  //   setIsDateTimeEnabled(event.target.value);
-  // };
-
   const handleButtonClick = (value) => {
 
     if (!value) return
