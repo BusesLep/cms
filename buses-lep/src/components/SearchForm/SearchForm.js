@@ -15,6 +15,7 @@ export default function SearchForm({ handler }) {
   const [destinations, setDestinations] = useState(null);
   const [initialOriginValue, setInitialOriginValue] = useState(null);
   const [initialDestinationValue, setInitialDestinationValue] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState({
     age1: 1,
     age2: 0,
@@ -47,11 +48,14 @@ export default function SearchForm({ handler }) {
     setInitialOriginValue(value);
     if (value !== null) {
       try {
+
+        setLoading(true)
         const response = await fetch(
           `${process.env.GATSBY_URL_BFF}/localidades/hasta?IDlocalidadOrigen=${value.ID_Localidad}`
         );
         const data = await response.json();
         setDestinations(data);
+        setLoading(false)
         if (
           destinations !== null &&
           initialDestinationValue !== null &&
@@ -78,20 +82,20 @@ export default function SearchForm({ handler }) {
   const sendData = (event) => {
     let temp_array = [];
     event.preventDefault();
-    if(typeof window !== "undefined" ){
+    if (typeof window !== "undefined") {
       temp_array = localStorage.getItem("lastTravels") ? JSON.parse(localStorage.getItem("lastTravels")) : []
     }
-    
+
 
     if (temp_array.length === 2) {
       temp_array.pop()
     }
 
     temp_array.unshift({ 'nameO': initialOriginValue.Localidad, 'idO': initialOriginValue.ID_Localidad, 'nameD': initialDestinationValue.hasta, 'idD': initialDestinationValue.id_localidad_destino })
-    if(typeof window !== "undefined" ){
+    if (typeof window !== "undefined") {
       localStorage.setItem("lastTravels", JSON.stringify(temp_array))
     }
-    
+
 
     const locality = `locality=${initialOriginValue.ID_Localidad}`
     const destination = `&destination=${initialDestinationValue.id_localidad_destino}`
@@ -101,12 +105,12 @@ export default function SearchForm({ handler }) {
     const infantsit = `&infantsit=${quantity.age4}`
     const departuredate = `&departuredate=${getDateParam(goDateValue)}`
     const returndate = returnDateValue ? `&returndate=${getDateParam(returnDateValue)}` : ''
-        
+
     const url = `${process.env.GATSBY_URL_ECOMMERCE}?${locality}${destination}${adult}${minor}${infant}${infantsit}${departuredate}${returndate}`
 
-    handler({locality, destination})
-    
-    window.location.href =url
+    handler({ locality, destination })
+
+    window.location.href = url
 
   };
 
@@ -203,10 +207,12 @@ export default function SearchForm({ handler }) {
             }
             styleOption="destination"
             label={"¿A dónde viajas?"}
+            loading={loading}
             options={
               destinations !== null && destinations !== undefined
                 ? destinations
                 : [{ hasta: "Debe seleccionar origen" }]
+
             }
             handler={handleDestination}
             initialValue={initialDestinationValue}

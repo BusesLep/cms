@@ -4,14 +4,26 @@ import Divider from "@mui/material/Divider";
 import "./LastTravels.scss";
 
 let lastSearchs = null;
+let link_1 = null;
+let link_2 = null;
 
 const LastTravels = (data) => {
-  
-  if (typeof window !== "undefined" ){
+
+  if (typeof window !== "undefined") {
     lastSearchs = JSON.parse(localStorage.getItem("lastTravels"))
+
+    if (lastSearchs !== null) {
+      if (lastSearchs[0] !== null && lastSearchs[0] !== undefined) {
+        link_1 = `${process.env.GATSBY_URL_ECOMMERCE}?locality=${lastSearchs[0].idO}&destination=${lastSearchs[0].idD}`
+      }
+
+      if (lastSearchs[1] !== null && lastSearchs[1] !== undefined) {
+        link_2 = `${process.env.GATSBY_URL_ECOMMERCE}?locality=${lastSearchs[1].idO}&destination=${lastSearchs[1].idD}`
+      }
+    }
   }
-  
-  
+
+
   return (
     <section className="lastTravels d-flex flex-wrap">
       <div className="lastTravels__header col-12 col-md-6">
@@ -27,8 +39,8 @@ const LastTravels = (data) => {
       </div>
       <div className="col-12 col-md-6">
         <ul className="lastTravels__list">
-          {lastSearchs != null && lastSearchs[0] !== null && lastSearchs[0] !== undefined ? (
-            
+          {link_1 !== null ? (
+            <a href={link_1} className="lastTravels__link">
               <li role={"button"} className="d-flex align-items-center p-3">
                 <div className="iconContainer">
                   <Icon code={"FaBusAlt"}></Icon>
@@ -40,27 +52,30 @@ const LastTravels = (data) => {
                   <Icon code={"MdOutlineKeyboardArrowRight"}></Icon>
                 </div>
               </li>
-              
-            
+            </a>
+
+
           ) : (
             <></>
           )}
-          {lastSearchs != null && lastSearchs[1] !== null && lastSearchs[1] !== undefined ? (
+          {link_2 !== null ? (
             <>
-            <Divider />
-            <li role={"button"} className="d-flex align-items-center p-3">
-              <div className="iconContainer">
-                <Icon code={"FaBusAlt"}></Icon>
-              </div>
-              <h6 className="flex-grow-1 py-0 ps-3 mb-0">
-                {lastSearchs[1]?.nameO} - {lastSearchs[1]?.nameD}
-              </h6>
-              <div className="iconContainerEnd">
-                <Icon code={"MdOutlineKeyboardArrowRight"}></Icon>
-              </div>
-            </li>
+              <Divider />
+              <a href={link_2} className="lastTravels__link">
+                <li role={"button"} className="d-flex align-items-center p-3">
+                  <div className="iconContainer">
+                    <Icon code={"FaBusAlt"}></Icon>
+                  </div>
+                  <h6 className="flex-grow-1 py-0 ps-3 mb-0">
+                    {lastSearchs[1]?.nameO} - {lastSearchs[1]?.nameD}
+                  </h6>
+                  <div className="iconContainerEnd">
+                    <Icon code={"MdOutlineKeyboardArrowRight"}></Icon>
+                  </div>
+                </li>
+              </a>
             </>
-            
+
           ) : (
             <></>
           )}
