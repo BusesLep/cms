@@ -1,9 +1,9 @@
-import React,{ useEffect } from "react";
-import { TextField, InputAdornment, Box, Popper, Paper } from "@mui/material";
+import React, { useEffect } from "react";
+import { TextField, InputAdornment, Box, Popper, Paper, CircularProgress } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useTheme } from "../../context/themeContext";
 import "./SelectAutocomplete.scss";
-import {Icon} from "..";
+import { Icon } from "..";
 
 export default function SelectAutocomplete({
   styleOption,
@@ -12,6 +12,7 @@ export default function SelectAutocomplete({
   options,
   handler,
   initialValue,
+  loading
 }) {
   const [value, setValue] = React.useState(initialValue);
   const [inputValue, setInputValue] = React.useState("");
@@ -119,10 +120,22 @@ export default function SelectAutocomplete({
             color: "#586069",
           }}
         >
-          <InputAdornment position="start" className={styleOption}>
-            {icon}
-          </InputAdornment>
-          <TextField {...params} label={label} />
+          {
+          (styleOption === "origin" ||
+          (styleOption === "destination" && !loading)) &&
+            <InputAdornment position="start" className={styleOption}>
+              {icon}
+            </InputAdornment>
+          }
+
+          <TextField {...params} label={ loading ? "" : label} />
+          {styleOption === "destination" && loading && <CircularProgress color="primary" thickness={10} size={20} sx={{
+            // color: green[500],
+            position: 'absolute',
+            top: 18,
+            left: 25,
+            zIndex: 1,
+          }} />}
         </div>
       )}
     />
