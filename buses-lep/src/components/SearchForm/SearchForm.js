@@ -11,7 +11,7 @@ export default function SearchForm({ handler }) {
   const origins = useOrigin().allOrigin.nodes;
   const [goDateValue, setGoDateValue] = useState(null);
   const [returnDateValue, setReturnDateValue] = useState(null);
-  const [isDateTimeEnabled, setIsDateTimeEnabled] = useState("true");
+  const [isDateTimeEnabled, setIsDateTimeEnabled] = useState(true);
   const [destinations, setDestinations] = useState(null);
   const [initialOriginValue, setInitialOriginValue] = useState(null);
   const [initialDestinationValue, setInitialDestinationValue] = useState(null);
@@ -126,9 +126,12 @@ export default function SearchForm({ handler }) {
     setReturnDateValue(newValue);
   };
 
-  const handleOptionChange = (event) => {
-    setIsDateTimeEnabled(event.target.value);
-  };
+  const handleButtonClick = (value) => {
+
+    if (!value) return
+    setIsDateTimeEnabled(!isDateTimeEnabled);
+
+  }
 
   const changeDestination = async () => {
     const tempDataOrigin = {
@@ -155,7 +158,7 @@ export default function SearchForm({ handler }) {
       || initialDestinationValue === null
       || goDateValue === null
       || quantity.total === 0
-      || (isDateTimeEnabled === "true" && (returnDateValue === null))
+      || (isDateTimeEnabled && (returnDateValue === null))
       || open === true
 
   }
@@ -163,10 +166,29 @@ export default function SearchForm({ handler }) {
   return (
     <form onSubmit={sendData} className="searchForm">
       <div className="selectContainer">
-        <SelectMode
+        {/* <SelectMode
           isDateTimeEnabled={isDateTimeEnabled}
           handleOptionChange={handleOptionChange}
-        />
+        /> */}
+
+        
+          <Button
+            variant={isDateTimeEnabled ? "contained" : "outlined"}
+            className="selectContainer__button"
+            startIcon={<Icon code={"MdCompareArrows"}></Icon>}
+            onClick={() => handleButtonClick(!isDateTimeEnabled)}
+          >
+            Ida y Vuelta
+          </Button>
+          <Button
+            variant={isDateTimeEnabled ? "outlined" : "contained"}
+            className="selectContainer__button"
+            startIcon={<Icon code={"MdArrowRightAlt"}></Icon>}
+            onClick={() => handleButtonClick(isDateTimeEnabled)}
+          >
+            Solo Ida
+          </Button>
+        
         <SelectPersons
           quantity={quantity}
           open={open}

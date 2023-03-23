@@ -6,23 +6,29 @@
   border-radius: 10px;
   padding: 0.5rem 0.8rem 1rem 0.8rem;
   background-color: $bg-white-elevation-1;
+
   .searchContainer {
     .MuiFormLabel-root {
       color: $color-text-primary;
     }
+
     .MuiIconButton-root {
       color: $color-border;
     }
+
     width: 100%;
     display: flex;
     justify-content: space-between;
+
     .searchBars {
       position: relative;
+
       .changeDestiny {
         position: absolute;
         right: 25px;
         top: 40px;
         z-index: 50;
+
         p {
           padding-right: 0.7rem;
           color: $color-primary;
@@ -30,11 +36,13 @@
           margin-bottom: 0;
           padding-bottom: 0;
         }
+
         .MuiButtonBase-root {
           min-width: auto;
           border-radius: 50%;
           height: 40px;
           width: 40px;
+
           .icon {
             font-size: 1.4rem;
             transform: rotate(90deg);
@@ -49,21 +57,27 @@
       width: 290px;
       padding: 15px;
     }
+
     .MuiInputLabel-shrink {
       display: none;
     }
+
     fieldset {
       border-color: $color-border;
+
       legend {
         display: none;
       }
     }
+
     .MuiInputBase-input {
       padding-left: 2rem !important;
     }
+
     .MuiFormLabel-root {
       padding-left: 1.5rem;
     }
+
     .MuiInputBase-input {
       color: $color-text-primary;
     }
@@ -72,13 +86,40 @@
   .selectContainer {
     width: 100%;
     display: flex;
-    gap:10px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 13px;
+    margin-top: 5px;
+    align-items: center;
+
     .selectMode,
     .selectPeopleQuantity {
       display: flex;
+      border: 1px solid rgba(25, 118, 210, 0.5);
+      border-radius: 24px;
+      width: 80px;
+      height: 34px;
+      justify-content: center;
+
       svg {
         font-size: 22px;
+        color: #1976d2;
+      }
+
+      &__button {
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
+    }
+
+    &__button {
+      border-radius: 32px;
+      height: 34px;
+      font-size: 10px;
+
+      &:hover {
+        opacity: 0.8;
       }
 
     }
@@ -88,6 +129,7 @@
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
+
     button {
       width: min-content;
       padding: 10px 35px;
@@ -95,11 +137,14 @@
       background-color: $color-primary;
       color: $color-white;
       border: none;
+
       &:hover {
         background-color: $color-info;
       }
-      &[disabled]{
+
+      &[disabled] {
         opacity: .7;
+
         &:hover {
           background-color: $color-primary;
         }
@@ -111,14 +156,17 @@
 @media (min-width: $lg-breakpoint) {
   .searchForm {
     padding: 0.5rem 2rem 1rem 2rem;
+
     .searchContainer {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .searchBars {
         align-items: center;
         position: relative;
+
         .changeDestiny {
           width: max-content;
           position: absolute;
@@ -126,10 +174,12 @@
           left: 50%;
           top: 10px;
           z-index: 50;
+
           .MuiButtonBase-root {
             border-radius: 4px;
             height: 35px;
             width: 35px;
+
             .icon {
               transform: rotate(0deg);
             }
@@ -137,5 +187,22 @@
         }
       }
     }
+
+    .selectContainer {
+      &__button {
+        font-size: 15px;
+      }
+    }
   }
+}
+
+@media (min-width: $md-breakpoint) {
+  .searchForm {
+    .selectContainer {
+      &__button {
+        font-size: 15px;
+      }
+    }
+  }
+
 }

@@ -54,7 +54,7 @@ export default function DatePicker({
         value={returnDateValue}
         onChange={handleReturnDateChange}
         renderInput={(params) => <TextField {...params} />}
-        disabled={isDateTimeEnabled === "false"}
+        disabled={!isDateTimeEnabled}
         minDate={goDateValue}
         className="col-12 col-lg-3 mb-3 mb-lg-0 ps-lg-3"
         PopperProps={{
