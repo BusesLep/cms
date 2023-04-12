@@ -4,6 +4,7 @@ export const serviceHandler = async (url, method, params, body) => {
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
+      "X-origin":"CMS"
     },
   })
     .then((response) => response.json())

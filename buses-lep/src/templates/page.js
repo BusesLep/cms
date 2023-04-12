@@ -97,14 +97,6 @@ export const query = graphql`
             title
             _rawContent
           }
-          ... on SanityShipping {
-            _key
-            _type
-            textBlock {
-              _rawContent
-              title
-            }
-          }
           ... on SanityTicketOffices {
             _key
             _type

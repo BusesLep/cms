@@ -1,10 +1,37 @@
 import React from "react";
-import { TextBlock, HelpCenter, Form, TextImage, TicketOffices} from "../";
+import { TextBlock, HelpCenter, Form, TextImage, TicketOffices, Promotions, StoryIntro} from "../";
 
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
     {
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "storyIntro"
+      ) {
+        return (
+          <StoryIntro
+            key={section._key}
+            title={section?.info?.textBlock.title}
+            text={section?.info?.textBlock._rawContent}
+            icon={section?.info?.image.image}
+            link={section?.linkedPage?.slug?.current}
+          />
+        );
+      }
+      if (
+        section?._type !== null &&
+        section?._type !== undefined &&
+        section?._type === "promotions"
+      ) {
+        return (
+          <Promotions
+            key={section._key}
+            promotions={section.promotions}
+          />
+        );
+      }
       if (
         section?._type !== null &&
         section?._type !== undefined &&

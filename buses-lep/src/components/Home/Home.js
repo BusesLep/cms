@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import { CustomSection, Banner, HelpCenter, LastTravels,SearchForm } from "../";
+import { CustomSection, Banner, HelpCenter, LastTravels,SearchForm, Promotions } from "../";
 import useQuestions from "../../hooks/useQuestions";
 
   
 const Home = (info) => {
   const data = info.data
-  const [send, setSend] = useState(null);
+  console.log(data, "data")
+  // const [send, setSend] = useState(null);
   const questions = useQuestions().allSanityQuestion.nodes.filter(
     question => question.inHomePage 
   )
@@ -20,18 +21,19 @@ const Home = (info) => {
           ) : (
             <></>
           )}
-          <SearchForm handler={setSend}></SearchForm>
-          <LastTravels data={send}></LastTravels>
+          {/* <SearchForm handler={setSend}></SearchForm>
+          <LastTravels data={send}></LastTravels> */}
+                    {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
+            <CustomSection sections={data.dinamicContent} />
+          ) : (
+            <></>
+          )}
           {questions !== null && questions.length !== 0 ? (
             <HelpCenter questions={questions} title={"Centro de ayuda"} type="categories"/>
           ) : (
             <></>
           )}
-          {data.dinamicContent !== null && data.dinamicContent.length !== 0 ? (
-            <CustomSection sections={data.dinamicContent} />
-          ) : (
-            <></>
-          )}
+
           
         </div>
       ) : (
