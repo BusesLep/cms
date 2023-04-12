@@ -16,6 +16,8 @@ import TicketOffices from "./TicketOffices/TicketOffices"
 import Categories from "./Categories/Categories"
 import CategoryAccordeon from "./CategoryAccordeon.js/CategoryAccordeon"
 import LastTravels from "./LastTravels/LastTravels"
+import Promotions from "./Promotions/Promotions"
+import StoryIntro from "./StoryIntro/StoryIntro"
 import Seo from "./seo"
 
 
@@ -38,5 +40,7 @@ export {
     Seo,
     Categories,
     CategoryAccordeon,
-    LastTravels
+    LastTravels,
+    Promotions,
+    StoryIntro
 }

@@ -102,6 +102,99 @@ const useHome = () => {
             title
             _rawContent
           }
+          ... on SanityStoryIntro {
+            _key
+            _type
+            linkedPage {
+              slug {
+                current
+              }
+            }
+            info {
+              textBlock {
+                title
+                _rawContent
+              }
+              image {
+                alt
+                image {
+                  _key
+                  asset {
+                    _id
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+          ... on SanityPromotions {
+            _key
+            _type
+            promotions {
+              title
+              subtitle
+              link {
+                url
+                text
+              }
+              linkedPage {
+                slug {
+                  current
+                }
+              }
+              images {
+                alt
+                image {
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  asset {
+                    _id
+                  }
+                }
+              }
+              image {
+                alt
+                image {
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
+                  }
+                  crop {
+                    top
+                    right
+                    left
+                    bottom
+                  }
+                  asset {
+                    _id
+                  }
+                }
+              }
+            }
+          }
           ... on SanityTextImage {
             _key
             _type
