@@ -105,22 +105,41 @@ const useHome = () => {
           ... on SanityStoryIntro {
             _key
             _type
+            textBlock {
+              title
+              _rawContent
+            }
             linkedPage {
               slug {
                 current
               }
             }
-            info {
-              textBlock {
-                title
-                _rawContent
+            image {
+              imageDark {
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                asset {
+                  _id
+                }
               }
               image {
                 alt
                 image {
-                  _key
-                  asset {
-                    _id
+                  hotspot {
+                    y
+                    x
+                    width
+                    height
                   }
                   crop {
                     top
@@ -128,11 +147,8 @@ const useHome = () => {
                     left
                     bottom
                   }
-                  hotspot {
-                    y
-                    x
-                    width
-                    height
+                  asset {
+                    _id
                   }
                 }
               }

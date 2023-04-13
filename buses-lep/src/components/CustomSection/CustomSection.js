@@ -13,10 +13,12 @@ const CustomSection = ({ sections }) => {
         return (
           <StoryIntro
             key={section._key}
-            title={section?.info?.textBlock.title}
-            text={section?.info?.textBlock._rawContent}
-            icon={section?.info?.image.image}
+            title={section?.textBlock.title}
+            text={section?.textBlock._rawContent}
+            icon={section?.image.image.image}
+            iconDark={section?.image.imageDark}
             link={section?.linkedPage?.slug?.current}
+            alt={section?.image.image.alt}
           />
         );
       }
