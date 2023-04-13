@@ -64,43 +64,46 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.sourceNodes = async ({ actions }) => {
   const { createNode } = actions;
 
-  // fetch raw data from the Origin api
-  const fetchOrigin = () => fetch(`${process.env.GATSBY_URL_BFF}/localidades/desde`);
-  // await for results
-  const res = await fetchOrigin();
-  const data = await res.json();
-  // map into these results and create nodes
-  data.map((origin, i) => {
-    // Create your node object
-    const originNode = {
-      // Required fields
-      id: `origin-${i}`,
-      parent: `__ORIGIN__`,
-      internal: {
-        type: `Origin`, // name of the graphQL query --> allOrigin {}
-        // contentDigest will be added just after
-        // but it is required
-      },
-      children: [],
-      // Other fields that you want to query with graphQl
-      Localidad: origin.Localidad,
-      ID_Localidad: origin.ID_Localidad
-    }
+  // // fetch raw data from the Origin api
+  // const fetchOrigin = () => fetch(`${process.env.GATSBY_URL_BFF}/localidades/desde`);
+  // // await for results
+  // const res = await fetchOrigin();
+  // const data = await res.json();
+  // // map into these results and create nodes
+  // data.map((origin, i) => {
+  //   // Create your node object
+  //   const originNode = {
+  //     // Required fields
+  //     id: `origin-${i}`,
+  //     parent: `__ORIGIN__`,
+  //     internal: {
+  //       type: `Origin`, // name of the graphQL query --> allOrigin {}
+  //       // contentDigest will be added just after
+  //       // but it is required
+  //     },
+  //     children: [],
+  //     // Other fields that you want to query with graphQl
+  //     Localidad: origin.Localidad,
+  //     ID_Localidad: origin.ID_Localidad
+  //   }
 
-    // Get content digest of node. (Required field)
-    const contentDigestOrigin = crypto
-      .createHash(`md5`)
-      .update(JSON.stringify(originNode))
-      .digest(`hex`);
-    // add it to originNode
-    originNode.internal.contentDigest = contentDigestOrigin;
+  //   // Get content digest of node. (Required field)
+  //   const contentDigestOrigin = crypto
+  //     .createHash(`md5`)
+  //     .update(JSON.stringify(originNode))
+  //     .digest(`hex`);
+  //   // add it to originNode
+  //   originNode.internal.contentDigest = contentDigestOrigin;
 
-    // Create node with the gatsby createNode() API
-    createNode(originNode);
-  });
+  //   // Create node with the gatsby createNode() API
+  //   createNode(originNode);
+  // });
 
     // fetch raw data from the Origin api
-    const fetchTicketOffices = () => fetch(`${process.env.GATSBY_URL_BFF}/puntos-de-venta`);
+    const fetchTicketOffices = () => fetch(`${process.env.GATSBY_URL_BFF}/puntos-de-venta`, {headers: {
+      "Content-Type": "application/json",
+      "X-origin":"CMS"
+    },});
     // await for results
     const resTicketOffices = await fetchTicketOffices();
     const dataTicketOffices = await resTicketOffices.json();

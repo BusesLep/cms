@@ -114,44 +114,10 @@ const useHome = () => {
                 current
               }
             }
-            image {
-              imageDark {
-                hotspot {
-                  y
-                  x
-                  width
-                  height
-                }
-                crop {
-                  top
-                  right
-                  left
-                  bottom
-                }
-                asset {
-                  _id
-                }
-              }
-              image {
-                alt
-                image {
-                  hotspot {
-                    y
-                    x
-                    width
-                    height
-                  }
-                  crop {
-                    top
-                    right
-                    left
-                    bottom
-                  }
-                  asset {
-                    _id
-                  }
-                }
-              }
+            icon {
+              icon
+              _type
+              _key
             }
           }
           ... on SanityPromotions {

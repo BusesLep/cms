@@ -11,7 +11,7 @@ const WhatsappLink = () => {
 
     return <>
     <div >
-        {data.url &&  <Fab sx={{ display: { sm: 'none' } }} className="floatingButton" href={data.url} target="_blank" size="medium" color="primary" aria-label="add">
+        {data.url &&  <Fab className="floatingButton" href={data.url} target="_blank" size="medium" color="primary" aria-label="add">
         <FontAwesomeIcon  code="FaWhatsapp" />
         </Fab>}
     </div>
