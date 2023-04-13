@@ -5,7 +5,6 @@ import useQuestions from "../../hooks/useQuestions";
   
 const Home = (info) => {
   const data = info.data
-  console.log(data, "data")
   // const [send, setSend] = useState(null);
   const questions = useQuestions().allSanityQuestion.nodes.filter(
     question => question.inHomePage 
