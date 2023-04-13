@@ -12,17 +12,6 @@ const StoryIntro = ({ title, text, icon, link }) => {
       {text && (
         <div className="storyIntro pt-3">
           {icon && <Icon size={50} color={theme === "dark" ? "white" : "black"} code={icon}></Icon>}
-          {/* {theme === "dark" ? (
-            <SanityImage
-              {...iconDark}
-              alt={`${title}`}
-              className="storyIntro__image"
-            />
-          ) : <SanityImage
-          {...icon}
-          alt={`${title}`}
-          className="storyIntro__image"
-        />} */}
           <div className="storyIntro__details">
             {title && <h3 className="storyIntro__title">{title}</h3>}
             <div className="storyIntro__content">
