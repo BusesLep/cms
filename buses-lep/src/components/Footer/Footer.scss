@@ -3,7 +3,7 @@
 .footer {
   background-color: $bg-elevation-2;
   color: $color-white;
-  border-top: 1px solid #F4EFF4;
+  border-top: 1px solid $bg-elevation-1;
   p {
     font-family: $secondary-font;
     color: $color-text-primary;

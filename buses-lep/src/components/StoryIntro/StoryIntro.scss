@@ -1,20 +1,24 @@
 @import "../../styles/global";
 
+.storyContainer{
+    border: 1px solid var(--color-border-2);
+    border-radius: 10px;
+}
+
 .storyIntro {
   display: flex;
   flex-direction: column;
   align-items: start;
-
-  &__image {
+  .icon{
+    font-size: 40px;
     padding-top: 15px;
-    height: 60px;
-    width: 60px;
   }
   &__title {
     color: $color-secondary;
     font-weight: 400;
   }
 }
+
 .storyIntro__button {
   border: 1px solid $color-primary;
   border-radius: 50px;

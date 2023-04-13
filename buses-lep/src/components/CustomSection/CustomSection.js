@@ -15,10 +15,8 @@ const CustomSection = ({ sections }) => {
             key={section._key}
             title={section?.textBlock.title}
             text={section?.textBlock._rawContent}
-            icon={section?.image.image.image}
-            iconDark={section?.image.imageDark}
+            icon={section?.icon.icon}
             link={section?.linkedPage?.slug?.current}
-            alt={section?.image.image.alt}
           />
         );
       }

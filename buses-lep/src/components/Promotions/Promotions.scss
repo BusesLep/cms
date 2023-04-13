@@ -9,12 +9,13 @@
   display: flex;
   text-decoration: none;
   align-items: center;
-  border-radius: 4px;
   padding: 30px 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid  var(--color-border-2);
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px $color-border;
   &:hover {
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 8px $color-border;
   }
   &__details {
     flex-grow: 1;
@@ -39,7 +40,7 @@
     color: $color-primary;
   }
   &__title {
-    color: $color-black-text;
+    color: $color-text-primary;
     padding-bottom: 10px;
   }
   &__qr {
