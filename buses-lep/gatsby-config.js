@@ -20,7 +20,7 @@ module.exports = {
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass",  "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "src/images/logo_lep.png"
+      "icon": "src/images/new_logo_lep.svg"
     }
   }, {
     resolve: 'gatsby-source-filesystem',
