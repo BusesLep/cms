@@ -8,9 +8,9 @@ const QuestionCard = ({ question }) => {
       <Accordion.Item eventKey={question._key || question.id}>
         <Accordion.Header>
           <div className="questionCard__image">
-            {question.image?.image !== null || question.category.icon ? (
+            {question.image?.image !== null || question.category?.icon ? (
               <SanityImage
-                {...(question?.image?.image || question.category.icon.image)}
+                {...(question?.image?.image || question.category?.icon?.image)}
                 alt={`${question?.image?.alt || question.question}`}
               />
             ) : (
@@ -20,13 +20,13 @@ const QuestionCard = ({ question }) => {
           <div>
              {question.category && (
             <a className="questionCard__link"
-              href={`/categories/${question.category.slug.current}`}
+              href={`/categories/${question.category?.slug?.current}`}
             >
               {question.category.title}
             </a>
           )}
           <h5 className="title-small py-0">
-            {question?.textBlock?.title || question.question}
+            {question?.textBlock?.title || question?.question}
           </h5>
           </div>
          
