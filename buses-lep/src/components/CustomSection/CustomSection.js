@@ -13,9 +13,9 @@ const CustomSection = ({ sections }) => {
         return (
           <StoryIntro
             key={section._key}
-            title={section?.textBlock.title}
-            text={section?.textBlock._rawContent}
-            icon={section?.icon.icon}
+            title={section?.textBlock?.title}
+            text={section?.textBlock?._rawContent}
+            icon={section?.icon?.icon}
             link={section?.linkedPage?.slug?.current}
           />
         );
@@ -66,9 +66,9 @@ const CustomSection = ({ sections }) => {
         return (
           <Form
           key={section._key}
-          title={section.textBlock.title}
+          title={section.textBlock?.title}
           id={section.formId}
-          text={section.textBlock._rawContent}
+          text={section.textBlock?._rawContent}
           />
         )}
         if (
