@@ -15,8 +15,8 @@ const FooterLinkBlock = ({ links, title }) => {
 
   return (
     <div className="col-12 col-md-4 py-1">
-      <h5 className="title-small">{title}</h5>
-      <ul>{linksList}</ul>
+      <h5 className="title-small mb-3 py-0">{title}</h5>
+      <ul >{linksList}</ul>
     </div>
   );
 };

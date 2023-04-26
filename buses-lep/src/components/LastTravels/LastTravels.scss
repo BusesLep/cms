@@ -1,0 +1,55 @@
+@import "../../styles/colors";
+@import "../../styles/text";
+@import "../../styles/global";
+
+.lastTravels{
+    background-color: $bg-white-elevation-1;
+    margin: 3rem 0;
+    border: 1px solid $color-border;
+    border-radius: 10px;
+    padding: 2rem;
+    &__header{
+        .icon{
+            font-size: 1.5rem;
+            color: $color-border;
+        }
+        h4{
+            color: $color-primary;
+            padding-left: 1rem;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+    &__link{
+      text-decoration: none;
+      color: $bg-secondary;
+      &:hover{
+        color: $bg-secondary;
+      }
+    }
+    &__list {
+        list-style: none;
+        padding: 0 1rem;
+        margin: 0;
+        .iconContainer{
+            background-color: $bg-gray-elevation-1;
+            border-radius: 15px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon{
+              color: $color-secondary;
+              font-size: 1.4rem;
+            }
+        }
+        .iconContainerEnd{
+          color: $color-primary;
+          font-size: 1.8rem;
+        }
+        .MuiDivider-root{
+          border-color: $color-border;
+        }
+    }
+}

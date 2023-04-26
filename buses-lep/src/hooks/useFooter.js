@@ -21,22 +21,26 @@ const useFooter = () => {
         qrCode {
           url
           image {
-            hotspot {
-              y
-              x
-              width
-              height
-            }
-            crop {
-              top
-              right
-              left
-              bottom
-            }
-            asset {
-              _id
-            }
             alt
+            _key
+            image {
+              _key
+              asset {
+                _id
+              }
+              crop {
+                top
+                right
+                left
+                bottom
+              }
+              hotspot {
+                y
+                x
+                width
+                height
+              }
+            }
           }
         }
         logo {
@@ -58,22 +62,26 @@ const useFooter = () => {
             }
           }
           image {
-            hotspot {
-              y
-              x
-              width
-              height
-            }
-            crop {
-              top
-              right
-              left
-              bottom
-            }
-            asset {
-              _id
-            }
             alt
+            _key
+            image {
+              _key
+              asset {
+                _id
+              }
+              crop {
+                top
+                right
+                left
+                bottom
+              }
+              hotspot {
+                y
+                x
+                width
+                height
+              }
+            }
           }
         }
         linkBlock {
@@ -83,6 +91,35 @@ const useFooter = () => {
             url
             text
             _key
+          }
+        }
+        imageLinkBlock {
+          title
+          images {
+            _key
+            url
+            image {
+              alt
+              _key
+              image {
+                _key
+                asset {
+                  _id
+                }
+                crop {
+                  top
+                  right
+                  left
+                  bottom
+                }
+                hotspot {
+                  y
+                  x
+                  width
+                  height
+                }
+              }
+            }
           }
         }
         id

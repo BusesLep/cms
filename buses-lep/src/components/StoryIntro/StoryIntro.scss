@@ -1,0 +1,44 @@
+@import "../../styles/global";
+
+.storyContainer{
+    border: 1px solid var(--color-border-2);
+    border-radius: 10px;
+}
+
+.storyIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  .icon{
+    font-size: 40px;
+    padding-top: 15px;
+  }
+  &__title {
+    color: $color-secondary;
+    font-weight: 400;
+  }
+}
+
+.storyIntro__button {
+  border: 1px solid $color-primary;
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: $color-primary;
+  text-decoration: none;
+  &:hover {
+    border-color: $color-secondary;
+    cursor: pointer;
+  }
+}
+
+.storyIntro__button_container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+@media (min-width: $md-breakpoint) {
+  .storyIntro {
+    flex-direction: row;
+    gap: 20px;
+  }
+}

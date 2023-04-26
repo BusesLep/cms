@@ -1,5 +1,15 @@
-@import "../../styles/colors";
+@import "../../styles/global.scss";
 
-main{
-    background-color: $bg-primary;
+main {
+  background-color: $bg-primary;
+  flex-grow: 1;
+  min-height: 650px;
 }
+
+
+@media (min-width: $lg-breakpoint) {
+  main {
+    padding: 0 100px;
+  }
+}
+

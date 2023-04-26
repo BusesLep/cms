@@ -14,7 +14,7 @@ const FooterLinkBlock = ({ links, title }) => {
   ));
   return (
     <div className="py-2 contactBlock__socialMedia">
-      <h5 className="title-small">{title}</h5>
+      <h5 className="title-small mb-3 py-0">{title}</h5>
       <div className="row">{socialMediaList}</div>
     </div>
   );

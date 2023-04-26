@@ -17,10 +17,10 @@ module.exports = {
       "projectId": process.env.SANITY_ID_PROJECT,
       "dataset": process.env.SANITY_DATASET
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass", "gatsby-plugin-google-gtag", "gatsby-plugin-sitemap", {
+  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass",  "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "src/images/icon.png"
+      "icon": "src/images/new_logo_lep.svg"
     }
   }, {
     resolve: 'gatsby-source-filesystem',
@@ -32,8 +32,8 @@ module.exports = {
   }, {
     resolve: "gatsby-plugin-sanity-image",
     options: {
-      projectId: "9hjfgggi",
-      dataset: "production",
+      projectId: process.env.SANITY_ID_PROJECT,
+      dataset: process.env.SANITY_DATASET,
       customImageTypes: ["customImage"],
       altFieldName: "alt",
     },

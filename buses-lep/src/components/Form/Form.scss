@@ -1,0 +1,43 @@
+@import "../../styles/colors";
+@import "../../styles/text";
+@import "../../styles/global";
+
+.form {
+  background: $bg-gray-elevation-1;
+  border-radius: 12px;
+  padding: 1.5rem 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color-text-primary;
+  &__box{
+    background-color: $color-white;
+    border-radius: 10px;
+    padding: .5rem;
+    min-height: 550px;
+    iframe{
+      height: 100%;
+      width: 100%;
+    }
+
+  }
+}
+@media (min-width: $md-breakpoint) {
+  .form {
+    padding: 1.5rem;
+    &__box{
+      padding: 1rem;
+    }
+  }
+}
+
+@media (min-width: $xl-breakpoint) {
+  .form {
+      &__box{
+      min-height: 450px;
+ 
+    }
+  }
+}
+
