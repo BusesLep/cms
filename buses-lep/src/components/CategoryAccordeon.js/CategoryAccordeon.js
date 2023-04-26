@@ -9,10 +9,10 @@ export default function CategoryAccordeon({ questionsData, categoryData }) {
   
   const questionsList = questionsData
     .filter((question) => question.category.id === categoryData.id)
-    .map((question, idx) => {
+    .map((question) => {
       return (
 
-          <Accordion.Item eventKey={question.id} key={idx}>
+          <Accordion.Item eventKey={question.id} key={question.id}>
             <Accordion.Header>
               <h5 className="title-small py-0 m-0">{question.question}</h5>
             </Accordion.Header>

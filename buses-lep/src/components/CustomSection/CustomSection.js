@@ -4,7 +4,7 @@ import { TextBlock, HelpCenter, Form, TextImage, TicketOffices, Promotions, Stor
 
 const CustomSection = ({ sections }) => {
   const sectionResult = sections.map((section) => {
-    {
+    
       if (
         section?._type !== null &&
         section?._type !== undefined &&
@@ -98,7 +98,7 @@ const CustomSection = ({ sections }) => {
         />
       );
     }
-    }
+    
   });
 
   return <>{sectionResult}</>;

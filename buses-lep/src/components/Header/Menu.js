@@ -6,7 +6,7 @@ import { Icon } from "..";
 
 
 const Menu = ({ location, links }) => {
-  const itemsMenu = links.map((link, idx) =>
+  const itemsMenu = links.map((link) =>
     link._type === "dropdown" ? (
       <NavDropdown
         title={
@@ -16,9 +16,9 @@ const Menu = ({ location, links }) => {
           </div>
         }
         id="basic-nav-dropdown"
-        key={idx}
+        key={link._key}
       >
-        {link.links.map((dropdownLink, idx) =>
+        {link.links.map((dropdownLink) =>
           dropdownLink.separated ? (
             <>
               <NavDropdown.Divider />
@@ -27,14 +27,14 @@ const Menu = ({ location, links }) => {
               </NavDropdown.Item>
             </>
           ) : (
-            <NavDropdown.Item href={dropdownLink.link.url} key={idx}>
+            <NavDropdown.Item href={dropdownLink.link.url} key={dropdownLink.link._key}>
               {dropdownLink.link.text}
             </NavDropdown.Item>
           )
         )}
       </NavDropdown>
     ) : (
-      <Nav.Link href={link.link.url} className={` ${location?.pathname?.replaceAll('/' , '') === link?.link?.url?.replaceAll('/' , '') ? 'active' : ''}`} key={idx}>
+      <Nav.Link href={link.link.url} className={` ${location?.pathname?.replaceAll('/' , '') === link?.link?.url?.replaceAll('/' , '') ? 'active' : ''}`} key={link._key}>
         {link.icon !== null && <Icon code={link.icon.icon}></Icon>}
         {link.link.text}
       </Nav.Link>
