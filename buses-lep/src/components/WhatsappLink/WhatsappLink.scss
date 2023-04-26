@@ -1,13 +1,18 @@
 @import "../../styles/global.scss";
+@import "../../styles/colors";
 
 .floatingButton {
     position: fixed !important;
     bottom: 20px;
     right: 20px;
-    background-color: #00B2FF !important;
+    background-color: $color-primary;
 
     .icon {
         font-size: 30px;
+    }
+    &:hover {
+        background-color: #2D7BE4;
+        color: $color-white;
     }
 }
     
