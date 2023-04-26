@@ -106,6 +106,4 @@ exports.sourceNodes = async ({ actions }) => {
       createNode(officesNode);
       
     });
-
-  return;
 }

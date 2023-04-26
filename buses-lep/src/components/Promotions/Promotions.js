@@ -7,7 +7,7 @@ const Promotions = ({ promotions }) => {
 
   return (
     <div className="promotions py-3">
-      {promotions.map((promotion) => (
+      {promotions.map((promotion, idx) => (
         <a
           className="promotionCard"
           target={promotion?.link?.url ? "_blank" : "_self"}
@@ -15,6 +15,7 @@ const Promotions = ({ promotions }) => {
             `/${promotion?.linkedPage?.slug?.current}` ||
             `${promotion?.link?.url}`
           }
+          key={idx}
         >
           <div className="promotionCard__image">
             {promotion.image?.image !== null ? (
@@ -33,8 +34,8 @@ const Promotions = ({ promotions }) => {
             <h5 className="title-small py-0 promotionCard__title">{promotion?.title}</h5>
             {promotion?.images?.length > 1 && (
               <div className="promotionCard__images">
-                {promotion.images.map((image) => (
-                  <div className="promotionCard__images_icon">
+                {promotion.images.map((image, idx) => (
+                  <div className="promotionCard__images_icon" key={idx}>
                     <SanityImage {...image.image} alt={`${image.alt}`} />
                   </div>
                 ))}

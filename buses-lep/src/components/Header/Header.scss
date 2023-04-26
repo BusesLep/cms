@@ -70,11 +70,10 @@
     padding: 0!important;
     &-brand{
       flex-grow: 1;
+      cursor: auto;
     }
   }
-  .navbar-brand{
-    cursor: auto;
-  }
+  
   .navbar-toggler {
     order: -1;
     border: none;

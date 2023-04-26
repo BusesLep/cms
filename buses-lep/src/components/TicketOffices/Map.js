@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { Icon } from "../";
 import "./TicketOffices.scss";
 
-const Map = ({ site, offices, open , handler, location}) => {
+const MapGoogle = ({ site, offices, open , handler, location}) => {
   const [cordinates, setCordinates] = useState([-31.3, -64.5]);
   const siteOpen = open ? 15 : 11 
 
@@ -47,4 +47,4 @@ const Map = ({ site, offices, open , handler, location}) => {
   );
 };
 
-export default Map;
+export default MapGoogle;

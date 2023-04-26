@@ -7,17 +7,25 @@ import "./Header.scss";
 import LinkBlock from "./LinkBlock";
 import Menu from "./Menu";
 import useHeader from "../../hooks/useHeader";
-import {Icon} from "..";
+import { Icon } from "..";
 
 
-const Header = ({location}) => {
+const Header = ({ location }) => {
   const data = useHeader().sanityHeader;
-  const { theme, toggleTheme} = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const regularCondition = data.logo.image.image !== null ? (
     <SanityImage
       {...data.logo.image.image}
       alt={`${data.logo.image.alt}`}
-      
+    />
+  ) : (
+    <></>
+  )
+
+  const checkImageDark = data.logo.imageDark !== null ? (
+    <SanityImage
+      {...data.logo.imageDark}
+      alt={`${data.logo.image.alt}`}
     />
   ) : (
     <></>
@@ -30,15 +38,7 @@ const Header = ({location}) => {
           <Navbar.Brand href="/">
             <div className="header__logo ps-3">
               {theme === "dark" ? (
-                data.logo.imageDark !== null ? (
-                  <SanityImage
-                    {...data.logo.imageDark}
-                    alt={`${data.logo.image.alt}`}
-                    
-                  />
-                ) : (
-                  <></>
-                )
+                checkImageDark
               ) : regularCondition}
             </div>
           </Navbar.Brand>
@@ -48,14 +48,14 @@ const Header = ({location}) => {
           ) : (
             <></>
           )}
-            <button onClick={toggleTheme} className="header__theme-toggle">
-        <div className={`moon ${theme === "dark" ? "" : "moon-animate"}`}>
-          <Icon code={"FaMoon"}></Icon>
-        </div>
-        <div className={`sun ${theme === "dark" ? "sun-animate" : ""}`}>
-          <Icon code={"MdWbSunny"}></Icon>
-        </div>
-      </button>
+          <button onClick={toggleTheme} className="header__theme-toggle">
+            <div className={`moon ${theme === "dark" ? "" : "moon-animate"}`}>
+              <Icon code={"FaMoon"}></Icon>
+            </div>
+            <div className={`sun ${theme === "dark" ? "sun-animate" : ""}`}>
+              <Icon code={"MdWbSunny"}></Icon>
+            </div>
+          </button>
         </Container>
       </Navbar>
     </header>

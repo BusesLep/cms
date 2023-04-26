@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Icon, SelectAutocomplete } from "../";
 import Button from "@mui/material/Button";
-import Map from "./Map";
+import MapGoogle from "./Map";
 import { useGeolocated } from "react-geolocated";
 import "./TicketOffices.scss";
 
@@ -138,13 +138,13 @@ const OfficeMap = ({ offices }) => {
         </div>
       </div>
       <div className="mapContent__map">
-        <Map
+        <MapGoogle
           site={activeSite}
           offices={offices}
           open={isOpenSite}
           handler={selectSite}
           location={myLocation}
-        ></Map>
+        ></MapGoogle>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Layout, CustomSection, Banner } from "../components";
 const Page = ({location,  data }) => {
   const {
     dinamicContent , banner, descriptionPage, titlePage
-  } = data?.allSanityPages?.nodes[0]
+  } = data?.allSanityPages?.nodes[0] || {}
 
   return (
     <Layout location={location} title={titlePage} description={descriptionPage}>

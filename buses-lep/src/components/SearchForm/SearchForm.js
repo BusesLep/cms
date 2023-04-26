@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 import useOrigin from "../../hooks/useOrigin";
 import DatePicker from "./DatePicker";
 import SelectPersons from "./SelectPersons";
-import SelectMode from "./SelectMode";
 
 export default function SearchForm({ handler }) {
   const origins = useOrigin().allOrigin.nodes;

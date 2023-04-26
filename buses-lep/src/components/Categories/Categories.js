@@ -40,9 +40,9 @@ export default function Categories() {
     setFilteredQuestions(questionsList);
   };
 
-  const categoriesItems = categories.map((category) => {
+  const categoriesItems = categories.map((category, idx) => {
     return (
-      <div className="col-12 col-md-6 p-2">
+      <div className="col-12 col-md-6 p-2" key={idx}>
         <a
           href={`/categories/${category.slug.current}`}
           className="categoryCard col-12 col-md-6"

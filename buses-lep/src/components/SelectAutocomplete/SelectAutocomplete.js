@@ -5,6 +5,13 @@ import { useTheme } from "../../context/themeContext";
 import "./SelectAutocomplete.scss";
 import { Icon } from "..";
 
+const CustomPaper = (props) => {
+  return <Paper {...props} sx={{ width: 300 }} />;
+};
+const CustomPopper = (props) => {
+  return <Popper {...props} sx={{ width: 300 }} />;
+};
+
 export default function SelectAutocomplete({
   styleOption,
   icon,
@@ -37,14 +44,7 @@ export default function SelectAutocomplete({
       display: "flex",
       color: "#FFF",
     },
-  };
-
-  const CustomPaper = (props) => {
-    return <Paper {...props} sx={{ width: 300 }} />;
-  };
-  const CustomPopper = (props) => {
-    return <Popper {...props} sx={{ width: 300 }} />;
-  };
+  }; 
 
   return (
     <Autocomplete

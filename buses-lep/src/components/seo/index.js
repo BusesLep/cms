@@ -9,7 +9,7 @@ import  useGlobalSeo  from "../../hooks/useGlobalSeo"
   const {
     description,
     title,
-  } = data?.sanityGlobalConfig
+  } = data?.sanityGlobalConfig || {}
 
   
   const defaultTitle = pageTitle ? pageTitle : title

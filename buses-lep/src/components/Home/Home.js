@@ -1,11 +1,10 @@
-import React, {useState} from "react";
-import { CustomSection, Banner, HelpCenter, LastTravels,SearchForm, Promotions } from "../";
+import React from "react";
+import { CustomSection, Banner, HelpCenter } from "../";
 import useQuestions from "../../hooks/useQuestions";
 
   
 const Home = (info) => {
   const data = info.data
-  // const [send, setSend] = useState(null);
   const questions = useQuestions().allSanityQuestion.nodes.filter(
     question => question.inHomePage 
   )
