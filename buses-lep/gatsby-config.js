@@ -8,8 +8,8 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `starter`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Buses Lep`,
+    siteUrl: `https://www.buseslep.com.ar/`
   },
   plugins: [{
     resolve: 'gatsby-source-sanity',
