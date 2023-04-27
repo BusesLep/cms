@@ -67,10 +67,11 @@ exports.sourceNodes = async ({ actions }) => {
     // fetch raw data from the Origin api
     const fetchTicketOffices = () => fetch(`${process.env.GATSBY_URL_BFF}/puntos-de-venta`, {headers: {
       "Content-Type": "application/json",
-      "X-origin":"CMS"
+      "x-origin":"CMS"
     },});
     // await for results
     const resTicketOffices = await fetchTicketOffices();
+    
     const dataTicketOffices = await resTicketOffices.json();
     // map into these results and create nodes
     dataTicketOffices.map((offices, i) => {
