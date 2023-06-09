@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 const useCategories = () => {
   return useStaticQuery(graphql`
     {
-      allSanityCategories {
+      allSanityCategories(sort: {order: ASC}) {
         nodes {
           title
           slug {
