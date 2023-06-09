@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 const useQuestions = () => {
   return useStaticQuery(graphql`
     {
-       allSanityQuestion {
+       allSanityQuestion(sort: {order: ASC}) {
     nodes {
       question
       _rawAnswer 
