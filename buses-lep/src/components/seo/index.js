@@ -26,8 +26,7 @@ const siteMetadata = {
     <Helmet
       htmlAttributes={{ lang: siteMetadata.lang }}
       title={defaultTitle}
-      titleTemplate={`${defaultTitle} | Buses Lep` }
-  
+      titleTemplate={`buses Lep` }
       
       meta={[
         {
