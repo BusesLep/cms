@@ -70,7 +70,7 @@ export default function Categories() {
         <TextField
           label={
             searchQuery === ""
-              ? "Escribe una palabra clave para buscar..."
+              ? "Buscar..."
               : " "
           }
           variant="standard"
