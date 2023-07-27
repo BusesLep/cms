@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const themes = {
   light: {
-    "--bg-primary": "#ffffff",
+    "--bg-primary": "#FAFAFA",
     "--bg-secondary": "#202124",
     "--bg-elevation-1": "#FEFCFC",
     "--bg-elevation-2": "#FAFAFA",

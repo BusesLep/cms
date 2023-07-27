@@ -2,6 +2,9 @@
 
 .inputContainer {
   margin-bottom: 30px;
+  .MuiTextField-root label {
+    padding-left: 75px;
+}
 }
 .empty {
   background-color: $bg-gray-elevation-2;
