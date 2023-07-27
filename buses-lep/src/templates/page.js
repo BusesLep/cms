@@ -9,7 +9,7 @@ const Page = ({location,  data }) => {
 
   return (
     <Layout location={location} title={titlePage} description={descriptionPage}>
-      <div className="container">
+      <div >
       {(banner !== null && banner !== undefined  && banner.banner?.slides?.length !== 0) ? <Banner banner={banner} /> : <></>}
         {dinamicContent !== null  && dinamicContent.length !== undefined  &&(
           <CustomSection sections={dinamicContent} />

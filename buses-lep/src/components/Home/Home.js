@@ -12,7 +12,7 @@ const Home = (info) => {
   return ( 
     <>
       {data !== null ? (
-        <div className="container">
+        <div >
           
           {data.banner !== null && data.banner.length !== 0 ? (
             <Banner banner={data.banner} />

@@ -8,7 +8,7 @@ const CategoriesPage = ({ location }) => {
   const data = useHome().sanityHome;
   return (
     <Layout location={location}>
-      <div className="container">
+      <div >
         {data.banner !== null && data.banner.length !== 0 ? (
           <Banner banner={data.banner} />
         ) : (

@@ -18,7 +18,7 @@ const QuestionCategory = ({ location, data }) => {
 
   return (
     <Layout location={location}>
-      <div className="container">
+      <div >
       {dataHome.banner !== null && dataHome.banner.length !== 0 ? (
           <Banner banner={dataHome.banner} />
         ) : (

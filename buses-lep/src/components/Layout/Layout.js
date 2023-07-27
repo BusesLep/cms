@@ -12,10 +12,10 @@ const Layout = ({ location, children, title, description }) => {
   return (
     <ThemeProvider>  
       <Seo pageTitle={title} pageDescription={description}/>    
-      <Header location={location}/>
+      {/* <Header location={location}/> */}
       <main>{children}</main>
-      <WhatsappLink />
-      <Footer/>
+      {/* <WhatsappLink />
+      <Footer/> */}
       
     </ThemeProvider>
   );
