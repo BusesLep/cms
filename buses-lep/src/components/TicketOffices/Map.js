@@ -24,10 +24,11 @@ const MapGoogle = ({ site, offices, open , handler, location}) => {
       <Icon code={"MdLocationOn"}></Icon>
     </button>
   ));
+
   return (
     <GoogleMapReact
       yesIWantToUseGoogleMapApiInternals={true}
-      bootstrapURLKeys={{ key: process.env.GMAP_KEY }}
+      bootstrapURLKeys={{ key: process.env.GATSBY_GMAP_KEY }}
       center={location !== null ? location : cordinates}
       zoom={site !== null ? siteOpen : 10}
     >
