@@ -49,7 +49,7 @@ export default function CategoryAccordeon({ questionsData, categoryData }) {
         </div>
       </section>
       <div className="container">
-        <a href="../">Volver</a>
+        <a href="/centro-de-ayuda">Volver</a>
       </div>
     </div>
   );
