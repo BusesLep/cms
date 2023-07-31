@@ -48,6 +48,9 @@ export default function CategoryAccordeon({ questionsData, categoryData }) {
           <Accordion defaultActiveKey="0">{questionsList}</Accordion>
         </div>
       </section>
+      <div className="container">
+        <a href="../">Volver</a>
+      </div>
     </div>
   );
 }
