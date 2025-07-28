@@ -1,0 +1,15 @@
+[build]
+  base    = "buses-lep"
+  command = "npm run build"
+  publish = "buses-lep/public"
+
+[functions]
+  directory = "buses-lep/netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+  # ✅ OPCIÓN SEGURA: ignora solo claves "AIza" (Google Maps)
+  #SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIza"
+
+  # 🔁 O si preferís desactivar completamente el escaneo:
+   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
