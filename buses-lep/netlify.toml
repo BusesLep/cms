@@ -1,10 +1,10 @@
 [build]
   base    = "buses-lep"
   command = "npm run build"
-  publish = "buses-lep/public"
+  publish = "public"
 
 [functions]
-  directory = "buses-lep/netlify/functions"
+  directory = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
