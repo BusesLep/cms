@@ -62,27 +62,33 @@ const ThemeProvider = ({ children }) => {
   // guardarla le pisaria al visitante su propia eleccion para cuando entre
   // por fuera del WebView.
   const loImponeLaApp = useRef(Boolean(urlTheme));
+  const contenedor = useRef(null);
 
   useEffect(() => {
     if (loImponeLaApp.current) return;
     localStorage.setItem("themeColor", theme);
   }, [theme]);
 
-  // El tema de la URL se vuelve a aplicar despues del montaje.
+  // Las variables CSS se escriben a mano sobre el div, ademas de ir en el
+  // style de React.
   //
-  // No alcanza con leerlo en el useState de arriba: ese valor se calcula
-  // tambien durante el render del servidor, donde no hay window y por lo
-  // tanto no hay query string, y al hidratar React se queda con el HTML que
-  // vino del servidor. Resultado: la pagina seguia en claro aunque la URL
-  // dijera ?theme=dark. Aca ya estamos en el navegador, asi que el setState
-  // fuerza el re-render con el tema correcto.
+  // Hace falta por como hidrata Gatsby. El estilo que llega del servidor se
+  // calcula sin window, asi que siempre viene en claro. En el cliente el
+  // useState si ve el ?theme= y arranca en "dark", pero como el estado nunca
+  // cambia -ya nacio en dark- React no re-renderiza, y el div se queda con el
+  // style claro del HTML del servidor. Por eso la pagina seguia clara aunque
+  // el estado dijera lo contrario.
+  //
+  // Escribiendo las variables con setProperty el DOM queda alineado con el
+  // estado, haya habido re-render o no.
   useEffect(() => {
-    const deLaUrl = getUrlTheme();
-    if (deLaUrl) {
-      loImponeLaApp.current = true;
-      setTheme(deLaUrl);
-    }
-  }, []);
+    const nodo = contenedor.current;
+    if (!nodo) return;
+    const vars = themes[theme] || themes[DEFAULT_THEME];
+    Object.entries(vars).forEach(([clave, valor]) =>
+      nodo.style.setProperty(clave, valor)
+    );
+  }, [theme]);
 
   // La app avisa por postMessage cuando el usuario cambia el modo, asi no hay
   // que recargar el iframe entero para que se vea el cambio.
@@ -111,7 +117,7 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      <div style={{ ...themes[theme], background: "var(--bg-primary)", color: "var(--bg-secondary)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between"  }}>
+      <div ref={contenedor} style={{ ...themes[theme], background: "var(--bg-primary)", color: "var(--bg-secondary)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between"  }}>
         {children}
       </div>
     </ThemeContext.Provider>
