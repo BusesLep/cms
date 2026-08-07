@@ -18,17 +18,21 @@ const themes = {
 
 
   },
+  // Azul marino, no gris neutro. Son los mismos valores que el ColorScheme
+  // oscuro de la app (lib/theme/esquemas.dart en el repo del ecommerce): este
+  // sitio se muestra embebido en un WebView dentro de la app, y si las dos
+  // paletas no coinciden se ve el corte entre una y otra.
   dark: {
-    "--bg-primary": "#202124",
-    "--bg-secondary": "#ffffff",
-    "--bg-elevation-1": "#35373A",
-    "--bg-elevation-2": "#35373A",
-    "--bg-white-elevation-1": "#35373A",
-    "--bg-gray-elevation-1": "#3C3F44",
-    "--bg-gray-elevation-2": "#6B6A6A",
-    "--color-text-primary": "#ffffff",
-    "--color-border": "#6B6A6A",
-    "--color-border-2": "#949394",
+    "--bg-primary": "#0F1623", // fondo de pantalla
+    "--bg-secondary": "#F5F7FA", // texto sobre el fondo
+    "--bg-elevation-1": "#1C2534", // tarjetas
+    "--bg-elevation-2": "#1C2534",
+    "--bg-white-elevation-1": "#1C2534",
+    "--bg-gray-elevation-1": "#293445", // franjas y cabeceras
+    "--bg-gray-elevation-2": "#333F4F",
+    "--color-text-primary": "#F5F7FA",
+    "--color-border": "#333F4F",
+    "--color-border-2": "#556072",
   },
 };
 
