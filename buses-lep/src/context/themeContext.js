@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, { createContext, useEffect, useRef, useState, useContext } from "react";
 import PropTypes from "prop-types";
 
 const themes = {
@@ -57,9 +57,32 @@ const ThemeProvider = ({ children }) => {
     urlTheme || localTheme || deviseTheme || DEFAULT_THEME
   );
 
+  // Cuando el tema lo impone la app que embebe el sitio, no se guarda en
+  // localStorage: es una preferencia de la app, no de este sitio, y
+  // guardarla le pisaria al visitante su propia eleccion para cuando entre
+  // por fuera del WebView.
+  const loImponeLaApp = useRef(Boolean(urlTheme));
+
   useEffect(() => {
+    if (loImponeLaApp.current) return;
     localStorage.setItem("themeColor", theme);
   }, [theme]);
+
+  // El tema de la URL se vuelve a aplicar despues del montaje.
+  //
+  // No alcanza con leerlo en el useState de arriba: ese valor se calcula
+  // tambien durante el render del servidor, donde no hay window y por lo
+  // tanto no hay query string, y al hidratar React se queda con el HTML que
+  // vino del servidor. Resultado: la pagina seguia en claro aunque la URL
+  // dijera ?theme=dark. Aca ya estamos en el navegador, asi que el setState
+  // fuerza el re-render con el tema correcto.
+  useEffect(() => {
+    const deLaUrl = getUrlTheme();
+    if (deLaUrl) {
+      loImponeLaApp.current = true;
+      setTheme(deLaUrl);
+    }
+  }, []);
 
   // La app avisa por postMessage cuando el usuario cambia el modo, asi no hay
   // que recargar el iframe entero para que se vea el cambio.
@@ -70,7 +93,10 @@ const ThemeProvider = ({ children }) => {
       const data = event.data;
       if (!data || data.type !== "buseslep:theme") return;
       const nuevo = normalizeTheme(data.theme);
-      if (nuevo) setTheme(nuevo);
+      if (nuevo) {
+        loImponeLaApp.current = true;
+        setTheme(nuevo);
+      }
     };
 
     window.addEventListener("message", onMessage);
@@ -78,6 +104,8 @@ const ThemeProvider = ({ children }) => {
   }, []);
 
   const toggleTheme = () => {
+    // Si el visitante cambia el tema a mano, vuelve a mandar su preferencia.
+    loImponeLaApp.current = false;
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
