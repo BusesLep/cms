@@ -41,16 +41,37 @@ export const useTheme = () => useContext(ThemeContext);
 const DEFAULT_THEME = "light";
 
 const ThemeProvider = ({ children }) => {
+  const urlTheme = getUrlTheme();
   const localTheme =
     typeof window !== "undefined" ? localStorage.getItem("themeColor") : undefined;
   const deviseTheme = getDeviseTheme();
+  // El ?theme= de la URL manda sobre todo lo demas: cuando el sitio se abre
+  // embebido en la app de Buses Lep, el tema lo decide el switch de la app.
+  // El localStorage de este iframe es de otro origen y no tiene por que
+  // coincidir con lo que el usuario eligio alla.
   const [theme, setTheme] = useState(
-    localTheme || deviseTheme || DEFAULT_THEME
+    urlTheme || localTheme || deviseTheme || DEFAULT_THEME
   );
 
   useEffect(() => {
     localStorage.setItem("themeColor", theme);
   }, [theme]);
+
+  // La app avisa por postMessage cuando el usuario cambia el modo, asi no hay
+  // que recargar el iframe entero para que se vea el cambio.
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const onMessage = (event) => {
+      const data = event.data;
+      if (!data || data.type !== "buseslep:theme") return;
+      const nuevo = normalizeTheme(data.theme);
+      if (nuevo) setTheme(nuevo);
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -63,6 +84,24 @@ const ThemeProvider = ({ children }) => {
       </div>
     </ThemeContext.Provider>
   );
+};
+
+/// Acepta solo los dos temas que existen; cualquier otra cosa se ignora.
+/// "auto" no se contempla a proposito: la app resuelve el automatico contra el
+/// sistema operativo antes de pasarlo, porque dentro del iframe el
+/// prefers-color-scheme puede no coincidir con lo que se ve en la app.
+const normalizeTheme = (valor) =>
+  valor === "dark" || valor === "light" ? valor : undefined;
+
+const getUrlTheme = () => {
+  if (typeof window === "undefined") return undefined;
+  try {
+    return normalizeTheme(
+      new URLSearchParams(window.location.search).get("theme")
+    );
+  } catch (e) {
+    return undefined;
+  }
 };
 
 const getDeviseTheme = () => {
