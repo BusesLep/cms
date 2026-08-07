@@ -1,40 +1,6 @@
 import React, { createContext, useEffect, useRef, useState, useContext } from "react";
 import PropTypes from "prop-types";
-
-const themes = {
-  light: {
-    "--bg-primary": "#FAFAFA",
-    "--bg-secondary": "#202124",
-    "--bg-elevation-1": "#FEFCFC",
-    "--bg-elevation-2": "#FAFAFA",
-    "--bg-white-elevation-1": "#ffffff",
-    "--bg-gray-elevation-1": "#EEEEEE",
-    "--bg-gray-elevation-2": "#FFFFFF",
-    "--color-text-primary": "#5F6368",
-    "--color-border": "#C9C5CA",
-    "--color-border-2": "#f0f0f0",
-    
-
-
-
-  },
-  // Azul marino, no gris neutro. Son los mismos valores que el ColorScheme
-  // oscuro de la app (lib/theme/esquemas.dart en el repo del ecommerce): este
-  // sitio se muestra embebido en un WebView dentro de la app, y si las dos
-  // paletas no coinciden se ve el corte entre una y otra.
-  dark: {
-    "--bg-primary": "#0F1623", // fondo de pantalla
-    "--bg-secondary": "#F5F7FA", // texto sobre el fondo
-    "--bg-elevation-1": "#1C2534", // tarjetas
-    "--bg-elevation-2": "#1C2534",
-    "--bg-white-elevation-1": "#1C2534",
-    "--bg-gray-elevation-1": "#293445", // franjas y cabeceras
-    "--bg-gray-elevation-2": "#333F4F",
-    "--color-text-primary": "#F5F7FA",
-    "--color-border": "#333F4F",
-    "--color-border-2": "#556072",
-  },
-};
+import { TEMA_POR_DEFECTO } from "../styles/temas";
 
 const ThemeContext = createContext(null);
 
@@ -42,7 +8,7 @@ const ThemeContext = createContext(null);
 export const useTheme = () => useContext(ThemeContext);
 
 // cambiar si cambia el tema por defecto
-const DEFAULT_THEME = "light";
+const DEFAULT_THEME = TEMA_POR_DEFECTO;
 
 const ThemeProvider = ({ children }) => {
   const urlTheme = getUrlTheme();
@@ -62,32 +28,22 @@ const ThemeProvider = ({ children }) => {
   // guardarla le pisaria al visitante su propia eleccion para cuando entre
   // por fuera del WebView.
   const loImponeLaApp = useRef(Boolean(urlTheme));
-  const contenedor = useRef(null);
 
   useEffect(() => {
     if (loImponeLaApp.current) return;
     localStorage.setItem("themeColor", theme);
   }, [theme]);
 
-  // Las variables CSS se escriben a mano sobre el div, ademas de ir en el
-  // style de React.
+  // El tema se aplica moviendo data-theme en el <html>; las variables CSS de
+  // cada paleta estan declaradas en la hoja de estilos (ver gatsby-ssr.js).
   //
-  // Hace falta por como hidrata Gatsby. El estilo que llega del servidor se
-  // calcula sin window, asi que siempre viene en claro. En el cliente el
-  // useState si ve el ?theme= y arranca en "dark", pero como el estado nunca
-  // cambia -ya nacio en dark- React no re-renderiza, y el div se queda con el
-  // style claro del HTML del servidor. Por eso la pagina seguia clara aunque
-  // el estado dijera lo contrario.
-  //
-  // Escribiendo las variables con setProperty el DOM queda alineado con el
-  // estado, haya habido re-render o no.
+  // Antes esto se hacia escribiendo las variables en el div con setProperty,
+  // lo que funcionaba pero recien despues de hidratar: la pagina se veia
+  // clara un instante y despues cambiaba. Ahora el atributo ya viene puesto
+  // desde el script que corre antes del <body>, y esto solo lo mantiene al
+  // dia cuando el usuario -o la app- cambian de modo.
   useEffect(() => {
-    const nodo = contenedor.current;
-    if (!nodo) return;
-    const vars = themes[theme] || themes[DEFAULT_THEME];
-    Object.entries(vars).forEach(([clave, valor]) =>
-      nodo.style.setProperty(clave, valor)
-    );
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   // La app avisa por postMessage cuando el usuario cambia el modo, asi no hay
@@ -117,7 +73,7 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      <div ref={contenedor} style={{ ...themes[theme], background: "var(--bg-primary)", color: "var(--bg-secondary)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between"  }}>
+      <div style={{ background: "var(--bg-primary)", color: "var(--bg-secondary)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         {children}
       </div>
     </ThemeContext.Provider>
