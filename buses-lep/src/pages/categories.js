@@ -7,7 +7,10 @@ import useHome from "../hooks/useHome";
 const CategoriesPage = ({ location }) => {
   const data = useHome().sanityHome;
   return (
-    <Layout location={location}>
+    <Layout
+      location={location}
+      title="Centro de ayuda"
+      description="Preguntas frecuentes sobre pasajes, compras, devoluciones y servicios de Buses Lep.">
       <div >
         {data.banner !== null && data.banner.length !== 0 ? (
           <Banner banner={data.banner} />

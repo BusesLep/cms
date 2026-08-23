@@ -17,7 +17,17 @@ const QuestionCategory = ({ location, data }) => {
   const dataHome = useHome().sanityHome;
 
   return (
-    <Layout location={location}>
+    // El titulo de la categoria ya viene en el query de la pagina; sin
+    // pasarlo, el Seo caia al titulo global y todas las categorias se
+    // titulaban igual en Google.
+    <Layout
+      location={location}
+      title={categoryData?.title}
+      description={
+        categoryData?.title
+          ? `Preguntas frecuentes sobre ${categoryData.title.toLowerCase()} en Buses Lep.`
+          : undefined
+      }>
       <div >
       {dataHome.banner !== null && dataHome.banner.length !== 0 ? (
           <Banner banner={dataHome.banner} />

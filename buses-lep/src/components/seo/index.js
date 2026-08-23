@@ -15,6 +15,15 @@ import  useGlobalSeo  from "../../hooks/useGlobalSeo"
   const defaultTitle = pageTitle ? pageTitle : title
   const defaultDescription = pageDescription ? pageDescription : description
 
+  // "Compras y formas de pago | Buses Lep", pero sin duplicar la marca
+  // cuando el titulo de la pagina YA es la marca (la home de Sanity se llama
+  // "Buses Lep" y quedaba "Buses Lep | Buses Lep").
+  const marca = `Buses Lep`
+  const tituloFinal =
+    !defaultTitle || defaultTitle.trim().toLowerCase() === marca.toLowerCase()
+      ? marca
+      : `${defaultTitle} | ${marca}`
+
  
 const siteMetadata = {
    lang: `es`,
@@ -25,11 +34,7 @@ const siteMetadata = {
   return (
     <Helmet
       htmlAttributes={{ lang: siteMetadata.lang }}
-      title={defaultTitle}
-      // Con %s el titulo de la pagina se conserva ("Formas de pago | Buses
-      // Lep"). Sin el placeholder, react-helmet usa la plantilla literal y
-      // TODAS las paginas se titulaban "buses Lep" a secas, tambien en Google.
-      titleTemplate={`%s | Buses Lep`}
+      title={tituloFinal}
 
       meta={[
         {
@@ -42,7 +47,7 @@ const siteMetadata = {
         },
         {
           property: `og:title`,
-          content: defaultTitle,
+          content: tituloFinal,
         },
         {
           property: `og:description`,
@@ -62,7 +67,7 @@ const siteMetadata = {
         },
         {
           name: `twitter:title`,
-          content: defaultTitle,
+          content: tituloFinal,
         },
         {
           name: `twitter:description`,
