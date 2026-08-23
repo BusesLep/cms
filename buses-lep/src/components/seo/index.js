@@ -26,8 +26,11 @@ const siteMetadata = {
     <Helmet
       htmlAttributes={{ lang: siteMetadata.lang }}
       title={defaultTitle}
-      titleTemplate={`buses Lep` }
-      
+      // Con %s el titulo de la pagina se conserva ("Formas de pago | Buses
+      // Lep"). Sin el placeholder, react-helmet usa la plantilla literal y
+      // TODAS las paginas se titulaban "buses Lep" a secas, tambien en Google.
+      titleTemplate={`%s | Buses Lep`}
+
       meta={[
         {
           name: `robots`,
@@ -48,6 +51,10 @@ const siteMetadata = {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:image`,
+          content: `https://www.buseslep.com.ar/logo.png`,
         },
         {
           name: `twitter:card`,

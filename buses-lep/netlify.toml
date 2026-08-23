@@ -14,16 +14,14 @@
   # 🔁 O si preferís desactivar completamente el escaneo:
    SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
 
-# Mientras este contenido viva en el dominio *.netlify.app no debe indexarse:
-# Google lo estaba listando con esta URL, y el unico contenido textual de Lep
-# le suma autoridad a un dominio ajeno en vez de a buseslep.com.ar. El iframe
-# de la app no se ve afectado (noindex no impide embeber).
-#
-# OJO fase 2: si este sitio pasa a servirse detras de un proxy como
-# www.buseslep.com.ar/ayuda, este header viajaria por el proxy y noindexaria
-# tambien las paginas buenas. En ese momento hay que sacarlo y poner
-# canonicals al dominio propio.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Robots-Tag = "noindex"
+# El dominio con marca es cms.buseslep.com.ar; el *.netlify.app no debe
+# competir en Google (llego a indexarse con esa URL). Un 301 por host manda
+# todo al dominio propio: los visitantes y los crawlers terminan siempre en
+# el mismo lugar, y las paginas ya indexadas con la URL de Netlify se van
+# reasignando solas. Un X-Robots-Tag aca no servia: aplicaria a los DOS
+# dominios y desindexaria tambien el bueno.
+[[redirects]]
+  from = "https://profound-cendol-18bee6.netlify.app/*"
+  to = "https://cms.buseslep.com.ar/:splat"
+  status = 301
+  force = true

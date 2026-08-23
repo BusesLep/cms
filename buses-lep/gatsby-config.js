@@ -9,7 +9,10 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Buses Lep`,
-    siteUrl: `https://www.buseslep.com.ar/`
+    // El dominio de ESTE sitio (el centro de ayuda), no el de la web de
+    // ventas: gatsby-plugin-sitemap arma las URLs del sitemap con esto, y
+    // con el dominio equivocado el sitemap declaraba paginas ajenas.
+    siteUrl: `https://cms.buseslep.com.ar`
   },
   plugins: [{
     resolve: 'gatsby-source-sanity',

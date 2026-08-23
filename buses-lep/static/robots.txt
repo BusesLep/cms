@@ -1,0 +1,7 @@
+# cms.buseslep.com.ar — centro de ayuda de Buses Lep.
+# El dominio *.netlify.app redirige aca con 301 (ver netlify.toml).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cms.buseslep.com.ar/sitemap-index.xml
