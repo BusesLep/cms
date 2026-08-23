@@ -20,7 +20,11 @@ module.exports = {
       "projectId": process.env.SANITY_ID_PROJECT,
       "dataset": process.env.SANITY_DATASET
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass",  "gatsby-plugin-sitemap", {
+  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass",  "gatsby-plugin-sitemap",
+  // Sin este plugin, nada de lo que setea <Helmet> (titulo, description, og)
+  // llega al HTML estatico: solo existia al hidratar React. Los crawlers y
+  // las previews de links veian paginas sin <title>.
+  "gatsby-plugin-react-helmet", {
     resolve: 'gatsby-plugin-manifest',
     options: {
       "icon": "src/images/new_logo_lep.svg"
