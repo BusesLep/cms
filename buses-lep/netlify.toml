@@ -13,3 +13,17 @@
 
   # 🔁 O si preferís desactivar completamente el escaneo:
    SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+# Mientras este contenido viva en el dominio *.netlify.app no debe indexarse:
+# Google lo estaba listando con esta URL, y el unico contenido textual de Lep
+# le suma autoridad a un dominio ajeno en vez de a buseslep.com.ar. El iframe
+# de la app no se ve afectado (noindex no impide embeber).
+#
+# OJO fase 2: si este sitio pasa a servirse detras de un proxy como
+# www.buseslep.com.ar/ayuda, este header viajaria por el proxy y noindexaria
+# tambien las paginas buenas. En ese momento hay que sacarlo y poner
+# canonicals al dominio propio.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
